@@ -1,0 +1,11 @@
+.Forum {
+  display: grid;
+  place-items: center;
+  margin-left: 210px;
+}
+
+@media (max-width: 998px) {
+  .Forum {
+    margin-left: 40px;
+  }
+}

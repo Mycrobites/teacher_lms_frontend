@@ -1,0 +1,582 @@
+/* POST COMPONENT STYLES */
+.add-post {
+  max-width: 1100px;
+  width: 90vw;
+  margin: auto;
+  padding: 20px;
+  padding-bottom: 0;
+  /* border-bottom: 1px solid rgba(0, 0, 0, 0.2); */
+}
+.add-post-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.add-post-title h1 {
+  margin-bottom: 0;
+  font-size: 30px;
+  font-weight: 600;
+}
+.add-post-title button {
+  width: 22%;
+}
+@media (max-width: 900px) {
+  .add-post-title button {
+    width: fit-content;
+  }
+}
+
+/* TABS */
+.add-post .tabs {
+  margin-top: 20px;
+}
+.add-post .tabs .tab-btn {
+  background-color: transparent;
+  border: none;
+  padding: 15px 20px;
+  font-size: 18px;
+  font-weight: 600;
+  color: rgba(0, 0, 0, 0.5);
+  outline: none;
+}
+.add-post .tabs .active {
+  color: #000;
+  border-bottom: 3px solid #000;
+}
+
+/* ADDING POST */
+.post-post {
+  padding: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  margin-top: 20px;
+}
+.post-post form > * {
+  display: block;
+  width: 100%;
+}
+.post-post label {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 15px 0;
+}
+.post-post input::placeholder,
+.post-post textarea::placeholder {
+  font-weight: 500 !important;
+  color: rgba(0, 0, 0, 0.4);
+}
+.post-post input[type="text"] {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+.post-post textarea {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px 10px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  outline: none;
+  height: 100px;
+  font-weight: 500;
+}
+.post-post input[type="file"] {
+  cursor: pointer;
+}
+.post-post .add-post-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+}
+.post-post .add-post-buttons button {
+  font-size: 15px;
+  margin-left: 15px;
+  padding: 5px 10px;
+}
+.post-post .post-upload-question {
+  margin-top: 20px;
+  color: #cc3434;
+}
+.post-post .post-upload-question svg {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.post-post .isedit-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.isedit-buttons button {
+  margin-left: 15px;
+  font-size: 16px !important;
+}
+
+.post-post input,
+.post-post textarea {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.3) !important;
+  border-radius: 2px !important;
+}
+
+.post-post textarea {
+  margin-bottom: 0;
+}
+
+/* BUTTON STYLES */
+.add-post-title button,
+.answer-btn-div .answers,
+.answer-btn-div .answer,
+.answer-btn-div .report,
+.post-comment-buttons button,
+.add-post-buttons button,
+.post-post button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  outline: none;
+  color: white;
+  background: rgb(0, 140, 255);
+  cursor: pointer;
+  padding: 7px 10px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 4px;
+  /* border: 1px solid rgb(0, 140, 255); */
+  transition: all 0.2s ease;
+}
+/* .add-post-title button:hover,
+.answer-btn-div .answer:hover,
+.answer-btn-div .answers:hover,
+.post-comment-buttons button:hover {
+  background: white;
+  color: black;
+  border: 1px solid black;
+} */
+
+.all-posts {
+  padding: 20px 40px;
+  /* min-height: 100vh; */
+  flex: 6;
+  /* border-top: solid 1px rgba(0, 0, 0, 0.2); */
+}
+
+/* SINGLEPOST COMPONENT STYLES */
+.single-post {
+  display: flex;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.profile-pic-div {
+  margin-right: 25px;
+}
+.post-content {
+  flex: 1;
+}
+.post-content .time-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+.post-content .time-div button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+.post-content .time-div .three-dots {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+.post-content .time-div .three-dots:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.post-content .time-div svg {
+  color: rgba(0, 0, 0, 0.8);
+}
+.post-content .time {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 0;
+  margin-top: 5px;
+}
+.post-content .title > * {
+  font-size: 22px;
+  margin: 10px 0;
+  font-weight: 600;
+}
+.post-content .desc {
+  margin: 0;
+  margin-top: 15px;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.5);
+  padding: 0 5px;
+}
+.post-content .desc img {
+  max-width: 650px;
+  width: 100%;
+}
+.no-answers {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+}
+.post-content .tags {
+  margin: 10px 0;
+  margin-left: 5px;
+}
+.post-content .tag {
+  font-size: 16px;
+  font-weight: 500;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  color: rgba(0, 0, 0, 0.7);
+  display: inline;
+  margin-right: 10px;
+  padding: 2px 5px;
+  border-radius: 2px;
+  cursor: default;
+}
+
+/* DELETE AMD EDIT DIV */
+.delete-edit-div,
+.delete-edit-comment-div {
+  box-shadow: rgba(50, 50, 93, 0.4) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.2) 0px 1px 3px 1px;
+  padding: 10px;
+  position: absolute;
+  z-index: 999;
+  right: 0;
+  top: 120%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  background-color: #fff;
+  border-radius: 5px;
+}
+.delete-edit-div button:first-child,
+.delete-edit-comment-div button:first-child {
+  margin-bottom: 10px;
+}
+.delete-edit-div #edit-btn,
+.delete-edit-div #delete-btn,
+.delete-edit-comment-div #edit-btn,
+.delete-edit-comment-div #delete-btn {
+  width: 100%;
+  text-align: left;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 16px;
+}
+.delete-edit-div button:hover,
+.delete-edit-comment-div button:hover {
+  background-color: #eee;
+}
+.delete-edit-div button svg,
+.delete-edit-comment-div button svg {
+  color: rgba(0, 0, 0, 0.8) !important;
+  margin-right: 5px;
+  font-size: 20px;
+}
+
+/* ANSWER DIV STYLES */
+.answer-btn-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #eee;
+  padding: 15px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+.answer-btn-div .answer {
+  background-color: #000;
+  font-size: 16px;
+  margin-left: 15px;
+}
+.answer-btn-div .report {
+  background-color: #cc3434;
+  font-size: 16px;
+  margin-left: 15px;
+}
+.answer-btn-div .answers {
+  font-size: 16px;
+}
+.answer-btn-div .answers svg,
+.answer-btn-div .report svg {
+  margin-right: 5px;
+  font-size: 18px;
+}
+.answer-btn-div .share {
+  display: flex;
+  align-items: center;
+}
+
+/* POST COMMENT COMPONENT STYLES */
+.post-comment-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 10px;
+}
+.post-comment-buttons button {
+  margin-left: 10px;
+  font-size: 14px;
+  padding: 6px;
+}
+.post-comment {
+  padding: 20px 15px;
+  display: flex;
+  align-items: flex-start;
+}
+.post-comment .user-profile {
+  margin-right: 15px;
+}
+.post-comment .post-comment-body {
+  flex: 1;
+}
+.post-comment-form div {
+  width: 100%;
+}
+.post-comment-body textarea {
+  width: 100%;
+  padding: 10px 15px;
+  height: 120px;
+  outline: none;
+}
+.comment-time button {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+.comment-time .three-dots {
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+}
+.comment-time .three-dots:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.comment-time svg {
+  color: rgba(0, 0, 0, 0.8);
+}
+
+/* COMMENT COMPONENT STYLES */
+.comment {
+  padding: 15px;
+  display: flex;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.comment-content {
+  flex: 1;
+}
+.comment:last-child {
+  border-bottom: none;
+}
+.comment .user-profile {
+  margin-right: 15px;
+}
+.comment .time {
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 15px;
+}
+.comment .username {
+  font-size: 20px;
+  font-weight: 600;
+  margin: 5px 0 10px 0;
+}
+.comment .comment-text {
+  color: rgba(0, 0, 0, 0.5);
+  font-weight: 500;
+  font-size: 15px;
+}
+.comment-upvotes button {
+  background-color: transparent;
+  border: none;
+  margin-right: 20px;
+  font-weight: 500;
+  outline: none;
+  color: #cc3434;
+}
+.comment-upvotes button:first-child {
+  border-right: 1px solid rgba(0, 0, 0, 0.4);
+  padding-right: 20px;
+  color: rgb(0, 140, 255);
+}
+.comment-upvotes button:nth-child(2) {
+  border-right: 1px solid rgba(0, 0, 0, 0.4);
+  padding-right: 20px;
+}
+.comment-upvotes button:nth-child(3) {
+  color: rgba(0, 0, 0, 0.6);
+}
+.comment-upvotes button:first-child svg {
+  font-size: 22px;
+  color: rgb(0, 140, 255);
+}
+.comment-upvotes button:nth-child(2) svg {
+  font-size: 20px;
+}
+.comment-time {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  position: relative;
+}
+.comment-time .delete-edit-comment-div {
+  position: absolute;
+  top: 120%;
+  right: 0;
+}
+/* COMMENT EDIT */
+.edit-comment-div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.edit-comment-div textarea {
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding: 5px 10px;
+  margin-top: 5px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+  outline: none;
+  height: 100px;
+  font-weight: 500;
+  align-self: stretch;
+}
+.edit-comment-div textarea::placeholder {
+  font-weight: 500 !important;
+  color: rgba(0, 0, 0, 0.4);
+}
+.edit-comment-div button {
+  display: grid;
+  place-items: center;
+  border: none;
+  outline: none;
+  color: white;
+  background: rgb(0, 140, 255);
+  cursor: pointer;
+  padding: 7px 10px;
+  font-size: 15px;
+  font-weight: 600;
+  border-radius: 4px;
+  display: inline;
+  margin-bottom: 5px;
+}
+.edit-div {
+  margin-top: 15px;
+}
+.edit-div button {
+  margin-left: 15px;
+}
+
+/* FORUM LOADER */
+.forum-loader {
+  margin-top: 100px;
+  padding-right: 10%;
+  display: grid;
+  place-items: center;
+  margin-bottom: 200px;
+}
+
+/* LOADER */
+.post .loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* PAGINATION */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 30px;
+}
+.next-btn {
+  margin-right: 20px;
+}
+.prev-btn {
+  margin-left: 20px;
+}
+.pagination button {
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+}
+.pagination-btn button {
+  margin: 0 5px;
+  width: 30px;
+  height: 35px;
+}
+.pagination button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.pagination .active {
+  background-color: rgba(0, 0, 0, 0.2);
+  color: #000;
+  font-weight: 600;
+}
+
+/* REPORT MODAL */
+.report-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 999;
+  display: flex;
+  flex-direction: column;
+}
+.report-modal .report-modal-div {
+  background-color: #f3f3f3;
+  max-width: 500px;
+  width: 90vw;
+  margin: 250px auto;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.4) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.2) 0px 1px 3px 1px;
+}
+.report-modal .report-modal-div h2 {
+  font-size: 22px;
+  font-weight: 600;
+}
+.report-modal-div button {
+  margin-left: auto;
+  background-color: #000;
+  color: #fff;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 3px;
+  margin-top: 10px;
+}
+
+.comment-upvotes .report-button {
+  border-right: none;
+}

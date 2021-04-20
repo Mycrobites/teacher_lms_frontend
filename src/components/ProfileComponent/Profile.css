@@ -1,0 +1,248 @@
+.profile-card {
+	margin-left: 280px;
+	display: flex;
+	background: white;
+	width: 85%;
+	max-width: 1000px;
+	padding: 20px;
+}
+
+.profile-image {
+	max-width: 170px;
+	height: 350px;
+	flex: 30%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	background: white;
+	margin: 0 30px;
+	margin-top: 40px;
+	border-radius: 10px;
+}
+.profile-img {
+	position: relative;
+}
+.profile-image button {
+	border: none;
+	outline: none;
+}
+button:disabled {
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+.edit-img-btn {
+	position: absolute;
+	right: 5px;
+	background: none;
+	color: rgb(95, 95, 95);
+	font-size: 1.5em;
+	bottom: 0;
+	z-index: 100;
+}
+
+.edit-loader {
+	z-index: 99;
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	place-items: center;
+	background-color: rgba(255, 255, 255, 0.4);
+	position: fixed;
+	top: 0%;
+	left: 0%;
+}
+.profile-img {
+	border: 1px solid lightgray;
+	width: 100%;
+	display: grid;
+	place-items: center;
+	margin-bottom: 20px;
+}
+
+.profile-details {
+	flex: 70%;
+	padding: 20px;
+}
+.profile-image img {
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	width: 150px;
+	height: 150px;
+	object-fit: contain;
+	margin: 20px 0;
+}
+.profile-image h6 {
+	font-weight: 600;
+}
+.profile-image p {
+	font-weight: 600;
+	color: gray;
+	font-size: 0.9em;
+}
+.student-detail {
+	position: relative;
+	display: grid;
+	grid-template-columns: minmax(100px, 1.33fr) minmax(100px, 1.33fr) minmax(
+			100px,
+			1.33fr
+		);
+	margin-bottom: 50px;
+}
+.profile-name h1 {
+	font-size: 1.5em;
+	font-weight: 700;
+}
+.profile-name p {
+	font-size: 0.9em;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+.profile-name {
+	padding: 20px 10px;
+	border-bottom: 0.5px solid lightgray;
+	position: relative;
+}
+
+.student-detail div {
+	display: flex;
+	flex-direction: column;
+	margin: 15px 8px;
+}
+
+.student-detail div p {
+	font-weight: 500;
+	color: rgb(100, 100, 100);
+	margin-bottom: 10px;
+	word-break: break-all;
+}
+.student-detail div p:nth-child(2) {
+	margin-bottom: 0;
+}
+.edit .button-group {
+	position: absolute;
+	top: 100%;
+	left: 50%;
+	transform: translateX(-50%);
+	display: grid;
+	grid-template-columns: repeat(2, 100px);
+	grid-gap: 15px;
+}
+.edit input {
+	padding: 10px 5px;
+	color: rgba(0, 0, 0, 0.7);
+}
+.button-group button {
+	display: inline;
+	width: 100px;
+	height: 50px;
+	padding: 6px 10px;
+	background: rgb(0, 140, 255);
+	border: none;
+	outline: none;
+	cursor: pointer;
+	color: white;
+	font-weight: 500;
+	border-radius: 4px;
+}
+.button-group button:hover {
+	color: black;
+	background: white;
+	border: 1px solid black;
+}
+.profile-loader {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 1000;
+}
+
+.profile-edit-button {
+	position: absolute;
+	top: 25%;
+	right: 3%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: none;
+	border: none;
+	outline: none !important;
+	font-size: 1.5em;
+	color: rgba(100, 100, 100);
+	cursor: pointer;
+}
+.profile-edit-button:hover {
+	color: black;
+	border-radius: 20px;
+}
+.img-upload-btn {
+	background: rgb(0, 140, 255);
+	padding: 5px;
+	border: 1px solid black;
+	color: white;
+	font-weight: 500;
+	font-size: 0.8em;
+}
+.edit-image {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	margin-bottom: 10px;
+}
+.label-profile-img {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+	width: 100%;
+}
+.label-profile-img img {
+	width: 50px;
+	height: 50px;
+	object-fit: contain;
+}
+
+.label-profile-img input {
+	display: none;
+}
+.label-profile-img svg {
+	font-size: 1.5em;
+	color: rgb(119, 119, 119);
+	cursor: pointer;
+	background: rgb(236, 236, 236);
+}
+
+@media only screen and (max-width: 900px) {
+	.profile-card {
+		margin-left: 50px;
+	}
+}
+
+@media only screen and (max-width: 1200px) {
+	.student-detail {
+		display: grid;
+		grid-template-columns: minmax(100px, 1fr) minmax(100px, 1fr);
+	}
+}
+
+@media only screen and (max-width: 600px) {
+	.profile-card {
+		flex-direction: column;
+		justify-content: flex-start;
+		align-items: center;
+	}
+	.student-detail {
+		display: grid;
+		grid-template-columns: minmax(150px, 1.33fr);
+	}
+
+	.student-detail div {
+		display: grid;
+		flex-direction: row;
+		margin: 15px;
+	}
+	.student-detail div > * {
+		margin: 10px 20px;
+	}
+}

@@ -1,0 +1,17 @@
+.error {
+	display: flex;
+	align-items: center;
+	margin-top: 5px;
+}
+
+.error p {
+	color: red;
+	font-weight: 400;
+	font-size: 16px;
+}
+
+.error svg {
+	color: red;
+	font-size: 18px;
+	margin-right: 5px;
+}

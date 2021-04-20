@@ -1,0 +1,167 @@
+.login-page {
+	width: 100%;
+	height: 100vh;
+	background-color: #f3f3f3;
+	position: relative;
+}
+.login-page p {
+	margin-bottom: 0px;
+}
+
+.login-page-contents {
+	width: 90vw;
+	max-width: 1168px;
+	margin: auto;
+	height: 100vh;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	grid-gap: 20px;
+}
+
+.login-image {
+	display: grid;
+	place-items: center;
+}
+
+.login-image img {
+	width: 80%;
+	object-fit: contain;
+	filter: drop-shadow(2px 6px rgba(0, 0, 0, 0.1));
+}
+
+.form-holder {
+	display: grid;
+	place-items: center;
+	z-index: 10;
+}
+
+.login-clip-path {
+	clip-path: polygon(0 0, 100% 0, 100% 45%, 0 75%);
+	background: linear-gradient(to bottom, #00aeff, white);
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100vw;
+	height: 100vh;
+}
+
+.login-page form {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	align-items: stretch;
+	min-height: 350px;
+	margin: 0 30px;
+	max-width: 400px;
+	width: 90%;
+	padding: 25px;
+	max-width: 400px;
+	border-radius: 10px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+		rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+	background: rgb(255, 255, 255);
+}
+
+.login-page input {
+	padding: 10px 10px;
+	border: none;
+	border: 1px solid lightgray;
+	border-radius: 5px;
+	background: inherit;
+	outline: none;
+	margin-top: 5px;
+	font-weight: 500;
+	font-size: 16px;
+}
+
+input::placeholder {
+	font-size: 1em;
+	color: rgb(180, 182, 184);
+	font-weight: 400;
+}
+
+.username label,
+.password label {
+	display: flex;
+	flex-direction: column;
+	font-size: 1.1em;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+
+.login-page button {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 40px;
+	border: none;
+	outline: none;
+	color: white;
+	background: rgb(0, 140, 255);
+	cursor: pointer;
+	padding: 10px;
+	font-size: 1.1em;
+	font-weight: 700;
+	border-radius: 5px;
+}
+
+.login-page button:hover {
+	background: white;
+	color: black;
+	border: 1px solid black;
+}
+
+.username label p:first-child,
+.password label p:first-child {
+	margin-bottom: 10px;
+}
+
+.login-loader {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: rgba(255, 255, 255, 0.5);
+	z-index: 99;
+}
+
+.password label {
+	position: relative;
+}
+
+.password .show-password {
+	position: absolute;
+	right: 10px;
+	top: 40px;
+	cursor: pointer;
+}
+
+.show-password svg {
+	color: rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 915px) {
+	.login-image img {
+		width: 100%;
+	}
+}
+
+@media (max-width: 750px) {
+	.login-image {
+		display: none;
+	}
+	.form-holder {
+		width: 90vw;
+	}
+}
+
+@media only screen and (max-width: 500px) {
+	.login-page form {
+		width: 90vw;
+		margin: 0;
+	}
+}
