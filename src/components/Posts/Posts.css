@@ -38,6 +38,7 @@
   font-weight: 600;
   color: rgba(0, 0, 0, 0.5);
   outline: none;
+  cursor: pointer;
 }
 .add-post .tabs .active {
   color: #000;
