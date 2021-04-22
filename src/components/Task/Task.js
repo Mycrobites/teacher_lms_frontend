@@ -24,6 +24,7 @@ const Task = ({ user }) => {
   const [dueDate, setDueDate] = useState("");
   const { userDetails } = useContext(UserContext);
 
+<<<<<<< HEAD
   const addTodo = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -81,6 +82,65 @@ const Task = ({ user }) => {
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user?.username]);
+=======
+	const addTodo = async (e) => {
+		e.preventDefault();
+		setIsLoading(true);
+		try {
+			if (tasks.length === 10) {
+				alert("You can't add more than 10 tasks");
+			} else {
+				if (newTask.length > 0 && dueDate) {
+					const config = {
+						headers: { Authorization: `Bearer ${user.access}` },
+					};
+					const { data } = await axios.post(
+						'/api/todo/create',
+						{
+							title: newTask,
+							dueDate: dueDate,
+							isComplete: false,
+							user: user.user_id,
+						},
+						config,
+					);
+					setTasks([...tasks, data]);
+					setNewTask('');
+					setDueDate('');
+					setShowInput(false);
+				} else {
+					setIsError(true);
+				}
+			}
+		} catch (err) {
+			console.log(err.message);
+		}
+		setIsLoading(false);
+	};
+
+	useEffect(() => {
+		let isUnmounted = false;
+		const fetchTasks = async () => {
+			try {
+				const config = {
+					headers: { Authorization: `Bearer ${user.access}` },
+				};
+				const { data } = await axios.get(`/api/todo/${user.username}`, config);
+				if (!isUnmounted) {
+					setTasks(data);
+					localStorage.setItem('tasks', JSON.stringify(data));
+				}
+			} catch (err) {
+				console.log(err.message);
+			}
+		};
+		fetchTasks();
+		return () => {
+			isUnmounted = true;
+		};
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [user?.username]);
+>>>>>>> 00fb0c049e3f30bc1262737ad81f2c5c28e2cb74
 
   useEffect(() => {
     const error = setTimeout(() => {

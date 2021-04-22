@@ -1,15 +1,15 @@
 import { Avatar } from "@material-ui/core";
-import months from "../../assets/months/months";
+// import months from "../../assets/months/months";
 
 const Course = (props) => {
   const {
     course_name,
     image,
-    date_of_enrollment,
+    // date_of_enrollment,
     author_name,
     author_profile_pic,
     course_description,
-    percentage_completed,
+    // percentage_completed,
   } = props;
 
   return (

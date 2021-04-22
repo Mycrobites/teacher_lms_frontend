@@ -23,7 +23,7 @@ const Login = () => {
 	const fetchUser = async () => {
 		setLoading(true);
 		try {
-			const { data } = await axios.post('/rest-auth/login/', {
+			const { data } = await axios.post('/teacher/login', {
 				username: username.trim(),
 				password: password,
 			});

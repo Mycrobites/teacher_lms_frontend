@@ -12,6 +12,8 @@ import NavBar from './components/NavBar/NavBar';
 import ProfilePage from './pages/Profile/ProfilePage';
 import Login from './pages/LoginPage/Login';
 import UserContext from './context/authContext';
+import CoursePage from './pages/CoursePage/CoursePage';
+import QuizPage from './pages/QuizPage/QuizPage';
 
 const App = () => {
 	const { userDetails } = useContext(UserContext);
@@ -32,6 +34,12 @@ const App = () => {
 					</Route>
 					<Route exact path="/profile">
 						{userDetails ? <ProfilePage /> : <Redirect to="/" />}
+					</Route>
+					<Route exact path="/course">
+						{userDetails ? <CoursePage /> : <Redirect to="/" />}
+					</Route>
+					<Route exact path="/quiz">
+						{userDetails ? <QuizPage /> : <Redirect to="/" />}
 					</Route>
 					<Route path="*">
 						<ErrorPage />

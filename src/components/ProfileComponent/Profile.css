@@ -72,29 +72,27 @@ button:disabled {
 	object-fit: contain;
 	margin: 20px 0;
 }
-.profile-image h6 {
+.profile-image h3 {
 	font-weight: 600;
 }
 .profile-image p {
 	font-weight: 600;
 	color: gray;
-	font-size: 0.9em;
+	font-size: 1em;
 }
 .student-detail {
 	position: relative;
 	display: grid;
-	grid-template-columns: minmax(100px, 1.33fr) minmax(100px, 1.33fr) minmax(
-			100px,
-			1.33fr
-		);
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
 	margin-bottom: 50px;
 }
 .profile-name h1 {
 	font-size: 1.5em;
 	font-weight: 700;
+	margin-bottom: 10px;
 }
 .profile-name p {
-	font-size: 0.9em;
+	font-size: 1em;
 	font-weight: 600;
 	margin-bottom: 0;
 }
