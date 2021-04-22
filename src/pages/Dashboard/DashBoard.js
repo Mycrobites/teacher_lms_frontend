@@ -15,7 +15,7 @@ const DashBoard = () => {
 			<div className="dashboard-items">
 				<UpcomingLessons user={userDetails?.user} />
 				<Calendar />
-				<Task user={userDetails?.user} />
+				<Task user={userDetails} />
 			</div>
 		</div>
 	);

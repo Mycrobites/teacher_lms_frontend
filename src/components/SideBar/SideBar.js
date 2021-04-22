@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
 // import HomeOutlinedIcon from "@material-ui/icons/HomeOutlined";
 import DashboardOutlinedIcon from '@material-ui/icons/DashboardOutlined';
-import NoteAddOutlinedIcon from '@material-ui/icons/NoteAddOutlined';
+
 import ForumOutlinedIcon from '@material-ui/icons/ForumOutlined';
-import EmojiEventsOutlinedIcon from '@material-ui/icons/EmojiEventsOutlined';
+
+import CollectionsBookmarkOutlinedIcon from '@material-ui/icons/CollectionsBookmarkOutlined';
+import AssignmentOutlinedIcon from '@material-ui/icons/AssignmentOutlined';
 import './SideBar.css';
 
 const SideBar = ({ active }) => {
@@ -20,16 +22,16 @@ const SideBar = ({ active }) => {
 						<DashboardOutlinedIcon />
 					</Link>
 				</div>
-				{/*<div id={active === 'enrollment' ? 'active' : ''} className="menu">
-					<Link to="/enrollment">
-						<NoteAddOutlinedIcon />
+				<div id={active === 'course' ? 'active' : ''} className="menu">
+					<Link to="/course">
+						<CollectionsBookmarkOutlinedIcon />
 					</Link>
 				</div>
-				<div id={active === 'achievement' ? 'active' : ''} className="menu">
-					<Link to="/achievement">
-						<EmojiEventsOutlinedIcon />
+				<div id={active === 'quiz' ? 'active' : ''} className="menu">
+					<Link to="/quiz">
+						<AssignmentOutlinedIcon />
 					</Link>
-    </div>*/}
+				</div>
 				<div id={active === 'forum' ? 'active' : ''} className="menu">
 					<Link to="/forum">
 						<ForumOutlinedIcon />
@@ -50,18 +52,18 @@ const SideBar = ({ active }) => {
 						Dashboard
 					</Link>
 				</div>
-				{/*<div id={active === 'enrollment' ? 'active' : ''} className="menu">
-					<Link to="/enrollment">
-						<NoteAddOutlinedIcon />
-						My Enrollments
+				<div id={active === 'course' ? 'active' : ''} className="menu">
+					<Link to="/course">
+						<CollectionsBookmarkOutlinedIcon />
+						My Courses
 					</Link>
 				</div>
-				<div id={active === 'achievement' ? 'active' : ''} className="menu">
-					<Link to="/achievement">
-						<EmojiEventsOutlinedIcon />
-						Achievements
+				<div id={active === 'quiz' ? 'active' : ''} className="menu">
+					<Link to="/quiz">
+						<AssignmentOutlinedIcon />
+						Quiz
 					</Link>
-    </div>*/}
+				</div>
 				<div id={active === 'forum' ? 'active' : ''} className="forum menu">
 					<Link to="/forum">
 						<ForumOutlinedIcon />

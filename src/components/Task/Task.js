@@ -33,7 +33,7 @@ const Task = ({ user }) => {
 			} else {
 				if (newTask.length > 0 && dueDate) {
 					const config = {
-						headers: { Authorization: `Bearer ${userDetails.key}` },
+						headers: { Authorization: `Bearer ${user.access}` },
 					};
 					const { data } = await axios.post(
 						'/api/todo/create',
@@ -41,7 +41,7 @@ const Task = ({ user }) => {
 							title: newTask,
 							dueDate: dueDate,
 							isComplete: false,
-							user: user?.pk,
+							user: user.user_id,
 						},
 						config,
 					);
@@ -64,9 +64,9 @@ const Task = ({ user }) => {
 		const fetchTasks = async () => {
 			try {
 				const config = {
-					headers: { Authorization: `Bearer ${userDetails.key}` },
+					headers: { Authorization: `Bearer ${user.access}` },
 				};
-				const { data } = await axios.get(`/api/todo/${user?.username}`, config);
+				const { data } = await axios.get(`/api/todo/${user.username}`, config);
 				if (!isUnmounted) {
 					setTasks(data);
 					localStorage.setItem('tasks', JSON.stringify(data));

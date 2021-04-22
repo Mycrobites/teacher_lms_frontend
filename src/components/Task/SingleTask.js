@@ -24,7 +24,7 @@ const SingleTasks = (props) => {
 				title: editTitle,
 				dueDate: editDate,
 				isComplete,
-				user: user?.pk,
+				user: user.user_id,
 			};
 			const updatedTasks = tasks.map((task) => {
 				if (task.id === id) return editedTask;
@@ -33,7 +33,7 @@ const SingleTasks = (props) => {
 			setTasks(updatedTasks);
 			localStorage.setItem('tasks', JSON.stringify(updatedTasks));
 			const config = {
-				headers: { Authorization: `Bearer ${userDetails.key}` },
+				headers: { Authorization: `Bearer ${user.access}` },
 			};
 			await axios.put(`/api/todo/edit/${id}`, editedTask, config);
 		} catch (err) {
@@ -47,7 +47,7 @@ const SingleTasks = (props) => {
 			localStorage.setItem('tasks', JSON.stringify(deletedTasks));
 			setTasks(deletedTasks);
 			const config = {
-				headers: { Authorization: `Bearer ${userDetails.key}` },
+				headers: { Authorization: `Bearer ${user.access}` },
 			};
 			await axios.delete(`/api/todo/edit/${id}`, config);
 		} catch (err) {
@@ -71,7 +71,7 @@ const SingleTasks = (props) => {
 		localStorage.setItem('tasks', JSON.stringify(completedTasks));
 		try {
 			const config = {
-				headers: { Authorization: `Bearer ${userDetails.key}` },
+				headers: { Authorization: `Bearer ${user.access}` },
 			};
 			await axios.put(`/api/todo/edit/${id}`, completedTask, config);
 		} catch (err) {

@@ -38,12 +38,12 @@ const NavBar = () => {
 		setShowUser(false);
 		try {
 			const config = {
-				headers: { Authorization: `Bearer ${userDetails.key}` },
+				headers: { Authorization: `Bearer ${userDetails.access}` },
 			};
 			await axios.post(
 				'/api/notifSeen',
 				{
-					user: userDetails?.user?.pk,
+					user: userDetails.user_id,
 				},
 				config,
 			);
@@ -64,10 +64,10 @@ const NavBar = () => {
 			}
 			try {
 				const config = {
-					headers: { Authorization: `Bearer ${userDetails.key}` },
+					headers: { Authorization: `Bearer ${userDetails.access}` },
 				};
 				const { data } = await axios.get(
-					`/api/fetchNotification/${userDetails?.user?.username}`,
+					`/api/fetchNotification/${userDetails.username}`,
 					config,
 				);
 				setNotifications(data);
@@ -102,7 +102,7 @@ const NavBar = () => {
 							{unseenCount > 0 && <span>{unseenCount}</span>}
 							<NotificationsOutlinedIcon />
 						</button>
-						<h4 id="user-name">{userDetails?.user?.first_name}</h4>
+						<h4 id="user-name">{userDetails.first_name}</h4>
 						{/* <Avatar src={userDetails?.profile_pic} /> */}
 						<Avatar src={userProfilePic?.profile} />
 						<button onClick={showUserBar}>
@@ -115,7 +115,7 @@ const NavBar = () => {
 						{showUser && (
 							<UserDetail
 								setShowUser={setShowUser}
-								name={userDetails?.user?.first_name}
+								name={userDetails.first_name}
 							/>
 						)}
 						{showNotification && (
