@@ -10,7 +10,9 @@ const Lesson = ({ timeStamp, topic, link }) => {
           {months[date.getMonth()]} {date.getDate()}
         </h2>
         <p>
-          {date.getHours() % 12 < 10
+          {date.getHours() === 12
+            ? date.getHours()
+            : date.getHours() % 12 < 10
             ? `0${date.getHours() % 12}`
             : date.getHours() % 12}
           :

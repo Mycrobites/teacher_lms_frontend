@@ -1,24 +1,26 @@
-import SideBar from '../../components/SideBar/SideBar';
-import UpcomingLessons from '../../components/UpcomingLessons/UpcomingLessons';
-import Calendar from '../../components/Calendar/Calendar';
-import Task from '../../components/Task/Task';
-import './DashBoard.css';
-import { useContext } from 'react';
-import UserContext from '../../context/authContext';
+import SideBar from "../../components/SideBar/SideBar";
+import LiveClasses from "../../components/LiveClasses/LiveClasses";
+import Calendar from "../../components/Calendar/Calendar";
+import Courses from "../../components/Courses/Courses";
+import Task from "../../components/Task/Task";
+import "./DashBoard.css";
+import { useContext } from "react";
+import UserContext from "../../context/authContext";
 
 const DashBoard = () => {
-	const { userDetails } = useContext(UserContext);
+  const { userDetails } = useContext(UserContext);
 
-	return (
-		<div className="Dashboard">
-			<SideBar active="dashboard" />
-			<div className="dashboard-items">
-				<UpcomingLessons user={userDetails?.user} />
-				<Calendar />
-				<Task user={userDetails?.user} />
-			</div>
-		</div>
-	);
+  return (
+    <div className="Dashboard">
+      <SideBar active="dashboard" />
+      <div className="dashboard-items">
+        <LiveClasses user={userDetails?.user} />
+        <Task user={userDetails?.user} />
+        <Calendar />
+        <Courses user={userDetails?.user} />
+      </div>
+    </div>
+  );
 };
 
 export default DashBoard;

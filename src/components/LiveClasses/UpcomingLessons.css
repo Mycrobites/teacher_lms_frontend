@@ -5,6 +5,12 @@
 .UpcomingLessons h1 {
   font-size: 1.4em;
   font-weight: 600;
+}
+
+.UpcomingLessons-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 20px;
 }
 
@@ -54,7 +60,8 @@
   padding: 0 5px;
 }
 
-.single-lesson a {
+.single-lesson a,
+.UpcomingLessons-header button {
   background-color: #006eff;
   color: #fff;
   padding: 5px 15px;
@@ -63,6 +70,9 @@
   text-decoration: none;
   font-size: 12px;
   transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  outline: none;
 }
 
 .single-lesson a:hover {

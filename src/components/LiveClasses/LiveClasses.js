@@ -1,11 +1,11 @@
-import { useState, useEffect, useRef , useContext } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import Loader from "../Loader/Loader";
-import Lesson from "./Lesson";
+import Classes from "./Classes";
 import axios from "../../axios/axios";
 import "./UpcomingLessons.css";
 import UserContext from "../../context/authContext";
 
-const getUpcomingLessonsFromLocalStorage = () => {
+const getLiveClassesFromLocalStorage = () => {
   const lessons = localStorage.getItem("upcoming-lessons");
   if (lessons) {
     return JSON.parse(lessons);
@@ -14,29 +14,33 @@ const getUpcomingLessonsFromLocalStorage = () => {
   }
 };
 
-const UpcomingLessons = ({user}) => {
-  const [upcomingEvents, setUpcomingEvents] = useState(
-    getUpcomingLessonsFromLocalStorage
+const UpcomingLessons = ({ user }) => {
+  const [liveClasses, setLiveClasses] = useState(
+    getLiveClassesFromLocalStorage
   );
   const [isLoading, setIsLoading] = useState(false);
   const mountedRef = useRef(true);
-  const{userDetails}= useContext(UserContext)
+  const { userDetails } = useContext(UserContext);
 
   useEffect(() => {
     // let isUnmounted = false;
     const fetchUpcomingEvents = async () => {
-      if (!upcomingEvents) setIsLoading(true);
+      if (!liveClasses) setIsLoading(true);
       try {
         const config = {
           headers: { Authorization: `Bearer ${userDetails.key}` },
         };
-        const { data } = await axios.get(`/api/upcomingEvents/${user?.username}`,config);
+        const { data } = await axios.get(
+          `/teacher/getLiveclass/${user?.username}`,
+          config
+        );
+        // console.log(data.response);
         if (mountedRef.current) {
-          const sortedData = data
+          const sortedData = data.response
             .sort((a, b) => new Date(b.timeStamp) - new Date(a.timeStamp))
             .reverse();
           localStorage.setItem("upcoming-lessons", JSON.stringify(sortedData));
-          setUpcomingEvents(sortedData);
+          setLiveClasses(sortedData);
         }
       } catch (err) {
         console.log(err.message);
@@ -47,15 +51,19 @@ const UpcomingLessons = ({user}) => {
     return function cleanup() {
       mountedRef.current = false;
     };
-  }, [upcomingEvents, user?.username]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [liveClasses, user?.username]);
 
   return (
     <div className="UpcomingLessons">
-      <h1>Upcoming Lessons</h1>
+      <div className="UpcomingLessons-header">
+        <h1>Live Classes</h1>
+        <button>Schedule Class</button>
+      </div>
       {isLoading && <Loader />}
       <div className="lesson">
-        {upcomingEvents?.map((event) => (
-          <Lesson key={event.id} {...event} />
+        {liveClasses?.map((classs) => (
+          <Classes key={classs.id} {...classs} />
         ))}
       </div>
     </div>
