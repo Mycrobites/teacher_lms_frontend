@@ -23,106 +23,46 @@
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   background-color: #fff;
-  padding: 15px;
-  display: grid;
-  grid-template-rows: auto auto 1fr auto;
+  padding: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   cursor: pointer;
+  min-height: 150px;
   max-height: 250px;
 }
 
-.Course h2 {
-  margin-bottom: 0;
-}
-.enrolled-on h3 {
-  font-size: 0.9em;
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: 600;
-  margin-top: 5px;
-}
-
-.course-heading {
-  display: flex;
-  align-items: center;
-}
-
-.course-heading img {
-  width: 70px;
-  height: 50px;
-  object-fit: cover;
-  margin-right: 10px;
-}
-
-.course-heading h2 {
-  font-size: 1.15em;
-  font-weight: 700;
-  margin-top: 5px;
-}
-
-.course-progress {
-  width: 100%;
-  display: grid;
-  grid-template-columns: auto 1fr auto;
-  align-items: center;
-  margin-top: 10px;
-  background: none;
-  height: 30px;
-}
-
-.course-progress h3 {
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.course-progress progress {
-  height: 20px;
-  width: 80%;
-  align-self: center;
-  margin-left: 10%;
-}
-
-.instructor {
-  display: flex;
-  align-items: center;
-  margin: 10px;
-}
-
-.instructor img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-  margin: 0 5px;
-}
-
-.instructor p,
-.instructor h3 {
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: 600;
-  margin: 0;
-  font-size: 1.1em;
-}
-.instructor p {
-  margin-right: 10px;
-}
-.instructor h3 {
-  margin-left: 10px;
-}
-.course-description {
-  overflow-y: scroll;
-}
-.course-description::-webkit-scrollbar {
-  display: none;
-}
-
-.course-description p {
-  margin: 0 10px;
-  color: rgba(0, 0, 0, 0.5);
-  font-weight: 500;
+.Course .course-image {
   flex: 1;
+  height: 120px;
+}
+.Course .course-image img {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
 }
 
-.course-progress {
-  padding: 0 10px;
+.Course .course-content {
+  flex: 1;
+  margin-left: 20px;
+}
+
+.course-content h2 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.course-content h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: rgba(0, 0, 0, 0.6);
+}
+.course-content p {
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 10px;
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .all-courses-btn {

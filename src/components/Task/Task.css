@@ -32,12 +32,15 @@
   border-radius: 50%;
   margin: 0;
   margin-left: 5px;
-  /* padding: 5px; */
-  transition: all 0.2s linear;
+  width: 30px;
+  height: 30px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
 }
 
 .task-header button:hover {
-  background-color: #eee;
+  background-color: #ddd;
 }
 
 .task-header button svg {
