@@ -1,11 +1,10 @@
-import { useState, useEffect, useRef, useContext } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import axios from '../../axios/axios';
 import months from '../../assets/months/months';
 import { IoCloseOutline } from 'react-icons/io5';
 import { MdCheckCircle, MdRadioButtonUnchecked } from 'react-icons/md';
 import EditIcon from '@material-ui/icons/Edit';
 import DeleteOutlineIcon from '@material-ui/icons/DeleteOutline';
-import UserContext from '../../context/authContext';
 
 const SingleTasks = (props) => {
 	const { id, title, dueDate, isComplete, tasks, setTasks, user } = props;
@@ -14,7 +13,6 @@ const SingleTasks = (props) => {
 	const [editTitle, setEditTitle] = useState(title);
 	const [editDate, setEditDate] = useState(dueDate);
 	const inputRef = useRef(null);
-	const { userDetails } = useContext(UserContext);
 
 	const updateTask = async () => {
 		setShowEdit(!showEdit);
