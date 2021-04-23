@@ -82,12 +82,12 @@ const Task = ({ user }) => {
 		setIsLoading(false);
 	};
 
-	// useEffect(() => {
-	// 	const error = setTimeout(() => {
-	// 		setIsError(false);
-	// 	}, 3000);
-	// 	return () => clearTimeout(error, 3000);
-	// }, [isError]);
+	useEffect(() => {
+		const error = setTimeout(() => {
+			setIsError(false);
+		}, 3000);
+		return () => clearTimeout(error, 3000);
+	}, [isError]);
 
 	return (
 		<div className="Tasks">
