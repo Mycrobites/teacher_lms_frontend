@@ -40,9 +40,9 @@ const MyQuiz = ({ user }) => {
 					config,
 				);
 				if (!isUnmounted) {
-					setQuiz(data);
-					console.log(data);
-					localStorage.setItem('all-quiz', JSON.stringify(data));
+					setQuiz(data?.response);
+					console.log(data.response);
+					localStorage.setItem('all-quiz', JSON.stringify(data.response));
 				}
 			} catch (err) {
 				console.log(err.message);
@@ -67,9 +67,22 @@ const MyQuiz = ({ user }) => {
 
 	return (
 		<div className="my-quiz">
-			{/*quiz?.map((quiz) => (
-				<SingleQuiz key={quiz.id} {...quiz} />
-            ))*/}
+			<div style={{ marginBottom: '20px' }} className="title">
+				<h1
+					style={{ fontSize: '24px', fontWeight: '600', marginBottom: '10px' }}
+				>
+					Welcome! {user.first_name}
+				</h1>
+				<h4 style={{ color: 'gray' }}>Here are All Your Quizzes</h4>
+			</div>
+
+			<div className="quiz-cards">
+				<Carousel breakPoints={breakPoints}>
+					{quiz?.map((quiz) => (
+						<SingleQuiz key={quiz.id} {...quiz} />
+					))}
+				</Carousel>
+			</div>
 		</div>
 	);
 };
