@@ -1,5 +1,6 @@
 .Enrolled-courses {
-  padding: 10px 20px 20px 20px;
+	padding: 10px 20px 20px 20px;
+	position: relative;
 }
 
 .Enrolled-courses .loading-div {
@@ -157,6 +158,106 @@
 .Enrolled-courses .single-course-card p {
   font-weight: 500;
   color: rgba(0, 0, 0, 0.7);
+}
+
+.create-course-btn {
+	position: absolute;
+	right: 5%;
+	top: 5%;
+	border: none;
+	outline: none;
+	padding: 10px;
+	cursor: pointer;
+	background-color: #006eff;
+	color: white;
+}
+
+.create-course-btn:hover {
+	border: 1px solid black;
+	background-color: white;
+	color: black;
+}
+
+.course-modal-wrapper {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	right: 0;
+	display: grid;
+	z-index: 1000;
+	place-items: center;
+	background: rgba(0, 0, 0, 0.3);
+}
+
+.delete-modal {
+	background: white;
+	width: 400px;
+	height: 200px;
+	border-radius: 10px;
+	padding: 20px;
+	font-size: 0.8em;
+	display: flex;
+	justify-content: space-around;
+	flex-direction: column;
+}
+
+.delete-modal-btn button {
+	background-color: #006eff;
+	padding: 10px;
+	border: 1px solid black;
+	cursor: pointer;
+	font-size: 1em;
+	width: 150px;
+	margin: 0 10px;
+}
+
+.course-modal {
+	width: 100vw;
+	max-width: 600px;
+	height: object-fit;
+	min-height: 600px;
+	background: white;
+	display: flex;
+	justify-content: space-evenly;
+	flex-direction: column;
+	padding: 20px;
+	border-radius: 10px;
+	font-size: 0.8em;
+}
+
+.course-modal input {
+	width: 100%;
+}
+.course-modal label p {
+	margin-left: 10px;
+	font-weight: 500;
+}
+.course-modal textarea {
+	width: 100%;
+	height: 100px;
+	padding: 10px;
+	margin-top: 10px;
+}
+.modal-btn {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+}
+.modal-btn button {
+	border: none;
+	outline: none;
+	padding: 10px;
+	cursor: pointer;
+	background-color: #006eff;
+	color: white;
+	margin: 0 10px;
+}
+.modal-btn button:hover {
+	border: 1px solid black;
+	background-color: white;
+	color: black;
 }
 
 @media only screen and (max-width: 565px) {

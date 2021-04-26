@@ -149,11 +149,14 @@ button:disabled {
   border: 1px solid black;
 }
 .profile-loader {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1000;
+	position: absolute;
+	top: 0%;
+	left: 0%;
+	width: 100vw;
+	height: 100vh;
+	display: grid;
+	place-items: center;
+	z-index: 1000;
 }
 
 .profile-edit-button {
