@@ -16,10 +16,10 @@ const DashBoard = () => {
 			<SideBar active="dashboard" />
 			<div className="dashboard-items">
 				<LiveClasses user={userDetails} />
-				<Courses user={userDetails} />
-				<Calendar />
 				<PastQuiz user={userDetails} />
+				<Calendar />
 				<Task user={userDetails} />
+				<Courses user={userDetails} />
 			</div>
 		</div>
 	);

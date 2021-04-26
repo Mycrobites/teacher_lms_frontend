@@ -139,7 +139,7 @@
   outline: none;
   color: white;
   background: rgb(0, 140, 255);
-  cursor: pointer;
+  cursor: pointer !important;
   padding: 7px 10px;
   font-size: 18px;
   font-weight: 600;

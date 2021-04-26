@@ -15,10 +15,20 @@ const getLiveClassesFromLocalStorage = () => {
   }
 };
 
+const getCourseListFromLocalStorage = () => {
+  const lessons = localStorage.getItem("course-list");
+  if (lessons) {
+    return JSON.parse(lessons);
+  } else {
+    return null;
+  }
+};
+
 const UpcomingLessons = ({ user }) => {
   const [liveClasses, setLiveClasses] = useState(
     getLiveClassesFromLocalStorage
   );
+  const [courseList, setCourseList] = useState(getCourseListFromLocalStorage);
   const [isLoading, setIsLoading] = useState(false);
   const [showScheduleClass, setShowScheduleClass] = useState(false);
 
@@ -43,7 +53,9 @@ const UpcomingLessons = ({ user }) => {
             .sort((a, b) => new Date(b.timeStamp) - new Date(a.timeStamp))
             .reverse();
           localStorage.setItem("upcoming-lessons", JSON.stringify(sortedData));
+          localStorage.setItem("course-list", JSON.stringify(sortedData));
           setLiveClasses(sortedData);
+          setCourseList(data["course list"]);
         }
       } catch (err) {
         console.log(err.message);
@@ -72,7 +84,11 @@ const UpcomingLessons = ({ user }) => {
         ))}
       </div>
       {showScheduleClass && (
-        <ScheduleClass setShowScheduleClass={setShowScheduleClass} />
+        <ScheduleClass
+          setShowScheduleClass={setShowScheduleClass}
+          courseList={courseList}
+          user={user.username}
+        />
       )}
     </div>
   );
