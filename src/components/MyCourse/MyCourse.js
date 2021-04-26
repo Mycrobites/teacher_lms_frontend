@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import Loader from '../../components/Loader/Loader';
 import axios from '../../axios/axios';
 import Carousel from 'react-elastic-carousel';
@@ -27,36 +27,96 @@ const MyCourse = ({ user }) => {
 		getEnrolledCoursesFromLocalStorage,
 	);
 	const [isLoading, setIsLoading] = useState(false);
+	const [showCreateCourse, setShowCreateCourse] = useState(false);
 	const { userDetails } = useContext(UserContext);
+	const [courseName, setCourseName] = useState('');
+	const [courseDescription, setCourseDescription] = useState('');
+	const [video, setVideo] = useState('');
+	const [goals, setGoals] = useState([]);
+	const [goalsArray, setGoalsArray] = useState([]);
+	const [concept, setConcept] = useState([]);
+	const [conceptArray, setConceptArray] = useState([]);
+
+	const modalRef = useRef();
+
+	const createCourse = async () => {
+		const goalsData = goals.split(',').map((goal, idx) => ({
+			key: (idx + 1).toString(),
+			goal: goal.trim(),
+		}));
+
+		setGoalsArray(goalsData);
+
+		const conceptData = concept.split(',').map((concept, idx) => ({
+			key: (idx + 1).toString(),
+			concept: concept.trim(),
+		}));
+
+		setConceptArray(conceptData);
+		const postData = {
+			course_name: courseName,
+			course_description: courseDescription,
+			video: video,
+			goals: goalsArray,
+			slug: 'new-course',
+			concepts: conceptArray,
+			author: user.user_id,
+		};
+		console.log(postData);
+
+		try {
+			const config = {
+				headers: { Authorization: `Bearer ${userDetails.access}` },
+			};
+			const { data } = await axios.post(
+				'/teacher/createCourse',
+				postData,
+				config,
+			);
+			console.log(data);
+			getCourses();
+			setShowCreateCourse(false);
+		} catch (err) {
+			console.log(err.message);
+		}
+	};
+
+	const getCourses = async () => {
+		try {
+			if (!allCourses) setIsLoading(true);
+			const config = {
+				headers: { Authorization: `Bearer ${userDetails.access}` },
+			};
+			const { data } = await axios.get(
+				`/teacher/getMyCourses/${user.username}`,
+				config,
+			);
+
+			setAllCourses(data);
+			localStorage.setItem('enrolled-courses', JSON.stringify(data));
+		} catch (err) {
+			console.log(err.message);
+		}
+		setIsLoading(false);
+	};
 
 	useEffect(() => {
-		let isUnmounted = false;
-		const getCourses = async () => {
-			try {
-				if (!allCourses) setIsLoading(true);
-				const config = {
-					headers: { Authorization: `Bearer ${userDetails.access}` },
-				};
-				const { data } = await axios.get(
-					`/teacher/getMyCourses/${user.username}`,
-					config,
-				);
-				if (!isUnmounted) {
-					setAllCourses(data);
-					localStorage.setItem('enrolled-courses', JSON.stringify(data));
-				}
-			} catch (err) {
-				console.log(err.message);
-			}
-			setIsLoading(false);
-		};
 		getCourses();
 
-		return () => {
-			isUnmounted = true;
-		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
+
+	// useEffect(() => {
+	// 	const handler = (e) => {
+	// 		if (!modalRef?.current?.contains(e.target)) {
+	// 			setShowCreateCourse(false);
+	// 		}
+	// 	};
+	// 	document.addEventListener('click', handler);
+	// 	return () => {
+	// 		document.removeEventListener('click', handler);
+	// 	};
+	// }, []);
 
 	if (isLoading) {
 		return (
@@ -72,6 +132,78 @@ const MyCourse = ({ user }) => {
 				<h1>Welcome! {user.first_name}</h1>
 				<h4 style={{ color: 'gray' }}>Here are All Your Courses</h4>
 			</div>
+
+			<button
+				className="create-course-btn"
+				onClick={() => setShowCreateCourse(true)}
+			>
+				Create New Course
+			</button>
+
+			{showCreateCourse && (
+				<div className="course-modal-wrapper">
+					<div className="course-modal" ref={modalRef}>
+						<label>
+							<p>Course Name</p>
+							<input
+								type="text"
+								value={courseName}
+								name="course_name"
+								onChange={(e) => setCourseName(e.target.value)}
+								placeholder="course name"
+							/>
+						</label>
+
+						<label>
+							<p>Course Description</p>
+							<textarea
+								name="course-description"
+								value={courseDescription}
+								onChange={(e) => setCourseDescription(e.target.value)}
+								placeholder="enter course description"
+							/>
+						</label>
+
+						<label>
+							<p>Course Introduction Video</p>
+							<input
+								name="video"
+								type="text"
+								value={video}
+								onChange={(e) => setVideo(e.target.value)}
+								placeholder="paste intro video link"
+							/>
+						</label>
+
+						<label>
+							<p>Course Goals</p>
+							<input
+								name="goals"
+								type="text"
+								value={goals}
+								onChange={(e) => setGoals(e.target.value)}
+								placeholder="Enter course goals comma seperated"
+							/>
+						</label>
+
+						<label>
+							<p>Course Concepts</p>
+							<input
+								name="concepts"
+								type="text"
+								value={concept}
+								onChange={(e) => setConcept(e.target.value)}
+								placeholder="Enter course concepts comma seperated"
+							/>
+						</label>
+
+						<div className="modal-btn">
+							<button onClick={createCourse}>Create Course</button>
+							<button onClick={() => setShowCreateCourse(false)}>Cancel</button>
+						</div>
+					</div>
+				</div>
+			)}
 
 			<div className="course-cards">
 				<Carousel breakPoints={breakPoints}>
