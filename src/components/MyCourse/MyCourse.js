@@ -208,7 +208,12 @@ const MyCourse = ({ user }) => {
 			<div className="course-cards">
 				<Carousel breakPoints={breakPoints}>
 					{allCourses?.map((course) => (
-						<SingleCourse key={course?.id} {...course} />
+						<SingleCourse
+							key={course?.id}
+							getCourses={getCourses}
+							user={user}
+							{...course}
+						/>
 					))}
 				</Carousel>
 			</div>
