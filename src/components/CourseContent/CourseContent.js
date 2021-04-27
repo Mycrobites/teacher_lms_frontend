@@ -93,6 +93,7 @@ const CourseContent = ({ lessons, user, id, fetchLessonContent }) => {
 				<SingleCourseContent
 					key={lesson.id}
 					id={lesson.id}
+					course_id={id}
 					index={idx}
 					lesson={lesson}
 					user={user}

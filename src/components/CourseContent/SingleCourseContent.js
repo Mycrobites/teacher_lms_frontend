@@ -14,6 +14,7 @@ const SingleCourseContent = ({
 	lesson,
 	index,
 	id,
+	course_id,
 	fetchLessonContent,
 }) => {
 	const [showContent, setShowContent] = useState(false);
@@ -41,7 +42,7 @@ const SingleCourseContent = ({
 
 	const editLesson = async () => {
 		const postData = {
-			course: lesson.id,
+			course: course_id,
 			name: lessonName,
 			desp: lessonDescription,
 			lessonno: lessonNumber,

@@ -61,6 +61,7 @@ const SingleCourse = (props) => {
 		}));
 
 		setConceptArray(conceptData);
+
 		const postData = {
 			course_name: courseName,
 			course_description: courseDescription,
