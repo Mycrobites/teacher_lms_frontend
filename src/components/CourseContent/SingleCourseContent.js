@@ -4,6 +4,7 @@ import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 // import { Checkbox } from "@material-ui/core";
 import { AiOutlineAppstoreAdd } from 'react-icons/ai';
 import { RiDeleteBin4Line } from 'react-icons/ri';
+import { FiEdit3 } from 'react-icons/fi';
 import './UniqueCourse.css';
 import SingleLessonContent from './SingleLessonContent';
 import axios from '../../axios/axios';
@@ -17,7 +18,12 @@ const SingleCourseContent = ({
 }) => {
 	const [showContent, setShowContent] = useState(false);
 	const [showNewContent, setShowNewContent] = useState(false);
+	const [showEdit, setShowEdit] = useState(false);
 	const [showDelete, setShowDelete] = useState(false);
+
+	const [lessonName, setLessonName] = useState(lesson?.name);
+	const [lessonDescription, setLessonDescription] = useState(lesson?.desp);
+	const [lessonNumber, setLessonNumber] = useState(lesson?.lessonno);
 
 	const handleDelete = async () => {
 		try {
@@ -25,7 +31,34 @@ const SingleCourseContent = ({
 				headers: { Authorization: `Bearer ${user.access}` },
 			};
 			const { data } = await axios.delete(`/teacher/editLesson/${id}`, config);
+
 			setShowDelete(false);
+			fetchLessonContent();
+		} catch (err) {
+			console.log(err.message);
+		}
+	};
+
+	const editLesson = async () => {
+		const postData = {
+			course: lesson.id,
+			name: lessonName,
+			desp: lessonDescription,
+			lessonno: lessonNumber,
+		};
+
+		try {
+			const config = {
+				headers: { Authorization: `Bearer ${user.access}` },
+			};
+
+			const { data } = await axios.put(
+				`/teacher/editLesson/${id}`,
+				postData,
+				config,
+			);
+			console.log(data);
+			setShowEdit(false);
 			fetchLessonContent();
 		} catch (err) {
 			console.log(err.message);
@@ -52,6 +85,9 @@ const SingleCourseContent = ({
 					<button onClick={() => setShowDelete(true)}>
 						<RiDeleteBin4Line />
 					</button>
+					<button onClick={() => setShowEdit(true)}>
+						<FiEdit3 />
+					</button>
 				</div>
 
 				{showDelete && (
@@ -61,6 +97,48 @@ const SingleCourseContent = ({
 							<div className="lesson-delete-modal-btn">
 								<button onClick={() => setShowDelete(false)}>Cancel</button>
 								<button onClick={handleDelete}>Proceed and Delete</button>
+							</div>
+						</div>
+					</div>
+				)}
+
+				{showEdit && (
+					<div className="course-modal-wrapper ">
+						<div className="course-modal lesson-modal">
+							<label>
+								<p>Lesson Name</p>
+								<input
+									type="text"
+									value={lessonName}
+									onChange={(e) => setLessonName(e.target.value)}
+									placeholder="Lesson name"
+								/>
+							</label>
+
+							<label>
+								<p>Lesson Description</p>
+								<textarea
+									name="Lesson-description"
+									value={lessonDescription}
+									onChange={(e) => setLessonDescription(e.target.value)}
+									placeholder="Enter lesson description"
+								/>
+							</label>
+
+							<label>
+								<p>Lesson Number</p>
+								<input
+									name="lesson_no"
+									type="number"
+									value={lessonNumber}
+									onChange={(e) => setLessonNumber(e.target.value)}
+									placeholder="Enter lesson number"
+								/>
+							</label>
+
+							<div className="edit-modal-btn">
+								<button onClick={editLesson}>Edit Lesson</button>
+								<button onClick={() => setShowEdit(false)}>Cancel</button>
 							</div>
 						</div>
 					</div>

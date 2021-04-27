@@ -77,6 +77,12 @@
 	border: 1px solid rgb(255, 255, 255);
 	border-radius: 5px;
 }
+.edit-modal-btn {
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	font-size: 1.5em;
+}
 .lesson-custom-checkbox {
 	border: none;
 	outline: none;
@@ -89,7 +95,8 @@
 	font-size: 1.5em;
 	margin-right: 5px;
 }
-.add-lesson-btn {
+.add-lesson-btn,
+.edit-modal-btn button {
 	display: flex;
 	justify-content: space-around;
 	align-items: center;
