@@ -39,6 +39,8 @@ button:disabled {
   font-size: 1.5em;
   bottom: 0;
   z-index: 100;
+  margin-top: 10px;
+  cursor: pointer;
 }
 
 .edit-loader {
@@ -149,14 +151,14 @@ button:disabled {
   border: 1px solid black;
 }
 .profile-loader {
-	position: absolute;
-	top: 0%;
-	left: 0%;
-	width: 100vw;
-	height: 100vh;
-	display: grid;
-	place-items: center;
-	z-index: 1000;
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  width: 100vw;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  z-index: 1000;
 }
 
 .profile-edit-button {
@@ -184,6 +186,8 @@ button:disabled {
   color: white;
   font-weight: 500;
   font-size: 0.8em;
+  cursor: pointer;
+  margin: 10px 5px;
 }
 .edit-image {
   display: flex;

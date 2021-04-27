@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
+import axios from "../../axios/axios";
 import "./ScheduleClass.css";
 
 const getCurrentDate = () => {
@@ -9,18 +10,58 @@ const getCurrentDate = () => {
   const d = now.getDate() < 10 ? `0${now.getDate()}` : now.getDate();
   const hh = now.getHours() < 10 ? `0${now.getHours()}` : now.getHours();
   const mm = now.getMinutes() < 10 ? `0${now.getMinutes()}` : now.getMinutes();
-  // console.log(`${y}-${m}-${d}T${hh}:${mm}`);
   return `${y}-${m}-${d}T${hh}:${mm}`;
 };
 
-const ScheduleClass = ({ setShowScheduleClass, courseList, user }) => {
+const getDateString = (now) => {
+  const a = now.split("T")[0].split("-");
+  const b = now.split("T")[1];
+  return `${a[2]}/${a[1]}/${a[0]} ${b}`;
+};
+
+const ScheduleClass = ({
+  setShowScheduleClass,
+  courseList,
+  user,
+  fetchUpcomingEvents,
+}) => {
   const [topic, setTopic] = useState("");
   const [link, setLink] = useState("");
   const [lectureDate, setLectureDate] = useState(getCurrentDate);
-  const [courseid, setCourseid] = useState(null);
+  const [courseid, setCourseid] = useState(courseList[0].id);
   const modalRef = useRef(null);
 
-  console.log(courseid);
+  const createLiveClass = async () => {
+    if (!topic || !link) {
+      return alert("Please fill all the fields!");
+    }
+    try {
+      const postData = {
+        user: user.username,
+        course: courseid,
+        topic,
+        link,
+        timeStamp: getDateString(lectureDate),
+      };
+      // console.log(postData);
+      const config = {
+        headers: { Authorization: `Bearer ${user.access}` },
+      };
+      await axios.post(
+        "/teacher/scheduleliveclass/",
+        postData,
+        config
+      );
+      // console.log(data);
+      setTopic("");
+      setLink("");
+      setCourseid(courseList[0].id);
+      setShowScheduleClass(false);
+      fetchUpcomingEvents();
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   useEffect(() => {
     const handler = (e) => {
@@ -36,9 +77,9 @@ const ScheduleClass = ({ setShowScheduleClass, courseList, user }) => {
     <div className="schedule-class-modal">
       <div className="schedule-class-modal-card" ref={modalRef}>
         <h1>Schedule Class</h1>
-        <select>
+        <select value={courseid} onChange={(e) => setCourseid(e.target.value)}>
           {courseList?.map((course) => (
-            <option key={course.id} onClick={() => setCourseid(course.id)}>
+            <option key={course.id} value={course.id}>
               {course.course_name}
             </option>
           ))}
@@ -74,7 +115,9 @@ const ScheduleClass = ({ setShowScheduleClass, courseList, user }) => {
             onChange={(e) => setLectureDate(e.target.value)}
           />
           <br />
-          <button className="submit-btn">Schedule</button>
+          <button className="submit-btn" onClick={createLiveClass}>
+            Schedule
+          </button>
         </div>
       </div>
     </div>

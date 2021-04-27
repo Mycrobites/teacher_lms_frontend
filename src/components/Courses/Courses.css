@@ -9,9 +9,7 @@
 }
 
 .course-cards {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  grid-gap: 15px;
+  display: block;
   margin-bottom: 20px;
 }
 .course-cards::-webkit-scrollbar {
@@ -29,6 +27,7 @@
   align-items: flex-start;
   cursor: pointer;
   height: 125px;
+  margin: 15px 0;
 }
 
 .Course .course-image {

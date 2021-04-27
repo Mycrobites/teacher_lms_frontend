@@ -1,13 +1,13 @@
-import { useState, useEffect, useRef, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import ScheduleClass from "./ScheduleClass";
 import Loader from "../Loader/Loader";
 import Classes from "./Classes";
 import axios from "../../axios/axios";
-import "./UpcomingLessons.css";
 import UserContext from "../../context/authContext";
+import "./UpcomingLessons.css";
 
 const getLiveClassesFromLocalStorage = () => {
-  const lessons = localStorage.getItem("upcoming-lessons");
+  const lessons = localStorage.getItem("live-class");
   if (lessons) {
     return JSON.parse(lessons);
   } else {
@@ -31,43 +31,36 @@ const UpcomingLessons = ({ user }) => {
   const [courseList, setCourseList] = useState(getCourseListFromLocalStorage);
   const [isLoading, setIsLoading] = useState(false);
   const [showScheduleClass, setShowScheduleClass] = useState(false);
-
-  const mountedRef = useRef(true);
   const { userDetails } = useContext(UserContext);
 
+  const fetchUpcomingEvents = async () => {
+    if (!liveClasses) setIsLoading(true);
+    try {
+      const config = {
+        headers: { Authorization: `Bearer ${userDetails.access}` },
+      };
+      const { data } = await axios.get(
+        `/teacher/getLiveclass/${user.username}`,
+        config
+      );
+      console.log(data);
+      const sortedData = data.response
+        .sort((a, b) => new Date(b.timeStamp) - new Date(a.timeStamp))
+        .reverse();
+      localStorage.setItem("live-class", JSON.stringify(sortedData));
+      localStorage.setItem("course-list", JSON.stringify(sortedData));
+      setLiveClasses(sortedData);
+      setCourseList(data["course list"]);
+    } catch (err) {
+      console.log(err.message);
+    }
+    setIsLoading(false);
+  };
+
   useEffect(() => {
-    // let isUnmounted = false;
-    const fetchUpcomingEvents = async () => {
-      if (!liveClasses) setIsLoading(true);
-      try {
-        const config = {
-          headers: { Authorization: `Bearer ${userDetails.access}` },
-        };
-        const { data } = await axios.get(
-          `/teacher/getLiveclass/${user.username}`,
-          config
-        );
-        // console.log(data.response);
-        if (mountedRef.current) {
-          const sortedData = data.response
-            .sort((a, b) => new Date(b.timeStamp) - new Date(a.timeStamp))
-            .reverse();
-          localStorage.setItem("upcoming-lessons", JSON.stringify(sortedData));
-          localStorage.setItem("course-list", JSON.stringify(sortedData));
-          setLiveClasses(sortedData);
-          setCourseList(data["course list"]);
-        }
-      } catch (err) {
-        console.log(err.message);
-      }
-      setIsLoading(false);
-    };
     fetchUpcomingEvents();
-    return function cleanup() {
-      mountedRef.current = false;
-    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [liveClasses, user?.username]);
+  }, [liveClasses]);
 
   return (
     <div className="UpcomingLessons">
@@ -87,7 +80,8 @@ const UpcomingLessons = ({ user }) => {
         <ScheduleClass
           setShowScheduleClass={setShowScheduleClass}
           courseList={courseList}
-          user={user.username}
+          user={user}
+          fetchUpcomingEvents={fetchUpcomingEvents}
         />
       )}
     </div>
