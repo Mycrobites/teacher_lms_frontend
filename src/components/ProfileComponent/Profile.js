@@ -44,7 +44,7 @@ const Profile = () => {
 			getStudentsDetails();
 			console.log(data);
 			updateUserProfilePic(data.user_profile_pic);
-			setEditLoading(false);
+			// setEditLoading(false);
 			setImg({ preview: '', raw: '' });
 			setProfilePic(null);
 		} catch (err) {
