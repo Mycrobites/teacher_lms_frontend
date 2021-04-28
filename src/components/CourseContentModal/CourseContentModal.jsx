@@ -13,6 +13,10 @@ const CourseContentModal = ({
 	const [videoUrl, setVideoUrl] = useState('');
 	const [videoDescription, setVideoDescription] = useState('');
 	const [pdfFile, setPdfFile] = useState(null);
+	const [quizName, setQuizName] = useState('');
+	const [duration, setDuration] = useState('');
+	const [startDate, setStartDate] = useState('');
+	const [endDate, setEndDate] = useState('');
 
 	const mediaList = ['text', 'video', 'homework', 'pdf', 'quiz', 'assignment'];
 
@@ -71,6 +75,17 @@ const CourseContentModal = ({
 
 			sendCreateRequest(formData);
 			return;
+		} else if (mediaType === 'quiz' || mediaType === 'assignment') {
+			const quizData = {
+				lesson: id,
+				media_type: mediaType,
+				quiz_name: quizName,
+				duration: duration,
+				start_date: startDate,
+				expire_date: endDate,
+			};
+			sendCreateRequest(quizData);
+			return;
 		}
 	};
 
@@ -100,6 +115,44 @@ const CourseContentModal = ({
 							onChange={(e) => setTextContent(e.target.value)}
 						/>
 					</label>
+				) : (
+					<></>
+				)}
+				{mediaType === 'quiz' || mediaType === 'assignment' ? (
+					<div className="quiz-content">
+						<label>
+							<p>Enter Content Name</p>
+							<input
+								type="text"
+								value={quizName}
+								onChange={(e) => setQuizName(e.target.value)}
+							/>
+						</label>
+						<label>
+							<p>Enter Duration</p>
+							<input
+								type="text"
+								value={duration}
+								onChange={(e) => setDuration(e.target.value)}
+							/>
+						</label>
+						<label>
+							<p>Enter Start Date</p>
+							<input
+								type="datetime-local"
+								value={startDate}
+								onChange={(e) => setStartDate(e.target.value)}
+							/>
+						</label>
+						<label>
+							<p>Enter End Date</p>
+							<input
+								type="datetime-local"
+								value={endDate}
+								onChange={(e) => setEndDate(e.target.value)}
+							/>
+						</label>
+					</div>
 				) : (
 					<></>
 				)}
