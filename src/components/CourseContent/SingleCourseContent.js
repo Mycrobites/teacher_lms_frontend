@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import ExpandLessIcon from '@material-ui/icons/ExpandLess';
 // import { Checkbox } from "@material-ui/core";
@@ -8,6 +8,7 @@ import { FiEdit3 } from 'react-icons/fi';
 import './UniqueCourse.css';
 import SingleLessonContent from './SingleLessonContent';
 import axios from '../../axios/axios';
+import CourseContentModal from '../CourseContentModal/CourseContentModal';
 
 const SingleCourseContent = ({
 	user,
@@ -71,9 +72,9 @@ const SingleCourseContent = ({
 			<div onClick={() => setShowContent(!showContent)} className="lesson_name">
 				<div>
 					<h5>
-						Lesson {lesson?.lessonno} : {lesson?.name}
+						Lesson {lesson?.lesson_no} : {lesson?.lesson_name}
 					</h5>
-					<p>{lesson?.desp}</p>
+					<p>{lesson?.description}</p>
 				</div>
 
 				<div className="single-course-btn">
@@ -154,9 +155,19 @@ const SingleCourseContent = ({
 							id={content?.content_id}
 							lessonId={lesson?.lesson_id}
 							singleContent={content}
+							user={user}
 						/>
 					))}
 				</div>
+			)}
+
+			{showNewContent && (
+				<CourseContentModal
+					id={id}
+					user={user}
+					fetchLessonContent={fetchLessonContent}
+					setShowNewContent={setShowNewContent}
+				/>
 			)}
 		</div>
 	);

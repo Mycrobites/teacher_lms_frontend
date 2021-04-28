@@ -1,0 +1,32 @@
+.course-content-modal {
+	width: 100vw;
+	height: 100vh;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: rgba(0, 0, 0, 0.2);
+	display: grid;
+	place-items: center;
+	z-index: 1000;
+}
+
+.course-modal {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
+	width: 100%;
+	max-width: 600px;
+	min-height: 500px;
+	height: object-fit;
+	background-color: white;
+}
+
+.create-course-modal input[type='text'] {
+	padding: 10px;
+}
+.create-course-modal select {
+	padding: 10px;
+}
+.video-content > * {
+	margin: 10px 0;
+}

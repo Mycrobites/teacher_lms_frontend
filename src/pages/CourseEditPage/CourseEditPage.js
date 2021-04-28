@@ -38,8 +38,8 @@ const CourseEditPage = () => {
 				headers: { Authorization: `Bearer ${userDetails.access}` },
 			};
 			const { data } = await axios.get(`/teacher/getCourse/${id}`, config);
-			console.log(data);
-			setLessonsData(data);
+			console.log(data.course_details);
+			setLessonsData(data.course_details);
 			setLoading(false);
 		} catch (err) {
 			console.log(err.message);

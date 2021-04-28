@@ -1,4 +1,4 @@
-import React, { useContext, useState, useRef } from 'react';
+import React, { useContext, useState, useEffect, useRef } from 'react';
 import './UniqueCourse.css';
 import { VscFilePdf } from 'react-icons/vsc';
 import { AiOutlineFileText } from 'react-icons/ai';
@@ -11,7 +11,7 @@ import { MdCheckBox } from 'react-icons/md';
 import axios from '../../axios/axios';
 import UserContext from '../../context/authContext';
 
-const SingleLessonContent = ({ singleContent, id, index, lessonId }) => {
+const SingleLessonContent = ({ singleContent, user, id, index, lessonId }) => {
 	// console.log(singleContent);
 
 	const { userDetails } = useContext(UserContext);
