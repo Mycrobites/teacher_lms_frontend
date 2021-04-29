@@ -1,4 +1,4 @@
-.single-lesson-edit-modal {
+.schedule-class-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -10,7 +10,7 @@
   place-items: center;
 }
 
-.single-lesson-edit-card {
+.schedule-class-modal-card {
   background-color: #fff;
   border-radius: 10px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
@@ -23,7 +23,7 @@
   position: relative;
 }
 
-.single-lesson-edit-card .close-btn {
+.schedule-class-modal-card .close-btn {
   position: absolute;
   top: 0;
   right: 0;
@@ -37,15 +37,15 @@
   border-radius: 50%;
   padding: 4px;
 }
-.single-lesson-edit-card .close-btn:hover {
+.schedule-class-modal-card .close-btn:hover {
   background-color: #ddd;
 }
 
-.single-lesson-edit-card .close-btn svg {
+.schedule-class-modal-card .close-btn svg {
   font-size: 28px;
 }
 
-.single-lesson-edit-card .submit-btn {
+.schedule-class-modal-card .submit-btn {
   display: grid;
   place-items: center;
   border: none;
@@ -60,32 +60,32 @@
   margin-top: 5px;
 }
 
-.single-lesson-edit-form > * {
+.schedule-class-form > * {
   display: block;
   width: 100%;
 }
 
-.single-lesson-edit-form label {
+.schedule-class-form label {
   margin-bottom: 5px;
   font-weight: 500;
 }
 
-.single-lesson-edit-form input[type="text"],
-.single-lesson-edit-form input[type="datetime-local"] {
+.schedule-class-form input[type="text"],
+.schedule-class-form input[type="datetime-local"] {
   border: 1px solid rgba(0, 0, 0, 0.5);
   border-radius: 3px;
   padding: 5px 10px;
   outline: none;
 }
 
-.single-lesson-edit-form input[type="text"]::placeholder,
-.single-lesson-edit-form input[type="datetime-local"]::placeholder {
+.schedule-class-form input[type="text"]::placeholder,
+.schedule-class-form input[type="datetime-local"]::placeholder {
   color: rgba(0, 0, 0, 0.8);
   font-size: 14px;
   font-weight: 400;
 }
 
-.single-lesson-edit-card select {
+.schedule-class-modal-card select {
   margin-top: 5px;
   outline: none;
   cursor: pointer;

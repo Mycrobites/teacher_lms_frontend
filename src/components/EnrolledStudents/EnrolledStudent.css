@@ -1,51 +1,51 @@
 .enrolled-student {
-	width: 20%;
-	min-width: 200px;
-	height: 90vh;
-	position: absolute;
-	right: 0;
-	top: 0;
-	border-left: 1px solid lightgray;
-	border-bottom: 1px solid lightgray;
+  width: 20%;
+  min-width: 300px;
+  height: 90vh;
+  position: fixed;
+  right: 0;
+  top: 14vh;
+  border-left: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
 }
 .enrolled-student h2 {
-	font-size: 1em;
-	font-weight: 550;
-	color: rgb(100, 100, 100);
-	padding: 10px;
-	border-bottom: 1px solid lightgray;
+  font-size: 1em;
+  font-weight: 550;
+  color: rgb(100, 100, 100);
+  padding: 10px;
+  border-bottom: 1px solid lightgray;
 }
 
 .enrolled-student-wrapper {
-	padding: 10px;
-	overflow-y: scroll;
-	height: 100%;
+  padding: 10px;
+  overflow-y: scroll;
+  height: 100%;
 }
 .enrolled-student-wrapper::-webkit-scrollbar {
-	width: 5px;
+  width: 5px;
 }
 
 .single-student {
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
-	padding: 10px;
-	font-size: 0.8em;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px;
+  font-size: 0.8em;
 }
 
 .single-student .student-right {
-	margin-left: 20px;
-	color: rgb(100, 100, 100);
+  margin-left: 20px;
+  color: rgb(100, 100, 100);
 }
 
 .single-student .student-right > * {
-	margin: 5px 0;
+  margin: 5px 0;
 }
 .student-progress {
-	display: flex;
-	justify-content: flex-start;
-	align-items: center;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 .student-progress p {
-	margin-right: 5px;
+  margin-right: 5px;
 }

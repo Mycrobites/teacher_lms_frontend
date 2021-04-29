@@ -34,7 +34,9 @@ const MyCourse = ({ user }) => {
   const [video, setVideo] = useState("");
   const [goals, setGoals] = useState("");
   const [concept, setConcept] = useState("");
-  const modalRef = useRef();
+  const modalRef = useRef(null);
+
+  console.log(showCreateCourse);
 
   const createCourse = async () => {
     const goalsData = goals.split(",").map((goal, idx) => ({
@@ -75,6 +77,8 @@ const MyCourse = ({ user }) => {
     }
   };
 
+  console.log(modalRef);
+
   const getCourses = async () => {
     try {
       if (!allCourses) setIsLoading(true);
@@ -100,16 +104,14 @@ const MyCourse = ({ user }) => {
   }, []);
 
   // useEffect(() => {
-  // 	const handler = (e) => {
-  // 		if (!modalRef?.current?.contains(e.target)) {
-  // 			setShowCreateCourse(false);
-  // 		}
-  // 	};
-  // 	document.addEventListener('click', handler);
-  // 	return () => {
-  // 		document.removeEventListener('click', handler);
-  // 	};
-  // }, []);
+  //   const handler = (e) => {
+  //     if (!modalRef.current?.contains(e.target)) {
+  //       setShowCreateCourse(false);
+  //     }
+  //   };
+  //   document.addEventListener("click", handler);
+  //   return () => document.removeEventListener("click", handler);
+  // });
 
   if (isLoading) {
     return (
