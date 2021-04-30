@@ -10,6 +10,7 @@ const ScheduleClass = ({
 	description,
 	text_content,
 	url,
+
 	fetchLessonContent,
 }) => {
 	const [textContent, setTextContent] = useState(text_content);
