@@ -174,10 +174,13 @@ button:disabled {
   font-size: 1.5em;
   color: rgba(100, 100, 100);
   cursor: pointer;
+  width: 40px;
+  height: 40px;
 }
 .profile-edit-button:hover {
   color: black;
-  border-radius: 20px;
+  border-radius: 50%;
+  background-color: #ddd;
 }
 .img-upload-btn {
   background: rgb(0, 140, 255);

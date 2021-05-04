@@ -43,7 +43,6 @@ const UpcomingLessons = ({ user }) => {
         `/teacher/getLiveclass/${user.username}`,
         config
       );
-      console.log(data);
       const sortedData = data.response
         .sort((a, b) => new Date(b.timeStamp) - new Date(a.timeStamp))
         .reverse();

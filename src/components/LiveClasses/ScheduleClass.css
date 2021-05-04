@@ -82,7 +82,7 @@
 .single-lesson-edit-form input[type="datetime-local"]::placeholder {
   color: rgba(0, 0, 0, 0.8);
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .single-lesson-edit-card select {

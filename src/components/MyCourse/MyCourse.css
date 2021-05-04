@@ -1,5 +1,5 @@
 .Enrolled-courses {
-  padding: 10px 20px 20px 20px;
+  padding: 10px 20px 0 20px;
   position: relative;
 }
 
@@ -69,7 +69,7 @@
 
 .Enrolled-courses .single-course-card {
   width: 300px;
-  height: 350px;
+  /* height: 350px; */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   padding: 15px;
@@ -94,13 +94,14 @@
 }
 .Enrolled-courses .single-course-image {
   width: 100%;
-  height: 50%;
+  height: 130px;
 }
 
 .Enrolled-courses .single-course-image img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
+  border-radius: 5px;
 }
 
 .Enrolled-courses .single-course-title {
@@ -174,12 +175,8 @@
   cursor: pointer;
   background-color: #006eff;
   color: white;
-}
-
-.create-course-btn:hover {
-  border: 1px solid black;
-  background-color: white;
-  color: black;
+  border-radius: 5px;
+  font-weight: 500;
 }
 
 .course-modal-wrapper {
@@ -197,23 +194,36 @@
 .delete-modal {
   background: white;
   width: 400px;
-  height: 200px;
+  height: 150px;
   border-radius: 10px;
-  padding: 20px;
+  padding: 15px;
+  text-align: center;
   font-size: 0.8em;
   display: flex;
   justify-content: space-around;
   flex-direction: column;
 }
+.delete-modal p {
+  font-size: 16px;
+}
 
-.delete-modal-btn button {
-  background-color: #006eff;
-  padding: 10px;
+.course-modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.course-modal-buttons .btn {
+  background-color: #006eff !important;
+  padding: 8px 10px;
   border: 1px solid black;
   cursor: pointer;
   font-size: 1em;
   width: 150px;
   margin: 0 10px;
+  color: #fff;
+  font-weight: 500;
+  border-radius: 5px;
 }
 
 .course-modal {
@@ -232,36 +242,44 @@
 
 .course-modal input {
   width: 100%;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  outline: none;
 }
 .course-modal label p {
-  margin-left: 10px;
+  margin: 5px 0;
+  font-size: 16px;
   font-weight: 500;
 }
 .course-modal textarea {
   width: 100%;
   height: 100px;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 5px 10px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.7);
+  outline: none;
+  resize: vertical;
 }
-.modal-btn {
+.edit-modal-button,
+.add-modal-button {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
+  margin-top: 15px;
 }
-.modal-btn button {
+.edit-modal-button button,
+.add-modal-button button {
   border: none;
   outline: none;
   padding: 10px;
   cursor: pointer;
-  background-color: #006eff;
-  color: black;
-  margin: 0 10px;
-}
-.modal-btn button:hover {
-  border: 1px solid black;
-  background-color: white;
-  color: black;
+  background-color: #006eff !important;
+  color: #fff;
+  margin: 0 10px !important;
+  border-radius: 5px;
+  font-weight: 500;
 }
 
 @media only screen and (max-width: 565px) {

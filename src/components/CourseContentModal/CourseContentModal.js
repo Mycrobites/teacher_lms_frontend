@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "../../axios/axios";
-import "./CourseContenntModal.css";
+import "./CourseContentModal.css";
 
 const CourseContentModal = ({
   setShowNewContent,
@@ -19,15 +19,6 @@ const CourseContentModal = ({
   const [endDate, setEndDate] = useState("");
 
   const mediaList = ["text", "video", "homework", "pdf", "quiz", "assignment"];
-
-  // const postData = {
-  // 	media_type: '',
-  // 	lesson: '',
-  // 	link: '',
-  // 	link_desc: '',
-  // 	text_content: ' ',
-  // 	pdf: '',
-  // };
 
   const sendCreateRequest = async (data) => {
     try {
@@ -113,6 +104,7 @@ const CourseContentModal = ({
               name="text_coontent"
               value={textContent}
               onChange={(e) => setTextContent(e.target.value)}
+              placeholder="Add Text..."
             />
           </label>
         ) : (
@@ -126,16 +118,22 @@ const CourseContentModal = ({
                 type="text"
                 value={quizName}
                 onChange={(e) => setQuizName(e.target.value)}
+                placeholder="Add Text..."
               />
             </label>
+            <br />
+            <br />
             <label>
-              <p>Enter Duration</p>
+              <p>Enter Duration (format: hh:mm:ss)</p>
               <input
                 type="text"
                 value={duration}
                 onChange={(e) => setDuration(e.target.value)}
+                placeholder="Add Description..."
               />
             </label>
+            <br />
+            <br />
             <label>
               <p>Enter Start Date</p>
               <input
@@ -144,6 +142,8 @@ const CourseContentModal = ({
                 onChange={(e) => setStartDate(e.target.value)}
               />
             </label>
+            <br />
+            <br />
             <label>
               <p>Enter End Date</p>
               <input
@@ -168,15 +168,7 @@ const CourseContentModal = ({
         )}
 
         {mediaType === "video" && (
-          <div
-            className="video-content"
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              height: " 150px",
-              justifyContent: "space-around",
-            }}
-          >
+          <div className="video-content">
             <label>
               <p>Enter video url</p>
               <input
@@ -184,21 +176,25 @@ const CourseContentModal = ({
                 name="video_url"
                 value={videoUrl}
                 onChange={(e) => setVideoUrl(e.target.value)}
+                placeholder="Add Video URL..."
               />
             </label>
+            <br />
+            <br />
             <label>
               <p>Enter video Description</p>
               <textarea
                 name="video_desc"
                 value={videoDescription}
                 onChange={(e) => setVideoDescription(e.target.value)}
+                placeholder="Add Description..."
               />
             </label>
           </div>
         )}
 
         <div className="modal-btn">
-          <button onClick={createCourseContent}>Create Lesson Content</button>
+          <button onClick={createCourseContent}>Create Lesson</button>
           <button onClick={() => setShowNewContent(false)}>Cancel</button>
         </div>
       </div>

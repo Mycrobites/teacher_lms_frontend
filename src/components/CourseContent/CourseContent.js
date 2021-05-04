@@ -36,7 +36,7 @@ const CourseContent = ({ lessons, user, id, fetchLessonContent }) => {
   return (
     <div className="course-content">
       <div className="course-content-header">
-        <h4>Course content</h4>
+        <h2>Course content</h2>
         <button
           className="add-lesson-btn"
           onClick={() => setShowNewLesson(true)}

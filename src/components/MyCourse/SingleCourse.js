@@ -121,9 +121,13 @@ const SingleCourse = (props) => {
         <div className="course-modal-wrapper">
           <div className="delete-modal">
             <p>Are you sure you want to delete your course ?</p>
-            <div className="delete-modal-btn">
-              <button onClick={() => setShowDelete(false)}>Cancel</button>
-              <button onClick={handleDelete}>Proceed and Delete</button>
+            <div className="course-modal-buttons">
+              <button onClick={() => setShowDelete(false)} className="btn">
+                Cancel
+              </button>
+              <button onClick={handleDelete} className="btn">
+                Proceed and Delete
+              </button>
             </div>
           </div>
         </div>
@@ -142,7 +146,6 @@ const SingleCourse = (props) => {
                 placeholder="course name"
               />
             </label>
-
             <label>
               <p>Course Description</p>
               <textarea
@@ -152,7 +155,6 @@ const SingleCourse = (props) => {
                 placeholder="enter course description"
               />
             </label>
-
             <label>
               <p>Course Introduction Video</p>
               <input
@@ -163,7 +165,6 @@ const SingleCourse = (props) => {
                 placeholder="paste intro video link"
               />
             </label>
-
             <label>
               <p>Course Goals</p>
               <input
@@ -174,7 +175,6 @@ const SingleCourse = (props) => {
                 placeholder="Enter course goals comma seperated"
               />
             </label>
-
             <label>
               <p>Course Concepts</p>
               <input
@@ -186,7 +186,7 @@ const SingleCourse = (props) => {
               />
             </label>
 
-            <div className="modal-btn">
+            <div className="edit-modal-button">
               <button onClick={editCourse}>Edit Course</button>
               <button onClick={() => setShowEdit(false)}>Cancel</button>
             </div>

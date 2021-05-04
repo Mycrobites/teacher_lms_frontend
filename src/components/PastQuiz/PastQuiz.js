@@ -7,7 +7,7 @@ import "./PastQuiz.css";
 const getDateString = (now) => {
   const a = now.split(" ")[0].split("/");
   const b = now.split(" ")[1];
-  return `${a[0]} ${a[1] < 10 ? months[a[1].split("")[1]] : months[a[1]]} ${
+  return `${a[0]} ${a[1] < 10 ? months[a[1].split("")[1]-1] : months[a[1]-1]} ${
     a[2]
   } ${b}`;
 };

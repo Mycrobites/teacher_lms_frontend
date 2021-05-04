@@ -13,19 +13,8 @@ const breakPoints = [
   { width: 1100, itemsToShow: 4 },
 ];
 
-const getEnrolledCoursesFromLocalStorage = () => {
-  const enrolledCourses = localStorage.getItem("enrolled-courses");
-  if (enrolledCourses) {
-    return JSON.parse(enrolledCourses);
-  } else {
-    return null;
-  }
-};
-
 const MyCourse = ({ user }) => {
-  const [allCourses, setAllCourses] = useState(
-    getEnrolledCoursesFromLocalStorage
-  );
+  const [allCourses, setAllCourses] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [showCreateCourse, setShowCreateCourse] = useState(false);
   const { userDetails } = useContext(UserContext);
@@ -35,8 +24,6 @@ const MyCourse = ({ user }) => {
   const [goals, setGoals] = useState("");
   const [concept, setConcept] = useState("");
   const modalRef = useRef(null);
-
-  console.log(showCreateCourse);
 
   const createCourse = async () => {
     const goalsData = goals.split(",").map((goal, idx) => ({
@@ -58,7 +45,7 @@ const MyCourse = ({ user }) => {
       concepts: conceptData,
       author: user.user_id,
     };
-    console.log(postData);
+    // console.log(postData);
 
     try {
       const config = {
@@ -77,8 +64,6 @@ const MyCourse = ({ user }) => {
     }
   };
 
-  console.log(modalRef);
-
   const getCourses = async () => {
     try {
       if (!allCourses) setIsLoading(true);
@@ -89,9 +74,8 @@ const MyCourse = ({ user }) => {
         `/teacher/getMyCourses/${user.username}`,
         config
       );
-      console.log(data);
+      // console.log(data);
       setAllCourses(data);
-      localStorage.setItem("enrolled-courses", JSON.stringify(data));
     } catch (err) {
       console.log(err.message);
     }
@@ -155,7 +139,7 @@ const MyCourse = ({ user }) => {
                 name="course-description"
                 value={courseDescription}
                 onChange={(e) => setCourseDescription(e.target.value)}
-                placeholder="enter course description"
+                placeholder="Enter course description"
               />
             </label>
 
@@ -192,7 +176,7 @@ const MyCourse = ({ user }) => {
               />
             </label>
 
-            <div className="modal-btn">
+            <div className="add-modal-button">
               <button onClick={createCourse}>Create Course</button>
               <button onClick={() => setShowCreateCourse(false)}>Cancel</button>
             </div>
