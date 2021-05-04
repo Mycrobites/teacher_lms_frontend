@@ -12,7 +12,7 @@ const CourseEditPage = () => {
 
 	const [enrolledStudents, setEnrolledStudents] = useState(null);
 	const [lessonsData, setLessonsData] = useState(null);
-	// const [loading, setLoading] = useState(true);
+	const [loading, setLoading] = useState(true);
 	const { userDetails } = useContext(UserContext);
 	const fetchEnrolledStudent = async () => {
 		try {
@@ -40,7 +40,7 @@ const CourseEditPage = () => {
 			const { data } = await axios.get(`/teacher/getCourse/${id}`, config);
 			console.log(data.course_details);
 			setLessonsData(data.course_details);
-			// setLoading(false);
+			setLoading(false);
 		} catch (err) {
 			console.log(err.message);
 		}
@@ -54,8 +54,8 @@ const CourseEditPage = () => {
 
 	return (
 		<>
-			{!lessonsData ? (
-				<div className="profile-loader">
+			{loading ? (
+				<div className="loading-div">
 					<Loader />
 				</div>
 			) : (
