@@ -9,41 +9,46 @@ import "./QuizQuestions.css";
 
 const QuizQuestions = () => {
   const [questions, setQuestions] = useState(null);
+  const [loading, setLoading] = useState(false);
   const { userDetails } = useContext(UserContext);
   const { id } = useParams();
   const history = useHistory();
+
+  const fetchQuestions = async () => {
+    try {
+      const config = {
+        headers: { Authorization: `Bearer ${userDetails.access}` },
+      };
+      setLoading(true);
+      const { data } = await axios.get(
+        `teacher/quiz/getQuestions/${id}`,
+        config
+      );
+      setQuestions(data.quiz_details);
+      setLoading(false);
+    } catch (err) {
+      console.log(err.message);
+    }
+  };
 
   const deleteQuestion = async (qid) => {
     try {
       const config = {
         headers: { Authorization: `Bearer ${userDetails.access}` },
       };
-      const { data } = await axios.delete(
+      setLoading(true);
+      await axios.delete(
         `/teacher/deleteQuestionFromQuiz/${id}/${qid}`,
         config
       );
-      console.log(data);
+      fetchQuestions();
+      setLoading(false);
     } catch (err) {
       console.log(err.message);
     }
   };
 
   useEffect(() => {
-    const fetchQuestions = async () => {
-      try {
-        const config = {
-          headers: { Authorization: `Bearer ${userDetails.access}` },
-        };
-        const { data } = await axios.get(
-          `teacher/quiz/getQuestions/${id}`,
-          config
-        );
-        console.log(data.quiz_details);
-        setQuestions(data.quiz_details);
-      } catch (err) {
-        console.log(err.message);
-      }
-    };
     fetchQuestions();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [id]);
@@ -51,7 +56,7 @@ const QuizQuestions = () => {
   if (!questions) {
     return (
       <div className="quiz-questions-loader">
-        <Loader />;
+        <Loader />
       </div>
     );
   }
@@ -60,12 +65,20 @@ const QuizQuestions = () => {
     <div className="quiz-questions-div">
       <div className="quiz-question-header">
         <h2>{questions?.quiz_name} Questions</h2>
-        <button
-          className="enrollment-course-btn"
-          onClick={() => history.push(`/quizedit/${id}`)}
-        >
-          Add Questions
-        </button>
+        <div className="quiz-header-buttons">
+          <button
+            className="enrollment-course-btn"
+            onClick={() => history.push(`/quiz`)}
+          >
+            Quiz Page
+          </button>
+          <button
+            className="enrollment-course-btn"
+            onClick={() => history.push(`/quizedit/${id}`)}
+          >
+            Add Questions
+          </button>
+        </div>
       </div>
       {questions?.questions.length === 0 && (
         <p className="no-questions">Add questions in this quiz!</p>
@@ -73,8 +86,20 @@ const QuizQuestions = () => {
       <div className="quiz-questions">
         {questions?.questions.map((ques, idx) => (
           <div className="quiz-question" key={idx}>
+            <h3>{idx + 1}.</h3>
             <div className="question-content">
               <div>{parse(ques.question)}</div>
+              <div className="options">
+                {!ques.question.includes("img") &&
+                  ques.option.map((op, idx) => {
+                    const ops = ["A", "B", "C", "D"];
+                    return (
+                      <div className="option" key={idx}>
+                        <span>({ops[idx]})</span>&nbsp;{parse(op)}
+                      </div>
+                    );
+                  })}
+              </div>
             </div>
             <button
               className="question-delete-btn"
@@ -85,6 +110,11 @@ const QuizQuestions = () => {
           </div>
         ))}
       </div>
+      {loading && (
+        <div className="quizquestion-loader">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };

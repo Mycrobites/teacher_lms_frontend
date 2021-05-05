@@ -43,12 +43,13 @@
 .Course .course-content {
   flex: 1;
   margin-left: 20px;
+  padding-bottom: 0px;
 }
 
 .course-content h2 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 }
 .course-content h3 {
   font-size: 16px;
@@ -59,7 +60,6 @@
 .course-content p {
   font-size: 14px;
   font-weight: 500;
-  margin-bottom: 10px;
   color: rgba(0, 0, 0, 0.6);
 }
 
@@ -74,6 +74,15 @@
   padding: 5px 15px;
   color: slateblue;
   border-radius: 5px;
+}
+
+.course-description {
+  height: 40px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.course-description::-webkit-scrollbar {
+  display: none;
 }
 
 .all-courses-btn:hover {

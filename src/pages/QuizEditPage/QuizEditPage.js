@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams, history, useHistory } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import axios from "../../axios/axios";
 import UserContext from "../../context/authContext";
@@ -9,6 +9,7 @@ import "./QuizEditPage.css";
 const QuizEditPage = () => {
   const [questionBank, setQuestionBank] = useState(null);
   const [selectedQuestions, setSelectedQuestions] = useState([]);
+  const [loading, setLoading] = useState(false);
   const { userDetails } = useContext(UserContext);
   const { id } = useParams();
   const history = useHistory();
@@ -32,21 +33,20 @@ const QuizEditPage = () => {
         quiz_id: id,
         quest_id: selectedQuestions,
       };
-      console.log(postData);
+      setLoading(true);
       const { data } = await axios.post(
         "/teacher/addQuestionToQuiz",
         postData,
         config
       );
+      if (data) setLoading(false);
       alert(data.message);
       if (data.message === "added successfully")
         history.push(`/quizQuestions/${id}`);
-      console.log(data);
     } catch (err) {
       console.log(err.message);
     }
   };
-  console.log(selectedQuestions);
 
   useEffect(() => {
     const getQuestionBank = async () => {
@@ -55,7 +55,6 @@ const QuizEditPage = () => {
           headers: { Authorization: `Bearer ${userDetails.access}` },
         };
         const { data } = await axios.get("/teacher/getQuestionsFromQB", config);
-        // console.log(data);
         setQuestionBank(data.questions);
       } catch (err) {
         console.log(err.message);
@@ -90,18 +89,25 @@ const QuizEditPage = () => {
           <input type="checkbox" onChange={() => handleChange(ques.id)} />
           <div className="question-content">
             <div>{parse(ques.question)}</div>
-            {!ques.question.includes("img") &&
-              ques.option.map((op, idx) => {
-                const ops = ["A", "B", "C", "D"];
-                return (
-                  <div className="options">
-                    ({ops[idx]}) {parse(op)}
-                  </div>
-                );
-              })}
+            <div className="options">
+              {!ques.question.includes("img") &&
+                ques.option.map((op, idx) => {
+                  const ops = ["A", "B", "C", "D"];
+                  return (
+                    <div className="option" key={idx}>
+                      <span>({ops[idx]})</span>&nbsp;{parse(op)}
+                    </div>
+                  );
+                })}
+            </div>
           </div>
         </div>
       ))}
+      {loading && (
+        <div className="quizquestion-loader">
+          <Loader />
+        </div>
+      )}
     </div>
   );
 };
