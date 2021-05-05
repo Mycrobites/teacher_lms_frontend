@@ -92,6 +92,7 @@ const SingleCourse = (props) => {
 			console.log(data);
 			getCourses();
 			setShowEdit(false);
+			setLoading(false);
 		} catch (err) {
 			console.log(err.message);
 		}
