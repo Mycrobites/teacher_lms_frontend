@@ -49,23 +49,13 @@ const SingleCourse = (props) => {
 	};
 
 	const editCourse = async () => {
-		const goalsData = goals.split(',').map((goal, idx) => ({
-			key: (idx + 1).toString(),
-			goal: goal.trim(),
-		}));
-
-		const conceptData = concept.split(',').map((concept, idx) => ({
-			key: (idx + 1).toString(),
-			concept: concept.trim(),
-		}));
-
 		let formData = new FormData();
 		formData.append('course_name', courseName);
 		formData.append('course_description', courseDescription);
 		formData.append('video', video);
-		formData.append('goals', goalsData);
+		formData.append('goals', goals);
 		formData.append('slug', 'new-course');
-		formData.append('concepts', conceptData);
+		formData.append('concepts', concept);
 		formData.append('author', user.user_id);
 		formData.append('image', courseImage);
 

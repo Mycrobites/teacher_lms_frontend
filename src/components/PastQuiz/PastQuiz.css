@@ -1,46 +1,46 @@
 .past-quiz {
-  padding: 15px;
+	padding: 15px;
 }
 
 .past-quiz-title {
-  font-size: 1.4em;
-  font-weight: 600;
-  margin-bottom: 5px;
+	font-size: 1.4em;
+	font-weight: 600;
+	margin-bottom: 5px;
 }
 
 .single-past-quiz {
-  background-color: #fff;
-  margin: 15px 3px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  padding: 8px 15px;
-  border-radius: 10px;
+	background-color: #fff;
+	margin: 15px 3px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+		rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+	padding: 8px 15px;
+	border-radius: 10px;
 }
 
 .single-past-quiz > * {
-  margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 .single-past-quiz > *:last-child {
-  margin-bottom: 0;
+	margin-bottom: 0;
 }
 
 .single-past-quiz h2 {
-  font-size: 20px;
-  font-weight: 700;
+	font-size: 18px;
+	font-weight: 700;
 }
 
 .single-past-quiz p {
-  font-size: 16px;
-  font-weight: 500;
-  color: rgba(0, 0, 0, 0.6);
+	font-size: 14px;
+	font-weight: 500;
+	color: rgba(0, 0, 0, 0.6);
 }
 
 .past-quiz-cards {
-  height: 330px;
-  overflow-x: hidden;
-  overflow-y: scroll;
+	height: 330px;
+	overflow-x: hidden;
+	overflow-y: scroll;
 }
 
 .past-quiz-cards::-webkit-scrollbar {
-  width: 0;
+	width: 0;
 }
