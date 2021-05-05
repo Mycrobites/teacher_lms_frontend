@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, history, useHistory } from "react-router-dom";
+import Loader from "../../components/Loader/Loader";
 import axios from "../../axios/axios";
 import UserContext from "../../context/authContext";
 import parse from "html-react-parser";
@@ -10,6 +11,7 @@ const QuizEditPage = () => {
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const { userDetails } = useContext(UserContext);
   const { id } = useParams();
+  const history = useHistory();
 
   const handleChange = (qid) => {
     if (selectedQuestions.includes(qid)) {
@@ -37,6 +39,8 @@ const QuizEditPage = () => {
         config
       );
       alert(data.message);
+      if (data.message === "added successfully")
+        history.push(`/quizQuestions/${id}`);
       console.log(data);
     } catch (err) {
       console.log(err.message);
@@ -61,19 +65,41 @@ const QuizEditPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (!questionBank) {
+    return (
+      <div className="quiz-questions-loader">
+        <Loader />;
+      </div>
+    );
+  }
+
   return (
-    <div>
-      <h1>Question Bank</h1>
+    <div className="quiz-questions-div">
       {!questionBank && <p>Loading...</p>}
-      <button disabled={selectedQuestions.length === 0} onClick={addQuestions}>
-        Add Questions
-      </button>
-      {questionBank?.map((question) => (
-        <div key={question.id}>
-          <br />
-          <input type="checkbox" onChange={() => handleChange(question.id)} />
-          {parse(question.question)}
-          <br />
+      <div className="quiz-question-header">
+        <h1>Question Bank</h1>
+        <button
+          disabled={selectedQuestions.length === 0}
+          onClick={addQuestions}
+        >
+          Add Questions
+        </button>
+      </div>
+      {questionBank?.map((ques) => (
+        <div className="quiz-question" key={ques.id}>
+          <input type="checkbox" onChange={() => handleChange(ques.id)} />
+          <div className="question-content">
+            <div>{parse(ques.question)}</div>
+            {!ques.question.includes("img") &&
+              ques.option.map((op, idx) => {
+                const ops = ["A", "B", "C", "D"];
+                return (
+                  <div className="options">
+                    ({ops[idx]}) {parse(op)}
+                  </div>
+                );
+              })}
+          </div>
         </div>
       ))}
     </div>

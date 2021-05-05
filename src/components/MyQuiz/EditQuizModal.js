@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
-import axios from "../../axios/axios";
 import Loader from "../Loader/Loader";
+import axios from "../../axios/axios";
+import "./EditQuizModal.css";
 
 const getCorrectDateFormat = (d) => {
   const date = d.split(" ")[0].split("/");
@@ -39,20 +40,14 @@ const ScheduleClass = ({
         duration: quizDuration,
         start_date: startdate + ":00+05:30",
         expire_date: expiredate + ":00+05:30",
-        questions: [],
       };
       const config = {
         headers: { Authorization: `Bearer ${user.access}` },
       };
       setLoading(true);
-      const { data } = await axios.patch(
-        `/teacher/quiz/editQuiz/${id}`,
-        postData,
-        config
-      );
+      await axios.patch(`/teacher/quiz/editQuiz/${id}`, postData, config);
       getCourses();
       setLoading(false);
-      console.log(data);
       setEditQuiz(false);
     } catch (err) {
       console.log(err.message);
@@ -70,13 +65,13 @@ const ScheduleClass = ({
   });
 
   return (
-    <div className="schedule-class-modal">
-      <div className="schedule-class-modal-card" ref={modalRef}>
+    <div className="edit-quiz-modal">
+      <div className="edit-quiz-modal-card" ref={modalRef}>
         <h1>Edit Quiz</h1>
         <button onClick={() => setEditQuiz(false)} className="close-btn">
           <IoCloseOutline />
         </button>
-        <div className="schedule-class-form">
+        <div className="edit-quiz-form">
           <br />
           <label>Name</label>
           <input

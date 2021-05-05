@@ -49,12 +49,6 @@ const SingleQuiz = (props) => {
         </button>
         <button
           className="enrollment-course-btn"
-          onClick={() => history.push(`/quizedit/${id}`)}
-        >
-          Add
-        </button>
-        <button
-          className="enrollment-course-btn"
           onClick={() => setEditQuiz(!editQuiz)}
         >
           Edit
