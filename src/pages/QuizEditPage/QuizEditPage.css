@@ -10,6 +10,10 @@
   justify-content: space-between;
   align-items: center;
   padding-bottom: 20px;
+}
+
+.questionbank-header {
+  padding-bottom: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
@@ -130,4 +134,17 @@
 
 .option span {
   font-weight: 700;
+}
+
+.marks p {
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 3px;
+}
+
+.check-box {
+  display: grid;
+  place-items: center;
 }

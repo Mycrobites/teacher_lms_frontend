@@ -169,9 +169,6 @@
 }
 
 .create-course-btn {
-  position: absolute;
-  right: 5%;
-  top: 5%;
   border: none;
   outline: none;
   padding: 10px;
@@ -180,6 +177,12 @@
   color: white;
   border-radius: 5px;
   font-weight: 500;
+  margin: 15px 0;
+}
+.mycourse-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 
 .course-modal-wrapper {
@@ -286,9 +289,9 @@
   font-weight: 500;
 }
 
-@media only screen and (max-width: 565px) {
+@media (max-width: 565px) {
   .Enrolled-courses .title {
-    font-size: 0.5em;
+    display: block;
   }
   .Enrolled-courses .title .stats {
     align-items: center;
@@ -296,6 +299,11 @@
   }
   .Enrolled-courses .title .stats > * {
     margin: 10px 0;
-    font-size: 0.5em;
+  }
+  .mycourse-title {
+    flex-direction: column;
+  }
+  .title h4 {
+    font-size: 14px;
   }
 }

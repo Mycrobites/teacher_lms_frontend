@@ -1,3 +1,9 @@
 .course-page {
-	margin-left: 220px;
+  margin-left: 220px;
+}
+
+@media (max-width: 900px) {
+  .course-page {
+    margin-left: 70px;
+  }
 }

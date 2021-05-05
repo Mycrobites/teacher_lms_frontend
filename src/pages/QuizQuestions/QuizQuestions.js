@@ -4,7 +4,7 @@ import UserContext from "../../context/authContext";
 import Loader from "../../components/Loader/Loader";
 import axios from "../../axios/axios";
 import parse from "html-react-parser";
-import { AiFillDelete } from "react-icons/ai";
+import { AiOutlineDelete } from "react-icons/ai";
 import "./QuizQuestions.css";
 
 const QuizQuestions = () => {
@@ -24,6 +24,7 @@ const QuizQuestions = () => {
         `teacher/quiz/getQuestions/${id}`,
         config
       );
+      console.log(data);
       setQuestions(data.quiz_details);
       setLoading(false);
     } catch (err) {
@@ -63,7 +64,7 @@ const QuizQuestions = () => {
 
   return (
     <div className="quiz-questions-div">
-      <div className="quiz-question-header">
+      <div className="quiz-question-header-1">
         <h2>{questions?.quiz_name} Questions</h2>
         <div className="quiz-header-buttons">
           <button
@@ -101,12 +102,18 @@ const QuizQuestions = () => {
                   })}
               </div>
             </div>
-            <button
-              className="question-delete-btn"
-              onClick={() => deleteQuestion(ques.id)}
-            >
-              <AiFillDelete />
-            </button>
+            <div className="question-right-container">
+              <div className="marks">
+                <p>Correct: {ques.correct_marks} Marks</p>
+                <p>Incorrect: -{ques.negative_marks} Marks</p>
+              </div>
+              <button
+                className="question-delete-btn"
+                onClick={() => deleteQuestion(ques.id)}
+              >
+                <AiOutlineDelete />
+              </button>
+            </div>
           </div>
         ))}
       </div>

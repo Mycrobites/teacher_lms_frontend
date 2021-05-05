@@ -29,15 +29,16 @@
   width: 99%;
 }
 
-.single-lesson .time {
+/* .single-lesson .time {
   flex: 1;
-}
+} */
 .single-lesson .title {
-  flex: 2;
-}
-.single-lesson a {
   flex: 1;
+  margin: 0 5px;
 }
+/* .single-lesson a {
+  flex: 1;
+} */
 
 .time h2 {
   font-size: 1.1em;
@@ -91,5 +92,21 @@
 @media (max-width: 768px) {
   .single-lesson .meeting-link {
     flex: 1;
+  }
+}
+
+@media (max-width: 468px) {
+  .single-lesson {
+    justify-content: flex-start;
+  }
+  .single-lesson .time {
+    flex: 1;
+  }
+  .single-lesson .title {
+    flex: 1;
+    margin: 0 5px;
+  }
+  .single-lesson a {
+    width: 100%;
   }
 }

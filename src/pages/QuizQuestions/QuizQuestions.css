@@ -5,7 +5,7 @@
   padding-bottom: 20px;
 }
 
-.quiz-question-header {
+.quiz-question-header-1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -13,7 +13,7 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
 }
 
-.quiz-question-header button {
+.quiz-question-header-1 button {
   display: grid;
   place-items: center;
   border: none;
@@ -39,11 +39,11 @@
 }
 
 .quiz-question .question-content {
-  flex: 1;
+  flex: 3;
 }
 
 .question-content img {
-  width: 95%;
+  width: 100%;
 }
 
 .question-delete-btn {
@@ -127,4 +127,18 @@
 
 .option span {
   font-weight: 700;
+}
+
+.question-right-container .marks p {
+  font-size: 12px;
+  font-weight: 600;
+  text-align: right;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 3px;
+}
+
+.question-right-container button {
+  margin-left: 50%;
+  transform: translateX(-50%);
+  margin-top: 5px;
 }

@@ -116,17 +116,19 @@ const MyCourse = ({ user }) => {
         </div>
       )}
 
-      <div className="title">
-        <h1>Welcome! {user.first_name}</h1>
-        <h4 style={{ color: "gray" }}>Here are All Your Courses</h4>
-      </div>
+      <div className="mycourse-title">
+        <div className="title">
+          <h1>Welcome! {user.first_name}</h1>
+          <h4 style={{ color: "gray" }}>Here are All Your Courses</h4>
+        </div>
 
-      <button
-        className="create-course-btn"
-        onClick={() => setShowCreateCourse(true)}
-      >
-        Create New Course
-      </button>
+        <button
+          className="create-course-btn"
+          onClick={() => setShowCreateCourse(true)}
+        >
+          Create New Course
+        </button>
+      </div>
 
       {showCreateCourse && (
         <div className="course-modal-wrapper">
