@@ -37,26 +37,26 @@ const MyCourse = ({ user }) => {
 			concept: concept.trim(),
 		}));
 
-		// let formData = new FormData();
-		// formData.append('course_name', courseName);
-		// formData.append('course_description', courseDescription);
-		// formData.append('video', video);
-		// formData.append('goals', goalsData);
-		// formData.append('slug', 'new-course');
-		// formData.append('concepts', conceptData);
-		// formData.append('author', user.user_id);
-		// formData.append('image', courseImage);
+		let formData = new FormData();
+		formData.append('course_name', courseName);
+		formData.append('course_description', courseDescription);
+		formData.append('video', video);
+		formData.append('goals', goalsData);
+		formData.append('slug', 'new-course');
+		formData.append('concepts', conceptData);
+		formData.append('author', user.user_id);
+		formData.append('image', courseImage);
 
-		const postData = {
-			course_name: courseName,
-			course_description: courseDescription,
-			video: video,
-			goals: goalsData,
-			slug: 'new-course',
-			concepts: conceptData,
-			author: user.user_id,
-		};
-		console.log(postData);
+		// const postData = {
+		// 	course_name: courseName,
+		// 	course_description: courseDescription,
+		// 	video: video,
+		// 	goals: goalsData,
+		// 	slug: 'new-course',
+		// 	concepts: conceptData,
+		// 	author: user.user_id,
+		// };
+		// console.log(postData);
 
 		setIsLoading(true);
 
@@ -66,7 +66,7 @@ const MyCourse = ({ user }) => {
 			};
 			const { data } = await axios.post(
 				'/teacher/createCourse',
-				postData,
+				formData,
 				config,
 			);
 			console.log(data);

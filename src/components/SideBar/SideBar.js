@@ -61,7 +61,7 @@ const SideBar = ({ active }) => {
 				<div id={active === 'quiz' ? 'active' : ''} className="menu">
 					<Link to="/quiz">
 						<AssignmentOutlinedIcon />
-						Quiz
+						My Quiz
 					</Link>
 				</div>
 				<div id={active === 'forum' ? 'active' : ''} className="forum menu">
