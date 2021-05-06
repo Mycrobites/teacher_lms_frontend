@@ -9,12 +9,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 20px;
 }
 
 .questionbank-header {
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+.quiz-header-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .quiz-question-header button {
@@ -31,11 +35,19 @@
   border-radius: 4px;
   margin-top: 5px;
 }
-
+.questionbank-header button:last-child {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.questionbank-header button:last-child svg {
+  margin-left: 5px;
+  font-size: 20px;
+}
 .quiz-question {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: center !important;
   margin: 20px 0;
   border: 1px solid rgba(0, 0, 0, 0.7);
   padding: 10px;
@@ -48,13 +60,6 @@
 
 .question-content img {
   width: 95%;
-}
-
-.quiz-question input[type="checkbox"] {
-  transform: scale(1.5);
-  cursor: pointer;
-  margin-left: 10px;
-  margin-right: 10px;
 }
 
 .question-delete-btn {
@@ -145,6 +150,57 @@
 }
 
 .check-box {
+  width: 30px;
   display: grid;
   place-items: center;
+}
+
+.check-box input[type="checkbox"] {
+  transform: scale(1.5);
+  cursor: pointer;
+}
+
+/* FILTER DIV */
+.filter {
+  margin-top: 20px;
+}
+
+.filter .filter-selects div {
+  margin: 10px 0;
+}
+.filter .filter-selects select {
+  width: 200px;
+  cursor: pointer;
+}
+
+.filter .filter-selects label {
+  display: flex;
+}
+.filter .filter-selects label p {
+  width: 100px;
+  font-weight: 500;
+}
+
+.filter .filter-buttons {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.filter button {
+  display: grid;
+  place-items: center;
+  border: none;
+  outline: none;
+  color: white;
+  background: rgb(0, 140, 255);
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  margin-top: 5px;
+  margin-right: 10px;
+  width: 145px;
 }
