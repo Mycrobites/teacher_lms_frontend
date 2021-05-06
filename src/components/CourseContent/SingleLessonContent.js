@@ -39,6 +39,7 @@ const SingleLessonContent = ({
 			fetchLessonContent();
 			setShowDelete(false);
 			console.log(data);
+			setLoading(false);
 		} catch (err) {
 			console.log(err.message);
 		}

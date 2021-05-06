@@ -32,12 +32,6 @@ const QuizEditPage = () => {
 	const { id } = useParams();
 	const history = useHistory();
 
-	console.log(difficultyLevel);
-	console.log(skillLevel);
-	console.log(selectedSubject);
-	console.log(selectedTopic);
-	console.log(selectedSubTopics);
-
 	const handleChange = (qid) => {
 		if (selectedQuestions.includes(qid)) {
 			setSelectedQuestions(
@@ -273,11 +267,6 @@ const QuizEditPage = () => {
 			</div>
 		);
 	}
-	console.log(difficultyLevel);
-	console.log(skillLevel);
-	console.log(selectedSubject);
-	console.log(selectedTopic);
-	console.log(selectedSubTopics);
 
 	return (
 		<div className="quiz-questions-div">
@@ -443,23 +432,3 @@ const QuizEditPage = () => {
 };
 
 export default QuizEditPage;
-
-/*
-if(!difficultyLevel && !skillLevel && !selectedSubject) {
-  display all
-} else if(1 && !2 && !3) {
-  filter acc to 1
-} else if(!1 && 2 && !3) {
-  filter acc to 2
-} else if(!1 && !2 && 3) {
-  filter acc to 3
-} else if(1 && 2 && !3) {
-  filter acc to 1 and 2
-} else if(1 && !2 && 3) {
-  filter acc to 1 and 3
-} else if(!1 && 2 && 3) {
-  filter acc to 2 and 3
-} else {
-  display 1 && 2 && 3
-}
-*/
