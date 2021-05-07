@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import axios from '../../axios/axios';
 import './CourseContentModal.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { getCookie } from '../Posts/getCookie';
 
 const CourseContentModal = ({
 	setShowNewContent,
@@ -19,6 +22,8 @@ const CourseContentModal = ({
 	const [endDate, setEndDate] = useState('');
 
 	const mediaList = ['text', 'video', 'homework', 'pdf', 'quiz', 'assignment'];
+
+	const csrftoken = getCookie('csrftoken');
 
 	const sendCreateRequest = async (data) => {
 		try {
@@ -98,13 +103,30 @@ const CourseContentModal = ({
 				</label>
 
 				{mediaType === 'text' || mediaType === 'homework' ? (
-					<label>
+					<label style={{ overflowY: 'scroll' }}>
 						<p>Enter Text Content</p>
-						<textarea
-							name="text_coontent"
-							value={textContent}
-							onChange={(e) => setTextContent(e.target.value)}
-							placeholder="Add Text..."
+						<CKEditor
+							editor={ClassicEditor}
+							data={textContent}
+							config={{
+								ckfinder: {
+									uploadUrl:
+										'https://lab.progressiveminds.in/api/uploadimages?command=QuickUpload&type=Images&responseType=json',
+									options: {
+										resourceType: 'Images',
+									},
+									credentials: 'include',
+									headers: {
+										'X-CSRF-TOKEN': csrftoken,
+										csrftoken: csrftoken,
+										csrfmiddlewaretoken: csrftoken,
+									},
+								},
+							}}
+							onChange={(event, editor) => {
+								const data = editor.getData();
+								setTextContent(data);
+							}}
 						/>
 					</label>
 				) : (

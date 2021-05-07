@@ -1,60 +1,62 @@
 .forum-content {
-  display: flex;
-  justify-content: flex-start;
-  align-items: stretch;
-  /* background-color: red; */
+	display: flex;
+	justify-content: flex-start;
+	align-items: stretch;
+
+	/* background-color: red; */
 }
 
 .forum-sidebar {
-  /* background-color: yellow; */
-  flex: 2;
-  padding: 20px;
-  border-left: solid 1px rgba(0, 0, 0, 0.2);
-  margin-top: -60px;
+	/* background-color: yellow; */
+	flex: 2;
+	padding: 20px;
+	border-left: solid 1px rgba(0, 0, 0, 0.2);
+	margin-top: -60px;
+	background-color: white;
 }
 
 .forum-sidebar .stats p {
-  font-weight: 600;
-  padding-top: 5px;
+	font-weight: 600;
+	padding-top: 5px;
 }
 .stats {
-  margin-bottom: 30px;
+	margin-bottom: 30px;
 }
 
 .blogs h2 {
-  font-size: 24px;
-  font-weight: 600;
-  margin-bottom: 30px;
+	font-size: 24px;
+	font-weight: 600;
+	margin-bottom: 30px;
 }
 .blogs h3 {
-  font-size: 18px;
-  font-weight: 600;
-  margin-bottom: 10px;
+	font-size: 18px;
+	font-weight: 600;
+	margin-bottom: 10px;
 }
 
 .single-blog {
-  margin-bottom: 35px;
+	margin-bottom: 35px;
 }
 
 .single-blog img {
-  width: 100%;
-  height: 150px;
-  object-fit: cover;
+	width: 100%;
+	height: 150px;
+	object-fit: cover;
 }
 
 .blogs a {
-  display: inline-block;
-  /* margin-top: 20px; */
-  text-decoration: none;
-  background-color: #eee;
-  padding: 10px;
-  color: #000;
-  border-radius: 4px;
-  font-weight: 500;
+	display: inline-block;
+	/* margin-top: 20px; */
+	text-decoration: none;
+	background-color: #eee;
+	padding: 10px;
+	color: #000;
+	border-radius: 4px;
+	font-weight: 500;
 }
 
 @media (max-width: 1168px) {
-  .forum-sidebar {
-    display: none;
-  }
+	.forum-sidebar {
+		display: none;
+	}
 }

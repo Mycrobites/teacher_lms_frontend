@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import axios from '../../axios/axios';
 import './SingleLessonEdit.css';
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { getCookie } from '../Posts/getCookie';
 
 const ScheduleClass = ({
 	setShowLessonEdit,
@@ -17,7 +20,7 @@ const ScheduleClass = ({
 	const [videoUrl, setVideoUrl] = useState(url);
 	const [videoDescription, setVideoDescription] = useState(description);
 	const [pdfFile, setPdfFile] = useState(null);
-
+	const csrftoken = getCookie('csrftoken');
 	const modalRef = useRef(null);
 
 	const editLesson = async (postData) => {
@@ -77,10 +80,28 @@ const ScheduleClass = ({
 				{mediaType === 'text' || mediaType === 'homework' ? (
 					<label>
 						<p>Enter Text Content</p>
-						<textarea
-							name="text_coontent"
-							value={textContent}
-							onChange={(e) => setTextContent(e.target.value)}
+						<CKEditor
+							editor={ClassicEditor}
+							data={textContent}
+							config={{
+								ckfinder: {
+									uploadUrl:
+										'https://lab.progressiveminds.in/api/uploadimages?command=QuickUpload&type=Images&responseType=json',
+									options: {
+										resourceType: 'Images',
+									},
+									credentials: 'include',
+									headers: {
+										'X-CSRF-TOKEN': csrftoken,
+										csrftoken: csrftoken,
+										csrfmiddlewaretoken: csrftoken,
+									},
+								},
+							}}
+							onChange={(event, editor) => {
+								const data = editor.getData();
+								setTextContent(data);
+							}}
 						/>
 					</label>
 				) : (

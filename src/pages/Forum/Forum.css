@@ -1,11 +1,19 @@
 .Forum {
+	width: calc(100vw - 210px);
+	min-height: 100vh;
+	height: fit-content;
 	display: grid;
 	place-items: center;
 	margin-left: 210px;
+	overflow-x: hidden;
+	position: relative;
 }
 
 @media (max-width: 900px) {
 	.Forum {
 		margin-left: 40px;
+		padding-left: -50px;
+		width: calc(100vw - 40px);
+		overflow-x: scroll;
 	}
 }
