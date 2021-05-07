@@ -5,7 +5,9 @@ import SingleStudent from './SingleStudent';
 const EnrolledStudent = ({ students }) => {
 	return (
 		<div className="enrolled-student">
-			<h2>Enrolled Students : {students?.length}</h2>
+			<h2 style={{ fontSize: '22px' }} className="enrolled-student-heading">
+				Enrolled Students : {students?.length}
+			</h2>
 			<div className="enrolled-student-wrapper">
 				{students?.map((student) => (
 					<SingleStudent key={student.sno} {...student} />
