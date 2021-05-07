@@ -166,6 +166,7 @@ const SingleCourseContent = ({
 							lessonId={lesson?.lesson_id}
 							singleContent={content}
 							user={user}
+							lesson_no={lesson.lesson_no}
 							fetchLessonContent={fetchLessonContent}
 							courseIndex={index}
 						/>

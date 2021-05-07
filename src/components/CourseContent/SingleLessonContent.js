@@ -19,6 +19,7 @@ const SingleLessonContent = ({
 	index,
 	lessonId,
 	courseIndex,
+	lesson_no,
 	fetchLessonContent,
 }) => {
 	const clickRef = useRef(null);
@@ -74,7 +75,7 @@ const SingleLessonContent = ({
 			<div className="lesson-left">
 				<div className="label">
 					<div style={{ fontWeight: 'bold', marginBottom: '5px' }}>
-						{courseIndex}.{index + 1} {singleContent?.media_type.toUpperCase()}
+						{lesson_no}.{index + 1} {singleContent?.media_type.toUpperCase()}
 					</div>
 					<div>{singleContent?.text}</div>
 					<div>{singleContent?.quiz_name}</div>

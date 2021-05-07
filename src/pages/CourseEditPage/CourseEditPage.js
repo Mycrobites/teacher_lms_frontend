@@ -12,6 +12,7 @@ const CourseEditPage = () => {
 
 	const [enrolledStudents, setEnrolledStudents] = useState(null);
 	const [lessonsData, setLessonsData] = useState(null);
+	const [sortedLessons, setSortedLessons] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const { userDetails } = useContext(UserContext);
 	const fetchEnrolledStudent = async () => {
@@ -49,6 +50,7 @@ const CourseEditPage = () => {
 	useEffect(() => {
 		fetchLessonContent();
 		fetchEnrolledStudent();
+
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
