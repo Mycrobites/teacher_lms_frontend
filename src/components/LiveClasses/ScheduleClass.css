@@ -15,7 +15,7 @@
   border-radius: 10px;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  width: 90vw;
+  width: 95vw;
   max-width: 500px;
   margin: auto;
   min-height: 200px;
@@ -89,4 +89,10 @@
   margin-top: 5px;
   outline: none;
   cursor: pointer;
+}
+
+@media (max-width: 450px) {
+  .schedule-class-modal-card {
+    padding: 15px;
+  }
 }

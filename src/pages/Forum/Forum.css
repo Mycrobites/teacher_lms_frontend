@@ -4,7 +4,7 @@
   margin-left: 210px;
 }
 
-@media (max-width: 998px) {
+@media (max-width: 900px) {
   .Forum {
     margin-left: 40px;
   }

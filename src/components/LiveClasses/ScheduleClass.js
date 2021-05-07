@@ -92,10 +92,10 @@ const ScheduleClass = ({
         </button>
         <div className="schedule-class-form">
           <br />
-          <label>Topic</label>
+          <label>Class Title</label>
           <input
             type="text"
-            placeholder="Topic..."
+            placeholder="Class Title..."
             value={topic}
             onChange={(e) => setTopic(e.target.value)}
           />

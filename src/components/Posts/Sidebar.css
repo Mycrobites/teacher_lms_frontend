@@ -15,6 +15,7 @@
 
 .forum-sidebar .stats p {
   font-weight: 600;
+  padding-top: 5px;
 }
 .stats {
   margin-bottom: 30px;
@@ -50,4 +51,10 @@
   color: #000;
   border-radius: 4px;
   font-weight: 500;
+}
+
+@media (max-width: 1168px) {
+  .forum-sidebar {
+    display: none;
+  }
 }

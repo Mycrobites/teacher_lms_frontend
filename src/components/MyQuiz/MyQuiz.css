@@ -192,3 +192,21 @@
 .quiz-loader div {
   margin-right: 25px;
 }
+
+@media (max-width: 500px) {
+  .my-quiz {
+    padding-right: 5px;
+    padding-left: 0px;
+  }
+  .my-quiz .rec-arrow {
+    transform: scale(0.8);
+  }
+  .single-course-card {
+    margin: 2px;
+  }
+}
+@media (max-width: 500px) {
+  .my-quiz .rec-arrow {
+    transform: scale(0.6);
+  }
+}

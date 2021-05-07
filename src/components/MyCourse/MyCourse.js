@@ -69,7 +69,6 @@ const MyCourse = ({ user }) => {
 
   const getCourses = async () => {
     try {
-      if (!allCourses) setIsLoading(true);
       const config = {
         headers: { Authorization: `Bearer ${userDetails.access}` },
       };
@@ -107,6 +106,14 @@ const MyCourse = ({ user }) => {
   //   document.addEventListener("click", handler);
   //   return () => document.removeEventListener("click", handler);
   // });
+
+  if (!allCourses) {
+    return (
+      <div className="loading-div">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="Enrolled-courses">

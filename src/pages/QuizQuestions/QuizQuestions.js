@@ -71,7 +71,7 @@ const QuizQuestions = () => {
             className="enrollment-course-btn"
             onClick={() => history.push(`/quiz`)}
           >
-            Quiz Page
+            Back to Quiz Page
           </button>
           <button
             className="enrollment-course-btn"
