@@ -27,22 +27,18 @@ const SingleLessonContent = ({
   const [loading, setLoading] = useState(false);
 
   const deleteLessonContent = async () => {
-    setLoading(true);
     try {
       const config = {
         headers: { Authorization: `Bearer ${user.access}` },
       };
-      const { data } = await axios.delete(
-        `/teacher/editLessonContent/${id}`,
-        config
-      );
+      setLoading(true);
+      await axios.delete(`/teacher/editLessonContent/${id}`, config);
       fetchLessonContent();
       setShowDelete(false);
-      console.log(data);
-      setLoading(false);
     } catch (err) {
       console.log(err.message);
     }
+    setLoading(false);
   };
 
   const toggleIcon = () => {
@@ -67,7 +63,7 @@ const SingleLessonContent = ({
   return (
     <div ref={clickRef} className="single-lesson-content">
       {loading && (
-        <div className="loading-div">
+        <div className="course-loader">
           <Loader />
         </div>
       )}
@@ -101,7 +97,7 @@ const SingleLessonContent = ({
       {showDelete && (
         <div className="delete-modal-wrapper">
           <div className="delete-modal">
-            <p>Are you sure you want to delete your course ?</p>
+            <p>Are you sure you want to delete your content?</p>
             <div className="lesson-delete-modal-button">
               <button onClick={() => setShowDelete(false)}>Cancel</button>
               <button onClick={deleteLessonContent}>Proceed and Delete</button>

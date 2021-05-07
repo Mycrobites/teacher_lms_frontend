@@ -1,9 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
 import { useParams, useHistory } from "react-router-dom";
-import "./EnrolledPage.css";
+import Loader from "../../components/Loader/Loader";
 import UserContext from "../../context/authContext";
 import axios from "../../axios/axios";
 import EnrolledStudent from "../../components/EnrolledStudents/EnrolledStudent";
+import "./EnrolledPage.css";
 
 const EnrolledPage = () => {
   const { id } = useParams();
@@ -20,9 +21,7 @@ const EnrolledPage = () => {
         `/teacher/getEnrolledStudents/${userDetails.username}/${id}`,
         config
       );
-      console.log(data);
       setEnrolledStudents(data.response);
-      // setLoading(false);
     } catch (err) {
       console.log(err.message);
     }
@@ -32,6 +31,14 @@ const EnrolledPage = () => {
     fetchEnrolledStudent();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (!enrolledStudents) {
+    return (
+      <div className="loading-div">
+        <Loader />
+      </div>
+    );
+  }
 
   return (
     <div className="enrolled-page">

@@ -12,6 +12,10 @@ const CourseContent = ({ lessons, user, id, fetchLessonContent }) => {
   const [lessonNumber, setLessonNumber] = useState();
 
   const createLesson = async () => {
+    if (!id || !lessonName || !lessonDescription || !lessonNumber) {
+      return alert("Please enter all the fields!");
+    }
+
     const postData = {
       course: id,
       name: lessonName,
@@ -24,12 +28,7 @@ const CourseContent = ({ lessons, user, id, fetchLessonContent }) => {
         headers: { Authorization: `Bearer ${user.access}` },
       };
       setLoading(true);
-      const { data } = await axios.post(
-        "/teacher/createLesson",
-        postData,
-        config
-      );
-      console.log(data);
+      await axios.post("/teacher/createLesson", postData, config);
       setShowNewLesson(false);
       fetchLessonContent();
       setLoading(false);
@@ -41,7 +40,7 @@ const CourseContent = ({ lessons, user, id, fetchLessonContent }) => {
   return (
     <div className="course-content">
       {loading && (
-        <div className="loading-div">
+        <div className="course-loader">
           <Loader />
         </div>
       )}
@@ -68,7 +67,7 @@ const CourseContent = ({ lessons, user, id, fetchLessonContent }) => {
                 placeholder="Lesson name"
               />
             </label>
-
+            <br />
             <label>
               <p>Lesson Description</p>
               <textarea
@@ -78,6 +77,7 @@ const CourseContent = ({ lessons, user, id, fetchLessonContent }) => {
                 placeholder="Enter lesson description"
               />
             </label>
+            <br />
 
             <label>
               <p>Lesson Number</p>

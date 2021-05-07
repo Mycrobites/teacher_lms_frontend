@@ -15,18 +15,29 @@ const breakPoints = [
 
 const MyCourse = ({ user }) => {
   const [allCourses, setAllCourses] = useState(null);
-  const [isLoading, setIsLoading] = useState(false);
   const [showCreateCourse, setShowCreateCourse] = useState(false);
-  const { userDetails } = useContext(UserContext);
   const [courseName, setCourseName] = useState("");
   const [courseImage, setCourseImage] = useState(null);
   const [courseDescription, setCourseDescription] = useState("");
   const [video, setVideo] = useState("");
   const [goals, setGoals] = useState("");
   const [concept, setConcept] = useState("");
+  const [loading, setLoading] = useState(false);
+  const { userDetails } = useContext(UserContext);
   const modalRef = useRef(null);
 
   const createCourse = async () => {
+    if (
+      !courseName ||
+      !courseDescription ||
+      !video ||
+      !goals ||
+      !concept ||
+      !courseImage
+    ) {
+      return alert("Please enter all the fields!");
+    }
+
     let formData = new FormData();
     formData.append("course_name", courseName);
     formData.append("course_description", courseDescription);
@@ -37,34 +48,18 @@ const MyCourse = ({ user }) => {
     formData.append("author", user.user_id);
     formData.append("image", courseImage);
 
-    // const postData = {
-    // 	course_name: courseName,
-    // 	course_description: courseDescription,
-    // 	video: video,
-    // 	goals: goalsData,
-    // 	slug: 'new-course',
-    // 	concepts: conceptData,
-    // 	author: user.user_id,
-    // };
-    // console.log(postData);
-
-    setIsLoading(true);
-
     try {
       const config = {
         headers: { Authorization: `Bearer ${userDetails.access}` },
       };
-      const { data } = await axios.post(
-        "/teacher/createCourse",
-        formData,
-        config
-      );
-      console.log(data);
+      setLoading(true);
+      await axios.post("/teacher/createCourse", formData, config);
       getCourses();
       setShowCreateCourse(false);
     } catch (err) {
       console.log(err.message);
     }
+    setLoading(false);
   };
 
   const getCourses = async () => {
@@ -76,12 +71,10 @@ const MyCourse = ({ user }) => {
         `/teacher/getMyCourses/${user.username}`,
         config
       );
-      // console.log(data);
       setAllCourses(data);
     } catch (err) {
       console.log(err.message);
     }
-    setIsLoading(false);
   };
 
   const objectToString = (object, params) => {
@@ -97,16 +90,6 @@ const MyCourse = ({ user }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // useEffect(() => {
-  //   const handler = (e) => {
-  //     if (!modalRef.current?.contains(e.target)) {
-  //       setShowCreateCourse(false);
-  //     }
-  //   };
-  //   document.addEventListener("click", handler);
-  //   return () => document.removeEventListener("click", handler);
-  // });
-
   if (!allCourses) {
     return (
       <div className="loading-div">
@@ -117,12 +100,11 @@ const MyCourse = ({ user }) => {
 
   return (
     <div className="Enrolled-courses">
-      {isLoading && (
-        <div className="loading-div">
+      {loading && (
+        <div className="course-loader">
           <Loader />
         </div>
       )}
-
       <div className="mycourse-title">
         <div className="title">
           <h1>Welcome! {user.first_name}</h1>

@@ -1,14 +1,14 @@
 import { useState } from "react";
+import CourseContentModal from "../CourseContentModal/CourseContentModal";
+import SingleLessonContent from "./SingleLessonContent";
+import Loader from "../Loader/Loader";
+import axios from "../../axios/axios";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ExpandLessIcon from "@material-ui/icons/ExpandLess";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import { AiOutlineDelete } from "react-icons/ai";
 import { MdEdit } from "react-icons/md";
 import "./UniqueCourse.css";
-import SingleLessonContent from "./SingleLessonContent";
-import axios from "../../axios/axios";
-import CourseContentModal from "../CourseContentModal/CourseContentModal";
-import Loader from "../Loader/Loader";
 
 const SingleCourseContent = ({
   user,
@@ -34,15 +34,21 @@ const SingleCourseContent = ({
       const config = {
         headers: { Authorization: `Bearer ${user.access}` },
       };
+      setLoading(true);
       await axios.delete(`/teacher/editLesson/${id}`, config);
       setShowDelete(false);
       fetchLessonContent();
     } catch (err) {
       console.log(err.message);
     }
+    setLoading(false);
   };
 
   const editLesson = async () => {
+    if (!course_id || !lessonName || !lessonDescription || !lessonNumber) {
+      return alert("Please enter all the fields!");
+    }
+
     const postData = {
       course: course_id,
       name: lessonName,
@@ -50,33 +56,29 @@ const SingleCourseContent = ({
       lessonno: lessonNumber,
     };
 
-    setLoading(true);
-
     try {
       const config = {
         headers: { Authorization: `Bearer ${user.access}` },
       };
-      await axios.put(
-        `/teacher/editLesson/${id}`,
-        postData,
-        config
-      );
-    //   console.log(data);
+      setLoading(true);
+      await axios.put(`/teacher/editLesson/${id}`, postData, config);
       setShowEdit(false);
       fetchLessonContent();
       setLoading(false);
     } catch (err) {
       console.log(err.message);
     }
+    setLoading(false);
   };
 
   return (
     <div className="single-course-content">
       {loading && (
-        <div className="loading-div">
+        <div className="course-loader">
           <Loader />
         </div>
       )}
+
       <div onClick={() => setShowContent(!showContent)} className="lesson_name">
         <div>
           <h5>
@@ -106,7 +108,7 @@ const SingleCourseContent = ({
         {showDelete && (
           <div className="delete-modal-wrapper">
             <div className="delete-modal">
-              <p>Are you sure you want to delete your beloved course ?</p>
+              <p>Are you sure you want to delete your course ?</p>
               <div className="lesson-delete-modal-button">
                 <button onClick={() => setShowDelete(false)}>Cancel</button>
                 <button onClick={handleDelete}>Proceed and Delete</button>
