@@ -1,26 +1,16 @@
 .enrolled-student {
-	width: 20%;
-	min-width: 300px;
-	height: 90vh;
-	position: fixed;
-	right: 0;
-	top: 14vh;
-	border-left: 1px solid lightgray;
-	border-bottom: 1px solid lightgray;
-	background-color: white;
-}
-.enrolled-student h2 {
-	font-size: 1em;
-	font-weight: 550;
-	color: rgb(100, 100, 100);
-	padding: 10px;
-	border-bottom: 1px solid lightgray;
+	position: relative;
+	padding: 20px;
+	background: rgb(234, 247, 250);
+	min-height: calc(100vh - 14vh);
 }
 
 .enrolled-student-wrapper {
-	padding: 10px;
-	overflow-y: scroll;
-	height: 100%;
+	display: grid;
+	grid-gap: 10px;
+	margin-top: 20px;
+	grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+	padding: 20px;
 }
 .enrolled-student-wrapper::-webkit-scrollbar {
 	width: 5px;
@@ -30,11 +20,20 @@
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
-	padding: 10px;
-	font-size: 0.8em;
+	padding: 20px 10px;
+	height: 200px;
+	font-size: 1em;
+	border-radius: 10px;
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+		rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+	background: white;
 }
 
 .single-student .student-right {
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-evenly;
 	margin-left: 20px;
 	color: rgb(100, 100, 100);
 }

@@ -1,8 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import axios from '../../axios/axios';
 import CourseContent from '../../components/CourseContent/CourseContent';
-import EnrolledStudent from '../../components/EnrolledStudents/EnrolledStudent';
 import Loader from '../../components/Loader/Loader';
 import UserContext from '../../context/authContext';
 import './CourseEditPage.css';
@@ -10,28 +9,10 @@ import './CourseEditPage.css';
 const CourseEditPage = () => {
 	const { id } = useParams();
 
-	const [enrolledStudents, setEnrolledStudents] = useState(null);
 	const [lessonsData, setLessonsData] = useState(null);
-	const [sortedLessons, setSortedLessons] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const { userDetails } = useContext(UserContext);
-	const fetchEnrolledStudent = async () => {
-		try {
-			const config = {
-				headers: { Authorization: `Bearer ${userDetails.access}` },
-			};
-			const { data } = await axios.get(
-				`/teacher/getEnrolledStudents/${userDetails.username}/${id}`,
-				config,
-			);
-			console.log(data);
-			setEnrolledStudents(data.response);
-			// setLoading(false);
-		} catch (err) {
-			console.log(err.message);
-		}
-	};
-
+	const history = useHistory();
 	const fetchLessonContent = async () => {
 		// setLoading(true);
 		try {
@@ -49,7 +30,6 @@ const CourseEditPage = () => {
 
 	useEffect(() => {
 		fetchLessonContent();
-		fetchEnrolledStudent();
 
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
@@ -62,13 +42,26 @@ const CourseEditPage = () => {
 				</div>
 			) : (
 				<div className="course-edit-page">
+					<div className="course-btn">
+						<button
+							className="back-btn"
+							onClick={() => history.push('/course')}
+						>
+							Back to Course
+						</button>
+						<button
+							className="enroll-btn"
+							onClick={() => history.push(`/enrolledstudent/${id}`)}
+						>
+							Enrolled Students
+						</button>
+					</div>
 					<CourseContent
 						lessons={lessonsData?.lessons}
 						user={userDetails}
 						id={id}
 						fetchLessonContent={fetchLessonContent}
 					/>
-					<EnrolledStudent students={enrolledStudents} />
 				</div>
 			)}
 		</>

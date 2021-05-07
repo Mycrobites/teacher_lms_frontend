@@ -200,11 +200,19 @@
   margin: 10px 0;
   font-weight: 500;
 }
+.edit-form-inputs {
+  display: flex;
+  flex: 1;
+}
 .Tasks .edit-task-form input[type="date"] {
-  width: 25%;
+  width: 30%;
+  background-color: #fff;
 }
 .Tasks .edit-task-form input[type="text"] {
-  width: 60%;
+  width: 70%;
+}
+.edit-task-form button {
+  margin: 0 10px;
 }
 
 .Tasks .edit-task-form svg {
@@ -268,4 +276,21 @@
 .Tasks .no-task {
   color: rgba(0, 0, 0, 0.5);
   font-weight: 500;
+}
+
+@media (max-width: 600px) {
+  .edit-task-form .edit-form-inputs {
+    flex: 1;
+  }
+  .edit-form-inputs {
+    display: flex;
+    flex-direction: column;
+  }
+  .edit-form-inputs input {
+    width: 95% !important;
+  }
+  .edit-task-form button {
+    margin-left: 0;
+    margin-right: 5px;
+  }
 }

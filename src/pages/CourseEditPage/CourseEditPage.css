@@ -1,4 +1,28 @@
 .course-edit-page {
   position: relative;
+  padding-top: 20px;
+  display: grid;
+  place-items: center;
+}
 
+.enroll-btn,
+.back-btn {
+  padding: 10px;
+  border: none;
+  outline: none;
+  font-size: 0.8em;
+  width: fit-content;
+  background: rgb(0, 157, 255);
+  color: white;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 500;
+}
+
+.course-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin-bottom: 10px;
 }

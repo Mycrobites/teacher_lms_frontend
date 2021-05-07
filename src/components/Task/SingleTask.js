@@ -109,18 +109,20 @@ const SingleTasks = (props) => {
       {showEdit && (
         <div className="edit-task">
           <form className="edit-task-form" onSubmit={updateTask}>
-            <input
-              type="text"
-              placeholder="Add New Task"
-              value={editTitle}
-              onChange={(e) => setEditTitle(e.target.value)}
-              ref={inputRef}
-            />
-            <input
-              type="date"
-              value={editDate}
-              onChange={(e) => setEditDate(e.target.value)}
-            />
+            <div className="edit-form-inputs">
+              <input
+                type="text"
+                placeholder="Add New Task"
+                value={editTitle}
+                onChange={(e) => setEditTitle(e.target.value)}
+                ref={inputRef}
+              />
+              <input
+                type="date"
+                value={editDate}
+                onChange={(e) => setEditDate(e.target.value)}
+              />
+            </div>
             <button type="submit">save</button>
             <IoCloseOutline onClick={(e) => setShowEdit(!showEdit)} />
           </form>
