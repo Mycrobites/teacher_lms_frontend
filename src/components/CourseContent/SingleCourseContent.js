@@ -49,6 +49,7 @@ const SingleCourseContent = ({
 			desp: lessonDescription,
 			lessonno: lessonNumber,
 		};
+
 		setLoading(true);
 
 		try {
@@ -63,6 +64,7 @@ const SingleCourseContent = ({
 			console.log(data);
 			setShowEdit(false);
 			fetchLessonContent();
+			setLoading(false);
 		} catch (err) {
 			console.log(err.message);
 		}
@@ -104,7 +106,7 @@ const SingleCourseContent = ({
 				{showDelete && (
 					<div className="delete-modal-wrapper">
 						<div className="delete-modal">
-							<p>Are you sure you want to delete your course ?</p>
+							<p>Are you sure you want to delete your beloved course ?</p>
 							<div className="lesson-delete-modal-button">
 								<button onClick={() => setShowDelete(false)}>Cancel</button>
 								<button onClick={handleDelete}>Proceed and Delete</button>
@@ -148,7 +150,7 @@ const SingleCourseContent = ({
 							</label>
 							<br />
 							<div className="edit-modal-btn">
-								<button onClick={editLesson}>Edit Lesson</button>
+								<button onClick={editLesson}>Apply</button>
 								<button onClick={() => setShowEdit(false)}>Cancel</button>
 							</div>
 						</div>
@@ -168,7 +170,6 @@ const SingleCourseContent = ({
 							user={user}
 							lesson_no={lesson.lesson_no}
 							fetchLessonContent={fetchLessonContent}
-							courseIndex={index}
 						/>
 					))}
 				</div>

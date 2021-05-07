@@ -18,7 +18,6 @@ const SingleLessonContent = ({
 	id,
 	index,
 	lessonId,
-	courseIndex,
 	lesson_no,
 	fetchLessonContent,
 }) => {

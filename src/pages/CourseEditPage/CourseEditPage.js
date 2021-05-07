@@ -10,7 +10,6 @@ const CourseEditPage = () => {
 	const { id } = useParams();
 
 	const [lessonsData, setLessonsData] = useState(null);
-	const [sortedLessons, setSortedLessons] = useState(null);
 	const [loading, setLoading] = useState(true);
 	const { userDetails } = useContext(UserContext);
 	const history = useHistory();
