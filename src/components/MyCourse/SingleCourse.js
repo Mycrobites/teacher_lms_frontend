@@ -57,7 +57,9 @@ const SingleCourse = (props) => {
 		formData.append('slug', 'new-course');
 		formData.append('concepts', concept);
 		formData.append('author', user.user_id);
-		formData.append('image', courseImage);
+		if (courseImage) {
+			formData.append('image', courseImage);
+		}
 
 		// const postData = {
 		// 	course_name: courseName,
