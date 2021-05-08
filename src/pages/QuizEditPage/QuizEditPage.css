@@ -30,8 +30,8 @@
   background: rgb(0, 140, 255);
   cursor: pointer;
   padding: 5px 10px;
-  font-size: 16px;
-  font-weight: 600;
+  font-size: 15px;
+  font-weight: 500;
   border-radius: 4px;
   margin-top: 5px;
   margin-left: 10px;
@@ -43,9 +43,9 @@
 }
 .questionbank-header button:last-child svg {
   margin-left: 5px;
-  font-size: 20px;
+  font-size: 18px;
 }
-.quiz-question {
+.qb-question {
   display: flex;
   justify-content: space-between;
   align-items: center !important;
@@ -55,7 +55,7 @@
   border-radius: 8px;
 }
 
-.quiz-question .question-content {
+.qb-question .question-content {
   flex: 1;
 }
 
@@ -140,6 +140,11 @@
 
 .option span {
   font-weight: 700;
+}
+
+.marks {
+  align-self: flex-start;
+  margin-top: 10px;
 }
 
 .marks p {

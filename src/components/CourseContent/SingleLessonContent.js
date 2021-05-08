@@ -1,30 +1,30 @@
-import { useState, useRef } from "react";
-import SingleLessonEdit from "./SingleLessonEdit";
-import { VscFilePdf } from "react-icons/vsc";
-import { AiOutlineFileText } from "react-icons/ai";
-import { BiTask } from "react-icons/bi";
-import { MdAssignment } from "react-icons/md";
-import { IoIosPlayCircle } from "react-icons/io";
-import { FaHandMiddleFinger } from "react-icons/fa";
-import { AiOutlineDelete } from "react-icons/ai";
-import { MdEdit } from "react-icons/md";
-import axios from "../../axios/axios";
-import "./UniqueCourse.css";
-import Loader from "../Loader/Loader";
+import { useState, useRef } from 'react';
+import SingleLessonEdit from './SingleLessonEdit';
+import { VscFilePdf } from 'react-icons/vsc';
+import { AiOutlineFileText } from 'react-icons/ai';
+import { BiTask } from 'react-icons/bi';
+import { MdAssignment } from 'react-icons/md';
+import { IoIosPlayCircle } from 'react-icons/io';
+import { FaHandMiddleFinger } from 'react-icons/fa';
+import { AiOutlineDelete } from 'react-icons/ai';
+import { MdEdit } from 'react-icons/md';
+import axios from '../../axios/axios';
+import './UniqueCourse.css';
+import Loader from '../Loader/Loader';
 
 const SingleLessonContent = ({
-  singleContent,
-  user,
-  id,
-  index,
-  lessonId,
-  lesson_no,
-  fetchLessonContent,
+	singleContent,
+	user,
+	id,
+	index,
+	lessonId,
+	lesson_no,
+	fetchLessonContent,
 }) => {
-  const clickRef = useRef(null);
-  const [showLessonEdit, setShowLessonEdit] = useState(false);
-  const [showDelete, setShowDelete] = useState(false);
-  const [loading, setLoading] = useState(false);
+	const clickRef = useRef(null);
+	const [showLessonEdit, setShowLessonEdit] = useState(false);
+	const [showDelete, setShowDelete] = useState(false);
+	const [loading, setLoading] = useState(false);
 
   const deleteLessonContent = async () => {
     try {
@@ -41,24 +41,24 @@ const SingleLessonContent = ({
     setLoading(false);
   };
 
-  const toggleIcon = () => {
-    switch (singleContent?.media_type) {
-      case "text":
-        return <AiOutlineFileText />;
-      case "quiz":
-        return <MdAssignment />;
-      case "video":
-        return <IoIosPlayCircle />;
-      case "homework":
-        return <BiTask />;
-      case "pdf":
-        return <VscFilePdf />;
-      case "assignment":
-        return <MdAssignment />;
-      default:
-        return <FaHandMiddleFinger />;
-    }
-  };
+	const toggleIcon = () => {
+		switch (singleContent?.media_type) {
+			case 'text':
+				return <AiOutlineFileText />;
+			case 'quiz':
+				return <MdAssignment />;
+			case 'video':
+				return <IoIosPlayCircle />;
+			case 'homework':
+				return <BiTask />;
+			case 'pdf':
+				return <VscFilePdf />;
+			case 'assignment':
+				return <MdAssignment />;
+			default:
+				return <FaHandMiddleFinger />;
+		}
+	};
 
   return (
     <div ref={clickRef} className="single-lesson-content">

@@ -61,7 +61,7 @@ const PostComment = ({ setShowPostComment, postid, uid, setTotalAnswers }) => {
 						config={{
 							ckfinder: {
 								uploadUrl:
-									'http://lms-seg.herokuapp.com/api/uploadimages?command=QuickUpload&type=Images&responseType=json',
+									'https://lab.progressiveminds.in/api/uploadimages?command=QuickUpload&type=Images&responseType=json',
 								options: {
 									resourceType: 'Images',
 								},

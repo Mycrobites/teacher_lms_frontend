@@ -277,9 +277,9 @@ const QuizEditPage = () => {
           <div className="quiz-header-buttons">
             <button
               className="enrollment-course-btn"
-              onClick={() => history.push(`/quiz`)}
+              onClick={() => history.push(`/quizQuestions/${id}`)}
             >
-              Back to Quiz Page
+              Back to Quiz Questions
             </button>
             <button
               disabled={selectedQuestions.length === 0}
@@ -402,22 +402,21 @@ const QuizEditPage = () => {
 
       {/* QUESTION BANK QUESTIONS */}
       {filteredQuestionBank?.map((ques) => (
-        <div className="quiz-question" key={ques.id}>
+        <div className="qb-question" key={ques.id}>
           <div className="check-box">
             <input type="checkbox" onChange={() => handleChange(ques.id)} />
           </div>
           <div className="question-content">
             <div>{parse(ques.question)}</div>
             <div className="options">
-              {!ques.question.includes("img") &&
-                ques.option.map((op, idx) => {
-                  const ops = ["A", "B", "C", "D"];
-                  return (
-                    <div className="option" key={idx}>
-                      <span>({ops[idx]})</span>&nbsp;{parse(op)}
-                    </div>
-                  );
-                })}
+              {ques.option.map((op, idx) => {
+                const ops = ["A", "B", "C", "D"];
+                return (
+                  <div className="option" key={idx}>
+                    <span>({ops[idx]})</span>&nbsp;{parse(op)}
+                  </div>
+                );
+              })}
             </div>
           </div>
           <div className="marks">

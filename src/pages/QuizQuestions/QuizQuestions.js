@@ -91,7 +91,7 @@ const QuizQuestions = () => {
             <div className="question-content">
               <div>{parse(ques.question)}</div>
               <div className="options">
-                {!ques.question.includes("img") &&
+                {ques.question.includes("img") &&
                   ques.option.map((op, idx) => {
                     const ops = ["A", "B", "C", "D"];
                     return (
