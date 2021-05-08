@@ -48,42 +48,37 @@ const SingleCourse = (props) => {
 	setLoading(false);
   };
 
-  const editCourse = async () => {
-    if (
-      !courseName ||
-      !courseDescription ||
-      !video ||
-      !goals ||
-      !concept ||
-      !courseImage
-    ) {
-      return alert("Please enter all the fields!");
-    }
+	const editCourse = async () => {
+		let formData = new FormData();
+		formData.append('course_name', courseName);
+		formData.append('course_description', courseDescription);
+		formData.append('video', video);
+		formData.append('goals', goals);
+		formData.append('slug', 'new-course');
+		formData.append('concepts', concept);
+		formData.append('author', user.user_id);
+		if (courseImage) {
+			formData.append('image', courseImage);
+		}
 
-    let formData = new FormData();
-    formData.append("course_name", courseName);
-    formData.append("course_description", courseDescription);
-    formData.append("video", video);
-    formData.append("goals", goals);
-    formData.append("slug", "new-course");
-    formData.append("concepts", concept);
-    formData.append("author", user.user_id);
-    formData.append("image", courseImage);
-
-    setLoading(true);
-    try {
-      const config = {
-        headers: { Authorization: `Bearer ${user.access}` },
-      };
-      await axios.put(`/teacher/editCourse/${id}`, formData, config);
-      getCourses();
-      setShowEdit(false);
+		setLoading(true);
+		try {
+			const config = {
+				headers: { Authorization: `Bearer ${user.access}` },
+			};
+      setLoading(true);
+			await axios.put(
+        `/teacher/editCourse/${id}`,
+				formData,
+				config,
+        );
+        getCourses();
+        setShowEdit(false);
+      } catch (err) {
+        console.log(err.message);
+      }
       setLoading(false);
-    } catch (err) {
-      console.log(err.message);
-    }
-    setLoading(false);
-  };
+	};
 
   return (
     <div className="single-course-card">

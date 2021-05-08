@@ -113,15 +113,16 @@ const ScheduleClass = ({
           <></>
         )}
 
-        {mediaType === "pdf" && (
-          <label>
-            <p>Upload Document</p>
-            <input
-              type="file"
-              onChange={(e) => setPdfFile(e.target.files[0])}
-            />
-          </label>
-        )}
+				{mediaType === 'pdf' && (
+					<label>
+						<p>Upload Document</p>
+						<input
+							type="file"
+							accept=".pdf,.doc"
+							onChange={(e) => setPdfFile(e.target.files[0])}
+						/>
+					</label>
+				)}
 
         {mediaType === "video" && (
           <div className="video-content">

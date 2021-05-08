@@ -60,65 +60,65 @@ const SingleLessonContent = ({
 		}
 	};
 
-  return (
-    <div ref={clickRef} className="single-lesson-content">
-      {loading && (
-        <div className="course-loader">
-          <Loader />
-        </div>
-      )}
-      <div className="lesson-left">
-        <div className="label">
-          <div style={{ fontWeight: "bold", marginBottom: "5px" }}>
-            {lesson_no}.{index + 1} {singleContent?.media_type.toUpperCase()}
-          </div>
-          <div>{singleContent?.text}</div>
-          <div>{singleContent?.quiz_name}</div>
-          <div>{singleContent?.assignment_name}</div>
-          <div>{singleContent?.descripion}</div>
-          <div>{singleContent?.text_content}</div>
-        </div>
-      </div>
-      <div className="single-lesson-icons">
-        <button>{toggleIcon()}</button>
-        <button
-          disabled={lessonId === "null"}
-          onClick={() => setShowDelete(true)}
-        >
-          <AiOutlineDelete />
-        </button>
-        <button
-          disabled={lessonId === "null"}
-          onClick={() => setShowLessonEdit(true)}
-        >
-          <MdEdit />
-        </button>
-      </div>
-      {showDelete && (
-        <div className="delete-modal-wrapper">
-          <div className="delete-modal">
-            <p>Are you sure you want to delete your content?</p>
-            <div className="lesson-delete-modal-button">
-              <button onClick={() => setShowDelete(false)}>Cancel</button>
-              <button onClick={deleteLessonContent}>Proceed and Delete</button>
-            </div>
-          </div>
-        </div>
-      )}
-      {showLessonEdit && (
-        <SingleLessonEdit
-          setShowLessonEdit={setShowLessonEdit}
-          mediaType={singleContent?.media_type}
-          description={singleContent?.descripion}
-          text_content={singleContent?.text}
-          url={singleContent?.link}
-          user={user}
-          id={id}
-          fetchLessonContent={fetchLessonContent}
-        />
-      )}
-    </div>
-  );
+	return (
+		<div ref={clickRef} className="single-lesson-content">
+			{loading && (
+				<div className="loading-div">
+					<Loader />
+				</div>
+			)}
+			<div className="lesson-left">
+				<div className="label">
+					<div style={{ fontWeight: 'bold', marginBottom: '5px' }}>
+						{lesson_no}.{index + 1} {singleContent?.media_type.toUpperCase()}
+					</div>
+					<div>{singleContent?.text}</div>
+					<div>{singleContent?.quiz_name}</div>
+					<div>{singleContent?.assignment_name}</div>
+					<div>{singleContent?.description}</div>
+					<div>{singleContent?.text_content}</div>
+				</div>
+			</div>
+			<div className="single-lesson-icons">
+				<button>{toggleIcon()}</button>
+				<button
+					disabled={lessonId === 'null'}
+					onClick={() => setShowDelete(true)}
+				>
+					<AiOutlineDelete />
+				</button>
+				<button
+					disabled={lessonId === 'null'}
+					onClick={() => setShowLessonEdit(true)}
+				>
+					<MdEdit />
+				</button>
+			</div>
+			{showDelete && (
+				<div className="delete-modal-wrapper">
+					<div className="delete-modal">
+						<p>Are you sure you want to delete your course ?</p>
+						<div className="lesson-delete-modal-button">
+							<button onClick={() => setShowDelete(false)}>Cancel</button>
+							<button onClick={deleteLessonContent}>Proceed and Delete</button>
+						</div>
+					</div>
+				</div>
+			)}
+			{showLessonEdit && (
+				<SingleLessonEdit
+					setShowLessonEdit={setShowLessonEdit}
+					mediaType={singleContent?.media_type}
+					description={singleContent?.description}
+					text_content={singleContent?.text}
+					url={singleContent?.link}
+					user={user}
+					id={id}
+					fetchLessonContent={fetchLessonContent}
+				/>
+			)}
+		</div>
+	);
 };
 
 export default SingleLessonContent;

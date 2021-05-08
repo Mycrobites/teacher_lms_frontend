@@ -12,6 +12,7 @@ const CourseContentModal = ({
   user,
   fetchLessonContent,
 }) => {
+  // eslint-disable-next-line no-unused-vars
   const [mediaType, setMediaType] = useState("text");
   const [textContent, setTextContent] = useState("");
   const [videoUrl, setVideoUrl] = useState("");
@@ -23,7 +24,7 @@ const CourseContentModal = ({
   const [endDate, setEndDate] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const mediaList = ["text", "video", "homework", "pdf", "quiz", "assignment"];
+  // const mediaList = ["text", "video", "homework", "pdf", "quiz", "assignment"];
 
   const csrftoken = getCookie("csrftoken");
 
@@ -222,12 +223,16 @@ const CourseContentModal = ({
         <></>
       )}
 
-      {mediaType === "pdf" && (
-        <label>
-          <p>Upload Document</p>
-          <input type="file" onChange={(e) => setPdfFile(e.target.files[0])} />
-        </label>
-      )}
+				{mediaType === 'pdf' && (
+					<label>
+						<p>Upload Document</p>
+						<input
+							type="file"
+							accept=".pdf,.doc"
+							onChange={(e) => setPdfFile(e.target.files[0])}
+						/>
+					</label>
+				)}
 
       {mediaType === "video" && (
         <div className="video-content">
