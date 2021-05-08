@@ -113,7 +113,7 @@ const SingleLessonContent = ({
 				<SingleLessonEdit
 					setShowLessonEdit={setShowLessonEdit}
 					mediaType={singleContent?.media_type}
-					description={singleContent?.descripion}
+					description={singleContent?.description}
 					text_content={singleContent?.text}
 					url={singleContent?.link}
 					user={user}
