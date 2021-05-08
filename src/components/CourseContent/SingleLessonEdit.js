@@ -117,6 +117,7 @@ const ScheduleClass = ({
 						<p>Upload Document</p>
 						<input
 							type="file"
+							accept=".pdf,.doc"
 							onChange={(e) => setPdfFile(e.target.files[0])}
 						/>
 					</label>
