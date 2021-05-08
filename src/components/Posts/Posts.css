@@ -71,6 +71,9 @@
 	font-weight: 600;
 	margin: 15px 0;
 }
+.post-post label p {
+	margin-bottom: 5px !important;
+}
 .post-post input::placeholder,
 .post-post textarea::placeholder {
 	font-weight: 500 !important;
@@ -152,14 +155,14 @@
 	background: rgb(0, 140, 255);
 	cursor: pointer !important;
 	padding: 7px 10px;
-	font-size: 18px;
-	font-weight: 600;
+	font-size: 16px;
+	font-weight: 500;
 	border-radius: 4px;
 	transition: all 0.2s ease;
 }
 
 .all-posts {
-	padding: 20px 40px;
+	padding: 20px;
 	/* min-height: 100vh; */
 	flex: 6;
 	/* border-top: solid 1px rgba(0, 0, 0, 0.2); */
@@ -408,6 +411,9 @@
 	font-weight: 500;
 	font-size: 15px;
 }
+.comment .comment-text img {
+	width: 100%;
+}
 .comment-upvotes button {
 	background-color: transparent;
 	border: none;
@@ -415,6 +421,10 @@
 	font-weight: 500;
 	outline: none;
 	color: #cc3434;
+
+}
+.comment-upvotes {
+	margin-top: 10px;
 }
 .comment-upvotes button:first-child {
 	border-right: 1px solid rgba(0, 0, 0, 0.4);
@@ -431,9 +441,11 @@
 .comment-upvotes button:first-child svg {
 	font-size: 22px;
 	color: rgb(0, 140, 255);
+	margin-bottom: -4px;
 }
 .comment-upvotes button:nth-child(2) svg {
 	font-size: 20px;
+	margin-bottom: -4px;
 }
 .comment-time {
 	display: flex;
