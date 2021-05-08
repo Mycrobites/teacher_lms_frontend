@@ -79,7 +79,7 @@ const SingleLessonContent = ({
 					<div>{singleContent?.text}</div>
 					<div>{singleContent?.quiz_name}</div>
 					<div>{singleContent?.assignment_name}</div>
-					<div>{singleContent?.descripion}</div>
+					<div>{singleContent?.description}</div>
 					<div>{singleContent?.text_content}</div>
 				</div>
 			</div>
