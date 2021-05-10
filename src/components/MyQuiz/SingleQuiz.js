@@ -26,6 +26,13 @@ const SingleQuiz = (props) => {
 
 	const [editQuiz, setEditQuiz] = useState(false);
 
+	// const lesson =
+	// 	belongs_to.split(' ')[0] +
+	// 	' ' +
+	// 	belongs_to.split(' ')[1] +
+	// 	' ' +
+	// 	belongs_to.split(' ')[2];
+
 	const history = useHistory();
 
 	return (
@@ -34,7 +41,7 @@ const SingleQuiz = (props) => {
 
 			<div className="single-course-author">
 				<h2>{belongs_to}</h2>
-				<p style={{ fontWeight: 'bold', color: 'gray' }}>{description}</p>
+				<p className="quiz-description-details">{description}</p>
 				<h5>Duration : {duration}</h5>
 			</div>
 			<p style={{ fontSize: '14px', fontWeight: '500' }}>

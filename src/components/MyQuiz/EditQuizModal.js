@@ -50,6 +50,7 @@ const ScheduleClass = ({
 			};
 			setLoading(true);
 			await axios.patch(`/teacher/quiz/editQuiz/${id}`, postData, config);
+
 			getCourses();
 			setLoading(false);
 			setEditQuiz(false);
