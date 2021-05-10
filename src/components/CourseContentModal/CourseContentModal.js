@@ -16,6 +16,7 @@ const CourseContentModal = ({
 	const [textContent, setTextContent] = useState('');
 	const [videoUrl, setVideoUrl] = useState('');
 	const [videoDescription, setVideoDescription] = useState('');
+	const [quizDescription, setQuizDescription] = useState('');
 	const [pdfFile, setPdfFile] = useState(null);
 	const [quizName, setQuizName] = useState('');
 	const [duration, setDuration] = useState('');
@@ -77,9 +78,11 @@ const CourseContentModal = ({
 				media_type: mediaType,
 				quiz_name: quizName,
 				duration: duration,
-				start_date: startDate,
-				expire_date: endDate,
+				description: quizDescription,
+				start_date: startDate + '+05:30',
+				expire_date: endDate + '+05:30',
 			};
+			console.log(quizData);
 			sendCreateRequest(quizData);
 			return;
 		}
@@ -146,6 +149,17 @@ const CourseContentModal = ({
 								value={quizName}
 								onChange={(e) => setQuizName(e.target.value)}
 								placeholder="Enter Content Name ..."
+							/>
+						</label>
+						<br />
+						<br />
+						<label>
+							<p>Enter Description</p>
+							<textarea
+								name="quiz_desc"
+								value={quizDescription}
+								onChange={(e) => setQuizDescription(e.target.value)}
+								placeholder="Add Description..."
 							/>
 						</label>
 						<br />
