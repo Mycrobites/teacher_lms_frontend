@@ -33,12 +33,8 @@ const CourseContentModal = ({
 			const config = {
 				headers: { Authorization: `Bearer ${user.access}` },
 			};
-			const post = await axios.post(
-				'/teacher/createlessoncontent/',
-				data,
-				config,
-			);
-			console.log(post);
+			await axios.post('/teacher/createlessoncontent/', data, config);
+
 			setShowNewContent(false);
 			fetchLessonContent();
 		} catch (err) {
@@ -55,7 +51,7 @@ const CourseContentModal = ({
 				link: videoUrl,
 				link_desc: videoDescription,
 			};
-			console.log(videoData);
+
 			sendCreateRequest(videoData);
 			return;
 		} else if (mediaType === 'text' || mediaType === 'homework') {
@@ -64,7 +60,7 @@ const CourseContentModal = ({
 				lesson: id,
 				text_content: textContent,
 			};
-			console.log(textData);
+
 			sendCreateRequest(textData);
 			return;
 		} else if (mediaType === 'pdf') {
