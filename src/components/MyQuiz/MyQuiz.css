@@ -124,10 +124,12 @@
   color: rgb(100, 100, 100);
   margin-bottom: 20px;
   margin-left: 0;
+  flex: 1;
 }
 
 .single-course-author h5 {
   color: rgb(100, 100, 100);
+  margin-bottom: 10px;
 }
 
 .single-course-card progress {

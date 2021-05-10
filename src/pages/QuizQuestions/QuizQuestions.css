@@ -142,3 +142,24 @@
   transform: translateX(-50%);
   margin-top: 5px;
 }
+
+.question-tags {
+  margin: 5px 0 10px 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.question-tags h4 {
+  font-size: 15px;
+  padding: 3px;
+  margin-right: 3px;
+  padding-left: 10px !important;
+}
+.question-tags p {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  padding: 3px;
+  border-radius: 2px;
+  margin: 0 5px;
+  font-size: 12px;
+  font-weight: 500;
+}

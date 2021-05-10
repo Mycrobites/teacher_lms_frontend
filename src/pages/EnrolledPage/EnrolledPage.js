@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import Loader from "../../components/Loader/Loader";
 import UserContext from "../../context/authContext";
 import axios from "../../axios/axios";
@@ -8,7 +8,6 @@ import "./EnrolledPage.css";
 
 const EnrolledPage = () => {
   const { id } = useParams();
-  const history = useHistory();
   const [enrolledStudents, setEnrolledStudents] = useState(null);
   const { userDetails } = useContext(UserContext);
 

@@ -4,6 +4,7 @@ import Loader from "../../components/Loader/Loader";
 import axios from "../../axios/axios";
 import UserContext from "../../context/authContext";
 import parse from "html-react-parser";
+import MathJax from "react-mathjax3";
 import { BsFilterRight } from "react-icons/bs";
 import "./QuizEditPage.css";
 
@@ -269,170 +270,228 @@ const QuizEditPage = () => {
   }
 
   return (
-    <div className="quiz-questions-div">
-      <div className="questionbank-header">
-        {/* TITLE */}
-        <div className="quiz-question-header">
-          <h1>Question Bank</h1>
-          <div className="quiz-header-buttons">
-            <button
-              className="enrollment-course-btn"
-              onClick={() => history.push(`/quizQuestions/${id}`)}
-            >
-              Back to Quiz Questions
-            </button>
-            <button
-              disabled={selectedQuestions.length === 0}
-              onClick={addQuestions}
-            >
-              Add Questions
-            </button>
-            <button onClick={() => setShowFilter(!showFilter)}>
-              Filter <BsFilterRight />
-            </button>
+    <MathJax.Context
+      input="tex"
+      onLoad={() => {}}
+      onError={(MathJax, error) => {
+        console.warn(error);
+        // console.log("Encountered a MathJax error, re-attempting a typeset!");
+        MathJax.Hub.Queue(MathJax.Hub.Typeset());
+      }}
+      options={{
+        messageStyle: "none",
+        extensions: ["tex2jax.js"],
+        jax: ["input/TeX", "output/HTML-CSS"],
+        tex2jax: {
+          inlineMath: [
+            ["$", "$"],
+            ["\\(", "\\)"],
+          ],
+          displayMath: [
+            ["$$", "$$"],
+            ["\\[", "\\]"],
+          ],
+          processEscapes: true,
+        },
+        TeX: {
+          extensions: [
+            "AMSmath.js",
+            "AMSsymbols.js",
+            "noErrors.js",
+            "noUndefined.js",
+          ],
+        },
+      }}
+    >
+      <div className="quiz-questions-div">
+        <div className="questionbank-header">
+          {/* TITLE */}
+          <div className="quiz-question-header">
+            <h1>Question Bank</h1>
+            <div className="quiz-header-buttons">
+              <button
+                className="enrollment-course-btn"
+                onClick={() => history.push(`/quizQuestions/${id}`)}
+              >
+                Back to Quiz Questions
+              </button>
+              <button
+                disabled={selectedQuestions.length === 0}
+                onClick={addQuestions}
+              >
+                Add Questions
+              </button>
+              <button onClick={() => setShowFilter(!showFilter)}>
+                Filter <BsFilterRight />
+              </button>
+            </div>
           </div>
-        </div>
 
-        {/* FILTER */}
-        {showFilter && (
-          <div className="filter">
-            <div className="filter-selects">
-              <h2>Filter</h2>
-              <div className="difficulty-level">
-                <label>
-                  <p>Difficulty</p>
-                  <select
-                    value={difficultyLevel}
-                    onChange={(e) => setDifficultyLevel(e.target.value)}
-                  >
-                    <option value="">All</option>
-                    {difficulty?.map((d, i) => (
-                      <option key={i} value={d}>
-                        {d}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-
-              <div className="skill-level">
-                <label>
-                  <p>Skill</p>
-                  <select
-                    value={skillLevel}
-                    onChange={(e) => setSkillLevel(e.target.value)}
-                  >
-                    <option value="">All</option>
-                    {skills?.map((s, i) => (
-                      <option key={i} value={s}>
-                        {s}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-
-              <div className="subject">
-                <label>
-                  <p>Subject</p>
-                  <select
-                    value={selectedSubject}
-                    onChange={(e) => setSelectedSubject(e.target.value)}
-                  >
-                    <option value="">All</option>
-                    {subjects?.map((s, i) => (
-                      <option key={i} value={`${i}*${s.name}`}>
-                        {s.name}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-              </div>
-
-              {selectedSubject !== "" && (
-                <div className="topics">
+          {/* FILTER */}
+          {showFilter && (
+            <div className="filter">
+              <div className="filter-selects">
+                <h2>Filter</h2>
+                <div className="difficulty-level">
                   <label>
-                    <p>Topics</p>
+                    <p>Difficulty</p>
                     <select
-                      value={selectedTopic}
-                      onChange={(e) => setSelectedTopic(e.target.value)}
+                      value={difficultyLevel}
+                      onChange={(e) => setDifficultyLevel(e.target.value)}
                     >
                       <option value="">All</option>
-                      {subjects[selectedSubject.split("*")[0]]?.topics?.map(
-                        (t, i) => (
-                          <option key={i} value={`${i}*${t.name}`}>
-                            {t.name}
-                          </option>
-                        )
-                      )}
-                    </select>
-                  </label>
-                </div>
-              )}
-
-              {selectedSubject !== "" && selectedTopic !== "" && (
-                <div className="sub-topic">
-                  <label>
-                    <p>SubTopics</p>
-                    <select
-                      value={selectedSubTopics}
-                      onChange={(e) => setSelectedSubTopics(e.target.value)}
-                    >
-                      <option value="">All</option>
-                      {subjects[selectedSubject.split("*")[0]]?.topics[
-                        selectedTopic.split("*")[0]
-                      ]?.subTopics?.map((st, idx) => (
-                        <option key={idx} value={st}>
-                          {st}
+                      {difficulty?.map((d, i) => (
+                        <option key={i} value={d}>
+                          {d}
                         </option>
                       ))}
                     </select>
                   </label>
                 </div>
-              )}
-            </div>
 
-            <div className="filter-buttons">
-              <button onClick={clearFilters}>Clear filters</button>
-              <button onClick={filterQuestions}>Apply filters</button>
+                <div className="skill-level">
+                  <label>
+                    <p>Skill</p>
+                    <select
+                      value={skillLevel}
+                      onChange={(e) => setSkillLevel(e.target.value)}
+                    >
+                      <option value="">All</option>
+                      {skills?.map((s, i) => (
+                        <option key={i} value={s}>
+                          {s}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+
+                <div className="subject">
+                  <label>
+                    <p>Subject</p>
+                    <select
+                      value={selectedSubject}
+                      onChange={(e) => setSelectedSubject(e.target.value)}
+                    >
+                      <option value="">All</option>
+                      {subjects?.map((s, i) => (
+                        <option key={i} value={`${i}*${s.name}`}>
+                          {s.name}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                </div>
+
+                {selectedSubject !== "" && (
+                  <div className="topics">
+                    <label>
+                      <p>Topics</p>
+                      <select
+                        value={selectedTopic}
+                        onChange={(e) => setSelectedTopic(e.target.value)}
+                      >
+                        <option value="">All</option>
+                        {subjects[selectedSubject.split("*")[0]]?.topics?.map(
+                          (t, i) => (
+                            <option key={i} value={`${i}*${t.name}`}>
+                              {t.name}
+                            </option>
+                          )
+                        )}
+                      </select>
+                    </label>
+                  </div>
+                )}
+
+                {selectedSubject !== "" && selectedTopic !== "" && (
+                  <div className="sub-topic">
+                    <label>
+                      <p>SubTopics</p>
+                      <select
+                        value={selectedSubTopics}
+                        onChange={(e) => setSelectedSubTopics(e.target.value)}
+                      >
+                        <option value="">All</option>
+                        {subjects[selectedSubject.split("*")[0]]?.topics[
+                          selectedTopic.split("*")[0]
+                        ]?.subTopics?.map((st, idx) => (
+                          <option key={idx} value={st}>
+                            {st}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  </div>
+                )}
+              </div>
+
+              <div className="filter-buttons">
+                <button onClick={clearFilters}>Clear filters</button>
+                <button onClick={filterQuestions}>Apply filters</button>
+              </div>
             </div>
+          )}
+        </div>
+
+        {/* QUESTION BANK QUESTIONS */}
+        {filteredQuestionBank?.length === 0 && (
+          <p
+            style={{
+              textAlign: "center",
+              marginTop: 200,
+              fontWeight: 600,
+              color: "rgba(0,0,0,0.5)",
+            }}
+          >
+            No matched questions
+          </p>
+        )}
+
+        {filteredQuestionBank?.map((ques) => (
+          <div className="qb-question" key={ques.id}>
+            <div className="check-box">
+              <input type="checkbox" onChange={() => handleChange(ques.id)} />
+            </div>
+            <div className="question-content">
+              <div>
+                <MathJax.Html html={ques.question} />
+              </div>
+              <div className="question-tags">
+                <h4>Tags: </h4>
+                {ques?.dificulty_tag && <p>{ques?.dificulty_tag}</p>}
+                {ques?.skill && <p>{ques?.skill}</p>}
+                {ques?.subject_tag && <p>{ques?.subject_tag}</p>}
+                {ques?.topic_tag && <p>{ques?.topic_tag}</p>}
+                {ques?.subtopic_tag && <p>{ques?.subtopic_tag}</p>}
+              </div>
+
+              <div className="options">
+                {ques.option.map((op, idx) => {
+                  const ops = ["A", "B", "C", "D"];
+                  return (
+                    <div className="option" key={idx}>
+                      <span>({ops[idx]})</span>&nbsp;{parse(op)}
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+            <div className="marks">
+              <p>Correct: {ques.correct_marks} Marks</p>
+              <p>Incorrect: -{ques.negative_marks} Marks</p>
+            </div>
+          </div>
+        ))}
+
+        {/* LOADER */}
+        {loading && (
+          <div className="quizquestion-loader">
+            <Loader />
           </div>
         )}
       </div>
-
-      {/* QUESTION BANK QUESTIONS */}
-      {filteredQuestionBank?.map((ques) => (
-        <div className="qb-question" key={ques.id}>
-          <div className="check-box">
-            <input type="checkbox" onChange={() => handleChange(ques.id)} />
-          </div>
-          <div className="question-content">
-            <div>{parse(ques.question)}</div>
-            <div className="options">
-              {ques.option.map((op, idx) => {
-                const ops = ["A", "B", "C", "D"];
-                return (
-                  <div className="option" key={idx}>
-                    <span>({ops[idx]})</span>&nbsp;{parse(op)}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-          <div className="marks">
-            <p>Correct: {ques.correct_marks} Marks</p>
-            <p>Incorrect: -{ques.negative_marks} Marks</p>
-          </div>
-        </div>
-      ))}
-
-      {/* LOADER */}
-      {loading && (
-        <div className="quizquestion-loader">
-          <Loader />
-        </div>
-      )}
-    </div>
+    </MathJax.Context>
   );
 };
 

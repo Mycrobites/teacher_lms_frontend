@@ -17,7 +17,6 @@ const MostAnswered = ({ uid, tokenkey }) => {
       const { data } = await axios.get("/api/forum/mostAnswered", config);
       setLoading(false);
       if (!isUnmounted) {
-        // console.log(data);
         setMostAnswered(data);
       }
     } catch (err) {

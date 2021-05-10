@@ -31,7 +31,6 @@ const CommentReplies = ({ id, uid, setTotalReplies }) => {
         reply,
         config
       );
-      // console.log(data);
       setReplies([...replies, data.comment]);
       setTotalReplies((prevCount) => prevCount + 1);
       setReplyText("");

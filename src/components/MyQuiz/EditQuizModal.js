@@ -38,8 +38,8 @@ const ScheduleClass = ({
       const postData = {
         quiz_name: quizName,
         duration: quizDuration,
-        start_date: startdate + ":00+05:30",
-        expire_date: expiredate + ":00+05:30",
+        start_date: startdate + "+05:30",
+        expire_date: expiredate + "+05:30",
       };
       const config = {
         headers: { Authorization: `Bearer ${user.access}` },
@@ -76,7 +76,7 @@ const ScheduleClass = ({
           <label>Name</label>
           <input
             type="text"
-            placeholder="Topic..."
+            placeholder="Name..."
             value={quizName}
             onChange={(e) => setQuizName(e.target.value)}
           />
@@ -84,7 +84,7 @@ const ScheduleClass = ({
           <label>Duration (format: hh:mm:ss)</label>
           <input
             type="text"
-            placeholder="Link..."
+            placeholder="Duration..."
             value={quizDuration}
             onChange={(e) => setQuizDuration(e.target.value)}
           />

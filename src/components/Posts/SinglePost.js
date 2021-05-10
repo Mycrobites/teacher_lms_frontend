@@ -74,7 +74,6 @@ const SinglePost = (props) => {
       };
       const { data } = await axios.get(`/api/forum/getComments/${id}`, config);
       setComments(data);
-      // console.log(data);
     } catch (err) {
       console.log(err.message);
     }
@@ -102,7 +101,6 @@ const SinglePost = (props) => {
           setReportModalText("You reported this post");
         }
       }
-      // console.log(response);
     } catch (err) {
       console.log(err.message);
     }
@@ -115,7 +113,6 @@ const SinglePost = (props) => {
       };
       await axios.delete(`/api/forum/editPost/${id}`, config);
       fetchPosts();
-      // console.log(data);
     } catch (err) {
       console.log(err.message);
     }
@@ -145,7 +142,6 @@ const SinglePost = (props) => {
           else return post;
         })
       );
-      // console.log(data);
       setIsEditingPost(false);
     } catch (err) {
       console.log(err.message);

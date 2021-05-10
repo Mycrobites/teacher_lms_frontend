@@ -194,21 +194,36 @@ const MyCourse = ({ user }) => {
         </div>
       )}
 
-      <div className="course-cards">
-        <Carousel breakPoints={breakPoints}>
-          {allCourses?.map((course) => (
-            <SingleCourse
-              key={course?.id}
-              getCourses={getCourses}
-              user={user}
-              {...course}
-              prevVideo={course?.video}
-              prevGoals={objectToString(course?.goals, "goals")}
-              prevConcept={objectToString(course?.concepts, "concepts")}
-            />
-          ))}
-        </Carousel>
-      </div>
+      {allCourses?.length === 0 && (
+        <p
+          style={{
+            textAlign: "center",
+            marginTop: 200,
+            fontWeight: 600,
+            color: "rgba(0,0,0,0.5)",
+          }}
+        >
+          You haven't created any Course
+        </p>
+      )}
+
+      {allCourses.length > 0 && (
+        <div className="course-cards">
+          <Carousel breakPoints={breakPoints}>
+            {allCourses?.map((course) => (
+              <SingleCourse
+                key={course?.id}
+                getCourses={getCourses}
+                user={user}
+                {...course}
+                prevVideo={course?.video}
+                prevGoals={objectToString(course?.goals, "goals")}
+                prevConcept={objectToString(course?.concepts, "concepts")}
+              />
+            ))}
+          </Carousel>
+        </div>
+      )}
     </div>
   );
 };

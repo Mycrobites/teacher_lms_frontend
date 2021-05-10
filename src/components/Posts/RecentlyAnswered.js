@@ -17,7 +17,6 @@ const RecentLyAnswered = ({ uid, tokenkey }) => {
       const { data } = await axios.get("/api/forum/recentAnswered", config);
       setLoading(false);
       if (!isUnmounted) {
-        console.log(data);
         setRecentlyAnswered(data);
       }
     } catch (err) {

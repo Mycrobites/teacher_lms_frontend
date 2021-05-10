@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import Loader from "../Loader/Loader";
 import { IoCloseOutline } from "react-icons/io5";
 import axios from "../../axios/axios";
 import "./ScheduleClass.css";
@@ -29,6 +30,7 @@ const ScheduleClass = ({
   const [link, setLink] = useState("");
   const [lectureDate, setLectureDate] = useState(getCurrentDate);
   const [courseid, setCourseid] = useState(courseList[0].id);
+  const [loading, setLoading] = useState(false);
   const modalRef = useRef(null);
 
   const createLiveClass = async () => {
@@ -43,16 +45,11 @@ const ScheduleClass = ({
         link,
         timeStamp: getDateString(lectureDate),
       };
-      // console.log(postData);
       const config = {
         headers: { Authorization: `Bearer ${user.access}` },
       };
-      await axios.post(
-        "/teacher/scheduleliveclass/",
-        postData,
-        config
-      );
-      // console.log(data);
+      setLoading(true);
+      await axios.post("/teacher/scheduleliveclass/", postData, config);
       setTopic("");
       setLink("");
       setCourseid(courseList[0].id);
@@ -61,6 +58,7 @@ const ScheduleClass = ({
     } catch (err) {
       console.log(err.message);
     }
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -75,6 +73,11 @@ const ScheduleClass = ({
 
   return (
     <div className="schedule-class-modal">
+      {loading && (
+        <div className="schedule-loader">
+          <Loader />
+        </div>
+      )}
       <div className="schedule-class-modal-card" ref={modalRef}>
         <h1>Schedule Class</h1>
         <select value={courseid} onChange={(e) => setCourseid(e.target.value)}>

@@ -34,7 +34,6 @@ const Courses = ({ user }) => {
           `/teacher/getMyCourses/${user?.username}`,
           config
         );
-        // console.log(data);
         if (mountedRef.current) {
           const courseData = data.filter((course, index) => index < 2);
           setCourses(courseData);

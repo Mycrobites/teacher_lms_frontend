@@ -57,18 +57,33 @@ const MyQuiz = ({ user }) => {
         <h4 style={{ color: "gray" }}>Here are All Your Quizzes</h4>
       </div>
 
-      <div className="quiz-cards">
-        <Carousel breakPoints={breakPoints}>
-          {quiz?.map((quiz) => (
-            <SingleQuiz
-              key={quiz.id}
-              {...quiz}
-              user={user}
-              getCourses={getCourses}
-            />
-          ))}
-        </Carousel>
-      </div>
+      {quiz?.length === 0 && (
+        <p
+          style={{
+            textAlign: "center",
+            marginTop: 200,
+            fontWeight: 600,
+            color: "rgba(0,0,0,0.5)",
+          }}
+        >
+          You haven't created any quiz
+        </p>
+      )}
+
+      {quiz?.length > 0 && (
+        <div className="quiz-cards">
+          <Carousel breakPoints={breakPoints}>
+            {quiz?.map((quiz) => (
+              <SingleQuiz
+                key={quiz.id}
+                {...quiz}
+                user={user}
+                getCourses={getCourses}
+              />
+            ))}
+          </Carousel>
+        </div>
+      )}
     </div>
   );
 };
