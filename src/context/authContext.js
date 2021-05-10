@@ -35,8 +35,10 @@ export const UserContextProvider = (props) => {
     localStorage.clear();
   };
 
+  console.log(userProfilePic);
+
   const updateUserProfilePic = (pic) => {
-    setUserProfilePic(pic);
+    setUserProfilePic({profile: pic});
     localStorage.setItem("user-profile-pic", JSON.stringify({ profile: pic }));
   };
 
