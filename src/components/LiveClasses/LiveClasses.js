@@ -59,7 +59,7 @@ const UpcomingLessons = ({ user }) => {
   useEffect(() => {
     fetchUpcomingEvents();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [liveClasses]);
+  },[]);
 
   return (
     <div className="UpcomingLessons">
@@ -72,7 +72,10 @@ const UpcomingLessons = ({ user }) => {
       {isLoading && <Loader />}
       <div className="lesson">
         {liveClasses?.map((classs) => (
-          <Classes key={classs.id} {...classs} />
+          <Classes 
+            key={classs.id}  
+            {...classs} 
+            fetchUpcomingEvents = {fetchUpcomingEvents} />
         ))}
       </div>
       {showScheduleClass && (
