@@ -1,0 +1,29 @@
+name: React JS Ci/CD
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploying to Digitalocean droplet
+        uses: appleboy/ssh-action@master # An action made to control Linux servers
+        with: # We set all our secrets here for the action, these won't be shown in the action logs
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password:  ${{ secrets.PASSWORD }}
+#           key: ${{ secrets.KEY }}
+          port: ${{ secrets.PORT }}
+          script: |
+            cd /opt/teacher_lms_frontend 
+            git pull 
+            npm prune 
+            npm install 
+            npm run build 
+            systemctl restart nginx 
+
+# all of this before restart
