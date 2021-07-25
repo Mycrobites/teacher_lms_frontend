@@ -29,7 +29,7 @@ const ScheduleClass = ({
   const [topic, setTopic] = useState("");
   const [link, setLink] = useState("");
   const [lectureDate, setLectureDate] = useState(getCurrentDate);
-  const [courseid, setCourseid] = useState(courseList[0].id);
+  const [courseid, setCourseid] = useState(courseList[0].id ?  courseList[0].id : null );
   const [loading, setLoading] = useState(false);
   const modalRef = useRef(null);
 
