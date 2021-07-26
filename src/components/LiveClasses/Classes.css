@@ -1,0 +1,170 @@
+.meeting-link button {
+  color: #fff;
+  padding: 5px 15px;
+  font-weight: 500;
+  border-radius: 20px;
+  text-decoration: none;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  margin-top: 12px;
+}
+
+.delete-class button {
+  background-color: rgb(255, 34, 34);
+}
+
+.edit-class button {
+  background-color: #006eff;
+}
+
+.schedule-class-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  display: grid;
+  place-items: center;
+}
+
+.schedule-class-modal-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  width: 95vw;
+  max-width: 500px;
+  margin: auto;
+  min-height: 200px;
+  padding: 25px;
+  position: relative;
+}
+
+.schedule-class-modal-card .close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 10px 10px 0 0;
+  display: grid;
+  place-items: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+  padding: 4px;
+}
+
+.schedule-class-modal-card .submit-btn {
+  display: grid;
+  place-items: center;
+  border: none;
+  outline: none;
+  color: white;
+  background: rgb(0, 140, 255);
+  cursor: pointer;
+  padding: 5px 10px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  margin-top: 5px;
+}
+
+.schedule-class-form > * {
+  display: block;
+  width: 100%;
+}
+
+.schedule-class-form label {
+  margin-top: 15px;
+  font-weight: 500;
+}
+
+.schedule-class-form input[type="text"],
+.schedule-class-form input[type="datetime-local"] {
+  border: 1px solid rgba(0, 0, 0, 0.5);
+  border-radius: 3px;
+  padding: 5px 10px;
+  outline: none;
+}
+
+.schedule-class-form input[type="text"]::placeholder,
+.schedule-class-form input[type="datetime-local"]::placeholder {
+  color: rgba(0, 0, 0, 0.8);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.course-modal-wrapper {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  right: 0;
+  display: grid;
+  z-index: 1000;
+  place-items: center;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.delete-modal {
+  background: white;
+  width: 400px;
+  height: 150px;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  font-size: 0.8em;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+.delete-modal p {
+  font-size: 16px;
+}
+
+.course-modal-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.course-modal {
+  width: 100vw;
+  max-width: 600px;
+  height: object-fit;
+  min-height: 600px;
+  background: white;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  padding: 20px;
+  border-radius: 10px;
+  font-size: 0.8em;
+}
+
+@media (max-width: 450px) {
+  .schedule-class-modal-card {
+    padding: 15px;
+  }
+}
+
+.schedule-loader {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(255, 255, 255, 0.5);
+  display: grid;
+  place-items: center;
+  z-index: 999;
+}
+.schedule-loader div {
+  margin-right: 25px;
+}
