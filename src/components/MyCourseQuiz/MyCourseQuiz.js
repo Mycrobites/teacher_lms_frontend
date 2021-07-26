@@ -3,7 +3,7 @@ import axios from '../../axios/axios';
 import Loader from '../Loader/Loader';
 import Carousel from 'react-elastic-carousel';
 import SingleQuiz from './SingleQuiz';
-import './MyQuiz.css';
+import './MyCourseQuiz.css';
 
 const breakPoints = [
 	{ width: 1, itemsToShow: 1 },
@@ -12,7 +12,7 @@ const breakPoints = [
 	{ width: 1100, itemsToShow: 4 },
 ];
 
-const MyQuiz = ({ user }) => {
+const MyCourseQuiz = ({ user }) => {
 	const [loading, setLoading] = useState(false);
 	const [quiz, setQuiz] = useState(null);
 
@@ -55,7 +55,7 @@ const MyQuiz = ({ user }) => {
 				>
 					Welcome! {user.first_name}
 				</h1>
-				<h4 style={{ color: 'gray' }}>Here are All Your Quizzes</h4>
+				<h4 style={{ color: 'gray' }}>Here are All Your Course Quizzes</h4>
 			</div>
 
 			{quiz?.length === 0 && (
@@ -89,4 +89,4 @@ const MyQuiz = ({ user }) => {
 	);
 };
 
-export default MyQuiz;
+export default MyCourseQuiz;

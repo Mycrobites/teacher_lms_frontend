@@ -1,19 +1,23 @@
 import React, { useContext } from "react";
-import MyQuiz from "../../components/MyQuiz/MyQuiz";
+import MyCourseQuiz from "../../components/MyCourseQuiz/MyCourseQuiz";
 import SideBar from "../../components/SideBar/SideBar";
 import UserContext from "../../context/authContext";
 import "./QuizPage.css";
+import MyGroupQuiz from "../../components/MyGroupQuiz/MyGroupQuiz";
 
 const QuizPage = () => {
   const { userDetails } = useContext(UserContext);
+  
 
   return (
-    <div className="quiz-page">
+
+    <>
       <SideBar active={"quiz"} />
-      <div>
-        <MyQuiz user={userDetails} />
+      <div className="quiz-page">
+        <MyGroupQuiz user = {userDetails} />  
+        <MyCourseQuiz user={userDetails} />
       </div>
-    </div>
+    </>
   );
 };
 
