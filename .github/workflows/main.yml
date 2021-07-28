@@ -23,7 +23,6 @@ jobs:
             git pull 
             npm prune 
             npm install 
-            npm run build 
             systemctl restart nginx 
 
 # all of this before restart
