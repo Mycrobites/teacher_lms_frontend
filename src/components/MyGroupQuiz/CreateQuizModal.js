@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
-import Loader from '../Loader/Loader';
+import Loader from "../Loader/Loader";
 import axios from "../../axios/axios";
 import { IoCloseOutline } from "react-icons/io5";
 import "./EditQuizModal.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const CreateQuizModal = ( {setShowCreateQuiz, groups }) => {
-  // const { apidata, userDetails, setShowCreateModal } = props;
+const CreateQuizModal = ({ setShowCreateQuiz, groups }) => {
+  const { apidata, userDetails, setShowCreateModal } = "props";
   const [quizTitle, setQuizTitle] = useState("");
   const [quizDesc, setQuizDesc] = useState("");
   const [quizDuration, setQuizDuration] = useState("");
