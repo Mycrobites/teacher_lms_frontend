@@ -3,9 +3,9 @@ import "./MyGroupQuiz.css"
 import Loader from '../Loader/Loader';
 import CreateGroupModal from './CreateGroupModal';
 import CreateQuizModal from './CreateQuizModal'
-import SingleQuiz from '../MyCourseQuiz/SingleQuiz';
 import axios from '../../axios/axios';
 import Carousel from 'react-elastic-carousel';
+import SingleGroup from './SingleGroup';
 
 
 const breakPoints = [
@@ -20,22 +20,21 @@ const MyGroupQuiz = ({user}) => {
     const [loading, setLoading] = useState(false);
     const[showCreateGroup, setshowCreateGroup] = useState(false);
     const[showCreateQuiz, setShowCreateQuiz] = useState(false);
-    let groups = []
+    const [group, setGroup] = useState([]);
 
-    const [quiz, setQuiz] = useState(null);
-
-	const getCourses = async () => {
-		try {
-			if (!quiz) setLoading(true);
+	const getGroup = async () => {
+		console.log("getGroup called!!")
+        try {
+			if (!group) setLoading(true);
 			const config = {
 				headers: { Authorization: `Bearer ${user.access}` },
 			};
 			const { data } = await axios.get(
-				`/teacher/quiz/getQuiz/${user.username}`,
+				`/api/create-group`,
 				config,
 			);
 
-			setQuiz(data?.response);
+			setGroup(data?.response);
 		} catch (err) {
 			console.log(err.message);
 		}
@@ -43,7 +42,7 @@ const MyGroupQuiz = ({user}) => {
 	};
 
 	useEffect(() => {
-		getCourses();
+		getGroup();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -67,7 +66,7 @@ const MyGroupQuiz = ({user}) => {
                     <h4 style={{ color: 'gray' }}>Here are All Your Group Quizzes</h4>
                 </div>
 
-                {quiz?.length === 0 && (
+                {group?.length === 0 && (
                     <p
                         style={{
                             textAlign: 'center',
@@ -80,16 +79,15 @@ const MyGroupQuiz = ({user}) => {
                     </p>
                 )}
 
-                {quiz?.length > 0 && (
+                <SingleGroup/>
+
+                {group?.length > 0 && (
                     <div className="quiz-cards">
                         <Carousel breakPoints={breakPoints}>
-                            {quiz?.map((quiz) => (
-                                <SingleQuiz
-                                    key={quiz.id}
-                                    {...quiz}
-                                    user={user}
-                                    getCourses={getCourses}
-                                />
+                            {group?.map((group) => (
+                                <SingleGroup
+                                key = {group.id}
+                                groupName = {group}/>
                             ))}
                         </Carousel>
                     </div>
@@ -103,14 +101,18 @@ const MyGroupQuiz = ({user}) => {
 
             { showCreateGroup && 
                 <CreateGroupModal 
-                groups = {groups}
+                user = {user}
+                group = {group}
+                setGroup = {setGroup}
+                getGroup = {getGroup}
                 setshowCreateGroup = { setshowCreateGroup} />
             }
 
             {
                 showCreateQuiz && 
                 <CreateQuizModal 
-                groups = {groups}
+                userDetails = {user}
+                group = {group}
                 setShowCreateQuiz = {setShowCreateQuiz} />
             }
         </div>

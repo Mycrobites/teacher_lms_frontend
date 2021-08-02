@@ -16,7 +16,7 @@ const MyCourseQuiz = ({ user }) => {
 	const [loading, setLoading] = useState(false);
 	const [quiz, setQuiz] = useState(null);
 
-	const getCourses = async () => {
+	const getCoursesQuiz = async () => {
 		try {
 			if (!quiz) setLoading(true);
 			const config = {
@@ -35,7 +35,7 @@ const MyCourseQuiz = ({ user }) => {
 	};
 
 	useEffect(() => {
-		getCourses();
+		getCoursesQuiz();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
@@ -79,7 +79,7 @@ const MyCourseQuiz = ({ user }) => {
 								key={quiz.id}
 								{...quiz}
 								user={user}
-								getCourses={getCourses}
+								getCoursesQuiz={getCoursesQuiz}
 							/>
 						))}
 					</Carousel>

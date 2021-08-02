@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import "./CreateGroupModal.css";
+import "./CreateGroup.css";
 import Loader from "../Loader/Loader";
 import { IoCloseOutline } from 'react-icons/io5';
 import axios from "../../axios/axios"
@@ -15,8 +15,9 @@ const getCourseListFromLocalStorage = () => {
     }
 };
 
-const CreateGroupQuizModal = ( {setshowCreateGroup, user, getGroup} ) => {
+const CreateGroupQuizModal = ( props ) => {
 
+    const { apidata, userDetails, setShowCreateGroupModal, fetchquizzes } = props;
     const courseList = getCourseListFromLocalStorage();
     const[checkedItems, setCheckedItems] = useState(new Map())
     const [grouptitle,setGroupTitle] = useState("");
@@ -26,19 +27,24 @@ const CreateGroupQuizModal = ( {setshowCreateGroup, user, getGroup} ) => {
     const [error,setError] = useState(false);
     
     let groups = []
-    const handleCheckbox = (e) => {
+    const handleCheckbox = (e, id) => {
         let isChecked = e.target.checked;  
         let item = e.target.value;
         console.log(isChecked, item);
         if(isChecked === true){
             console.log(1)
-            groups.push(item);
+            groups.push(id);
         }else{
-            groups.pop(item);
+            groups.pop(id);
         }
         console.log(groups)     
         setCheckedItems(checkedItems.set(item, isChecked) );
     }
+
+    const refreshPage = () => {
+        window.location.reload();
+    };
+      
     
     const createGroup = async() => {
         setloading(true);
@@ -46,42 +52,43 @@ const CreateGroupQuizModal = ( {setshowCreateGroup, user, getGroup} ) => {
             setmessage("Fill all the details.")
             return;
         }
-
+        
         if(groups.length === 0){
-            setmessage("Select atleast 1 course.");
-            return;
+            setmessage("Select atleast 1 course.")
+            return
         }
-
+        
         try {
-			const postData = {
+            const postData = {
 				title : grouptitle,
                 description : groupdescription,
                 course : groups
 			};
 
 			const config = {
-				headers: { Authorization: `Bearer ${user.access}` },
+				headers: { Authorization: `Bearer ${userDetails.access}` },
 			};
 
 			const data = await axios.post(`/api/create-group`, postData, config);
-
+            
             if(data){
                 setloading(false);
             }
-
+            
+            setmessage("New Group created successfully");
             setGroupTitle("");
             setGroupDescription("");
             setdata(data);
             setError(false);
-            setmessage("New Quiz Group created successfully");
-			getGroup();
-			setLoading(false);
-			setshowCreateGroup(false);
+            setLoading(false);
+			setShowCreateGroupModal(false);
+            // refreshPage();
             console.log(data);
-		} catch (err) {
-			console.log(err.message);
-		}
-
+        }catch (err) {
+            console.log(err.message);
+        }
+        
+        setShowCreateGroupModal(false);
         console.log("API Request Send");
         console.log(groups)
         console.log(grouptitle,groupdescription);
@@ -92,7 +99,7 @@ const CreateGroupQuizModal = ( {setshowCreateGroup, user, getGroup} ) => {
 			<div className="edit-quiz-modal-card">
                 <h2>Create Group</h2>
                 <button
-                    onClick={() => setshowCreateGroup(false)}
+                    onClick={() => setShowCreateGroupModal(false)}
                     className="close-btn"
                 >
                     <IoCloseOutline />
@@ -123,7 +130,7 @@ const CreateGroupQuizModal = ( {setshowCreateGroup, user, getGroup} ) => {
                                         <input 
                                         type="checkbox"
                                         value={course.course_name}
-                                        onChange={handleCheckbox} /> {course.course_name} </label>
+                                        onChange={() => handleCheckbox(event, course.id)} /> {course.course_name} </label>
                                 </li>
                             ))
                         }

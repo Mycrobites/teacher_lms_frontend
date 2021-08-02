@@ -33,12 +33,13 @@
 
 @media (max-width: 768px) {
   .dashboard-items {
+    font-size: 0.9rem;
     display: block;
   }
   .dashboard-items > div {
     height: max-content;
   }
   .dashboard-items > div:nth-child(n) {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
   }
 }

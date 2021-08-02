@@ -1,96 +1,96 @@
 .sidebar {
-	height: 95vh;
-	width: 220px;
-	position: fixed;
-	left: 0%;
-	border-right: 0.05px solid rgb(230, 230, 230);
-	border-top: 0.05px solid rgb(230, 230, 230);
-	display: flex;
-	z-index: 10;
-	height: 86vh;
-	background: #f7f7f7;
-	font-size: 0.8em;
-	z-index: 99;
+  height: 95vh;
+  width: 220px;
+  position: fixed;
+  left: 0%;
+  border-right: 0.05px solid rgb(230, 230, 230);
+  border-top: 0.05px solid rgb(230, 230, 230);
+  display: flex;
+  z-index: 10;
+  height: 86vh;
+  background: #f7f7f7;
+  font-size: 0.8em;
+  z-index: 99;
 }
 
 .sidebar-menu {
-	height: 250px;
-	padding: 0 10px;
-	width: 100%;
-	display: flex;
-	justify-content: space-evenly;
-	flex-direction: column;
+  height: 250px;
+  padding: 0 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
 }
 
 .menu a {
-	padding: 15px 10px;
-	font-size: 1.15em;
-	text-decoration: none;
-	color: inherit;
-	font-weight: 700;
-	display: flex;
-	align-items: center;
+  padding: 15px 10px;
+  font-size: 1.15em;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
 }
 .menu a > * {
-	margin: 0 10px 0 0;
+  margin: 0 10px 0 0;
 }
 .menu:hover {
-	color: rgb(0, 110, 255);
-	background: rgba(0, 0, 0, 0.05);
-	border-radius: 999px;
+  color: rgb(0, 110, 255);
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 999px;
 }
 #active {
-	color: rgb(0, 110, 255);
-	background: rgba(0, 0, 0, 0.05);
-	border-radius: 1000px;
+  color: rgb(0, 110, 255);
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 1000px;
 }
 
 .sidebar-responsive {
-	width: 50px;
-	display: none;
+  width: 50px;
+  display: none;
 }
 
-@media only screen and (max-width: 900px) {
-	.sidebar {
-		height: 100vh;
-		overflow: hidden;
-		width: 50px;
-		position: fixed;
-		left: 0%;
-		border: none;
-		display: flex;
-		background: transparent;
-	}
+@media only screen and (max-width: 1100px) {
+  .sidebar {
+    height: 100vh;
+    overflow: hidden;
+    width: 50px;
+    position: fixed;
+    left: 0%;
+    border: none;
+    display: flex;
+    background: #f7f7f7;
+  }
 
-	#active {
-		color: rgb(0, 110, 255);
-		background: none;
-	}
+  #active {
+    color: rgb(0, 110, 255);
+    background: none;
+  }
 
-	.sidebar-responsive {
-		width: 50px;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-evenly;
-		align-items: center;
-		height: 250px;
-	}
-	.sidebar-menu {
-		display: none;
-	}
-	.menu a {
-		display: flex;
-		justify-content: center;
-		padding: 30px;
-		height: 50px;
-		width: 50px;
-		border-radius: 50%;
-	}
-	.menu:hover {
-		background-color: transparent;
-	}
+  .sidebar-responsive {
+    width: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 250px;
+  }
+  .sidebar-menu {
+    display: none;
+  }
+  .menu a {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  .menu:hover {
+    background-color: transparent;
+  }
 
-	.menu a > * {
-		margin: 0;
-	}
+  .menu a > * {
+    margin: 0;
+  }
 }

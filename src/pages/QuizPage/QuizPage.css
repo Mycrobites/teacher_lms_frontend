@@ -2,8 +2,8 @@
   margin-left: 220px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .quiz-page {
-    margin-left: 70px;
+    margin-left: 50px;
   }
 }

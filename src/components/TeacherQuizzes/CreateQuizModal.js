@@ -6,8 +6,8 @@ import "./CreateQuizModal.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-const CreateQuizModal = ( {setShowCreateQuiz, groups, userDetails }) => {
-  // const { apidata, userDetails, setShowCreateModal } = props;
+const CreateQuizModal = (props) => {
+  const { groups, userDetails, setShowCreateQuizModal, fetchquizzes } = props;
   const [quizTitle, setQuizTitle] = useState("");
   const [quizDesc, setQuizDesc] = useState("");
   const [quizDuration, setQuizDuration] = useState("");
@@ -22,30 +22,41 @@ const CreateQuizModal = ( {setShowCreateQuiz, groups, userDetails }) => {
   //   window.location.reload();
   // };
 
+  
+
   const editQuiz = async () => {
     if (!quizTitle || !quizDesc || !quizDuration || !startdate || !enddate)
       return alert("Please fill all the fields!");
     try {
       const postData = {
-        title: quizTitle,
-        creator: userDetails.user_id,
-        desc: quizDesc,
+        quiz_name: quizTitle,
+        description: quizDesc,
         duration: quizDuration,
-        Quizgroup: quizGroupId,
+        quiz_group_id: quizGroupId,
         //added quiz instruction
-        instructions: quizInstructions,
-        starttime: startdate + ":00+05:30",
-        endtime: enddate + ":00+05:30",
+        //instructions: quizInstructions,
+        start_date: startdate + ":00+05:30",
+        expire_date: enddate + ":00+05:30",
+
+        // "quiz_name": "Testing by postman",
+        // "description": "for description",
+        // "duration": "01:00:00",
+        // "lessons_content": null,
+        // "course": "",
+        // "start_date":null,
+        // "expire_date": null,
+        // "quiz_group_id": "fa317abd-8f3c-465b-adb4-2a798202e587"
       };
       console.log(postData);
       const config = {
         headers: { Authorization: `Bearer ${userDetails.access}` },
       };
       setLoading(true);
-      await axios.post("/api/create-quiz", postData, config);
+      await axios.post("/teacher/quiz/createQuiz", postData, config);
       // refreshPage();
       // fetchAllQuizzes();
-      setShowCreateModal(false);
+      fetchquizzes();
+      setShowCreateQuizModal(false);
     } catch (err) {
       console.log(err.message);
     }
@@ -69,7 +80,7 @@ const CreateQuizModal = ( {setShowCreateQuiz, groups, userDetails }) => {
   useEffect(() => {
     const handler = (e) => {
       if (!modalRef.current?.contains(e.target)) {
-        setShowCreateQuiz(false);
+        setShowCreateQuizModal(false);
       }
     };
     window.addEventListener("click", handler);
@@ -82,7 +93,7 @@ const CreateQuizModal = ( {setShowCreateQuiz, groups, userDetails }) => {
     <div className="edit-quiz-modal">
       <div className="edit-quiz-modal-card" ref={modalRef}>
         <h1>Create Quiz</h1>
-        <button onClick={() => setShowCreateQuiz(false)} className="close-btn">
+        <button onClick={() => setShowCreateQuizModal(false)} className="close-btn">
           <IoCloseOutline />
         </button>
         <div className="edit-quiz-form">
@@ -101,8 +112,8 @@ const CreateQuizModal = ( {setShowCreateQuiz, groups, userDetails }) => {
             onChange={(e) => setQuizGroupId(e.target.value)}
           >
             <option>Select from below</option>
-            {groups?.map((elem) => (
-              <option value={elem.id}>{elem.name}</option>
+            { groups?.map((elem) => (
+              <option value={elem.id}>{elem.title}</option>
             ))}
           </select>
           <br />

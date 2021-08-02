@@ -12,16 +12,18 @@ const DashBoard = () => {
   const { userDetails } = useContext(UserContext);
 
   return (
-    <div className="Dashboard">
+    <>
       <SideBar active="dashboard" />
-      <div className="dashboard-items">
-        <LiveClasses user={userDetails} />
-        <Courses user={userDetails} />
-        <Calendar />
-        <Task user={userDetails} />
-        <PastQuiz user={userDetails} />
+      <div className="Dashboard">
+        <div className="dashboard-items">
+          <LiveClasses user={userDetails} />
+          <Courses user={userDetails} />
+          <Calendar />
+          <Task user={userDetails} />
+          <PastQuiz user={userDetails} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
