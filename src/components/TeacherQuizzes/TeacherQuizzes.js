@@ -42,14 +42,14 @@ const TeacherQuizzes = () => {
   const fetchquizzes = async () => {
     try {
       const config = {
-        headers: { Authorization: `Bearer ${userDetails.key}` },
+        headers: { Authorization: `Bearer ${userDetails.access}` },
       };
       setLoading(true);
       const res = await axios.get(
-        `api/get-all-quizes/${userDetails.user.pk}`,
+        `api/get-all-quizes/${userDetails.user_id}`,
         config
       );
-      console.log(res.data);
+      console.log("quiz=>", res.data);
       setdata(res.data);
       setattemptedQuiz(res.data[groupnumber]["attempted"]);
       setUpcoming(res.data[groupnumber]["upcoming"]);
