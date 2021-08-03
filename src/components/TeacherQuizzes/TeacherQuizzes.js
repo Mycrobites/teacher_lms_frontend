@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import UserContext from "../../context/authContext";
 import CreateQuizModal from "./CreateQuizModal";
-import CreateGroupModal from './CreateGroup';
-import Loader from "../../components/Loader/Loader";  
+import CreateGroupModal from "./CreateGroup";
+import Loader from "../../components/Loader/Loader";
 import { AiFillDelete } from "react-icons/ai";
 import QuizCard from "./QuizCard";
 import axios from "../../axios/axios";
@@ -28,7 +28,7 @@ const TeacherQuizzes = () => {
   const [groupnumber, setGroupnumber] = useState(0);
   const [data, setdata] = useState([]);
   const [groupnames, setGroupnames] = useState([]);
-  const [groupIds , setGroupIds] = useState([]);
+  const [groupIds, setGroupIds] = useState([]);
   const [index, setindex] = useState(0);
   const [quizCounts, setQuizCounts] = useState([]);
   const [open, setopen] = useState(true);
@@ -37,7 +37,7 @@ const TeacherQuizzes = () => {
   const [editQuiz, setEditQuiz] = useState(false);
   const [deleteQuiz, setDeleteQuiz] = useState(true);
 
-  console.log(userDetails)
+  console.log("teacher", userDetails);
 
   const fetchquizzes = async () => {
     try {
@@ -49,16 +49,15 @@ const TeacherQuizzes = () => {
         `api/get-all-quizes/${userDetails.user.pk}`,
         config
       );
-      console.log(res.data)
+      console.log(res.data);
       setdata(res.data);
       setattemptedQuiz(res.data[groupnumber]["attempted"]);
       setUpcoming(res.data[groupnumber]["upcoming"]);
       setActiveQuiz(res.data[groupnumber]["active"]);
-      
-     
+
       res.data.map((names) => {
-        setGroupnames([...groupnames, names.name])
-      })
+        setGroupnames([...groupnames, names.name]);
+      });
 
       let counts = [];
       if (res.data.length > 0) {
@@ -70,10 +69,9 @@ const TeacherQuizzes = () => {
           };
         }
       }
-     
+
       setQuizCounts(counts);
       setLoading(false);
-
     } catch (err) {
       console.log(err.message);
     }
@@ -95,19 +93,19 @@ const TeacherQuizzes = () => {
     let groupIds = [];
     for (let x = 0; x < data.length; x++) {
       groups.push(data[x].name);
-      groupIds.push(data[x].id)
+      groupIds.push(data[x].id);
     }
     setGroupnames(groups);
     setGroupIds(groupIds);
   };
-  
+
   // console.log(groupIds);
 
   useEffect(() => {
     fetchquizzes();
   }, []);
   // console.log(data[index].name);
- 
+
   useEffect(() => {
     setgroups();
   }, [groupnames.length]);
@@ -116,38 +114,32 @@ const TeacherQuizzes = () => {
     setGroupdata();
   }, [index]);
 
-
-  const [groups, setGroupInfo] = useState(null)
+  const [groups, setGroupInfo] = useState(null);
   const getGroupQuiz = async () => {
-		try {
-      console.log(userDetails)
-			if (!groups) setLoading(true);
-			const config = {
-				headers: { Authorization: `Bearer ${userDetails.access}` },
-			};
-			const { data } = await axios.get(
-				`/api/create-group`,
-				config,
-			);
+    try {
+      console.log(userDetails);
+      if (!groups) setLoading(true);
+      const config = {
+        headers: { Authorization: `Bearer ${userDetails.access}` },
+      };
+      const { data } = await axios.get(`/api/create-group`, config);
 
-      console.log(data)
-			setGroupInfo(data);
-		} catch (err) {
-			console.log(err.message);
-		}
-		setLoading(false);
-	};
+      console.log(data);
+      setGroupInfo(data);
+    } catch (err) {
+      console.log(err.message);
+    }
+    setLoading(false);
+  };
 
-	useEffect(() => {
+  useEffect(() => {
     getGroupQuiz();
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
-
-  
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="teacher-quizzes">
-      {(
+      {
         <div className="all">
           <div className="cont">
             <div className="side">
@@ -164,7 +156,7 @@ const TeacherQuizzes = () => {
                   apidata={data}
                   userDetails={userDetails}
                   setShowCreateGroupModal={setShowCreateGroupModal}
-                  fetchquizzes = {fetchquizzes}
+                  fetchquizzes={fetchquizzes}
                 />
               )}
 
@@ -181,15 +173,17 @@ const TeacherQuizzes = () => {
                   groups={groups}
                   userDetails={userDetails}
                   setShowCreateQuizModal={setShowCreateQuizModal}
-                  fetchquizzes = {fetchquizzes}
+                  fetchquizzes={fetchquizzes}
                 />
               )}
 
-              {groupnames.length > 0 && quizCounts.length > 0 &&
+              {groupnames.length > 0 &&
+                quizCounts.length > 0 &&
                 groupnames.map((group, idx) => {
                   return (
                     <>
-                      <div key = {idx}
+                      <div
+                        key={idx}
                         className="side-bar-item-advanced-1"
                         onClick={() => {
                           setopen(!open);
@@ -202,7 +196,10 @@ const TeacherQuizzes = () => {
                                       onClick={() => setDeleteQuiz(true)}
                                       class="delete-icon" ><AiFillDelete /></button> */}
                         {deleteQuiz && (
-                          <DeleteQuiz id={groupIds[idx]} deleteQuizGroup={deleteQuiz} />
+                          <DeleteQuiz
+                            id={groupIds[idx]}
+                            deleteQuizGroup={deleteQuiz}
+                          />
                         )}
                       </div>
                       <div
@@ -309,7 +306,7 @@ const TeacherQuizzes = () => {
                                 " GMT"}
                             </p>
                           </div>
-                          
+
                           <div className="but">
                             <button
                               className="view"
@@ -367,7 +364,7 @@ const TeacherQuizzes = () => {
                     </div>
                     {upcomingquiz.map((quiz, index) => {
                       return (
-                        <div className="active-quiz" key = {index}>
+                        <div className="active-quiz" key={index}>
                           <div className="active-quiz-description">
                             <p className="active-quiz-title">
                               {ReactHtmlParser(quiz.title)}
@@ -454,7 +451,7 @@ const TeacherQuizzes = () => {
                     </div>
                     {attemptedquiz.map((quiz, index) => {
                       return (
-                        <div className="active-quiz" key = {index}>
+                        <div className="active-quiz" key={index}>
                           <div className="active-quiz-description">
                             <p className="active-quiz-title">
                               {ReactHtmlParser(quiz.title)}
@@ -537,14 +534,13 @@ const TeacherQuizzes = () => {
             </div>
           </div>
         </div>
-      )}
+      }
 
       {loading && (
         <div className="quizquestion-loader">
           <Loader />
         </div>
       )}
-
     </div>
   );
 };
