@@ -37,16 +37,16 @@ const TeacherQuizzes = () => {
   const [editQuiz, setEditQuiz] = useState(false);
   const [deleteQuiz, setDeleteQuiz] = useState(true);
 
-  
+  console.log(userDetails)
 
   const fetchquizzes = async () => {
     try {
       const config = {
-        headers: { Authorization: `Bearer ${userDetails.access}` },
+        headers: { Authorization: `Bearer ${userDetails.key}` },
       };
       setLoading(true);
       const res = await axios.get(
-        `api/get-all-quizes/${userDetails.user_id}`,
+        `api/get-all-quizes/${userDetails.user.pk}`,
         config
       );
       console.log(res.data)

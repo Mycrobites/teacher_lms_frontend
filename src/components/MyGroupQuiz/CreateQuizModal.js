@@ -6,13 +6,8 @@ import "./CreateQuizModal.css";
 import { CKEditor } from "@ckeditor/ckeditor5-react";
 import ClassicEditor from "@ckeditor/ckeditor5-build-classic";
 
-<<<<<<< HEAD
-const CreateQuizModal = ( {setShowCreateQuiz, groups, userDetails }) => {
-  // const { apidata, userDetails, setShowCreateModal } = props;
-=======
 const CreateQuizModal = ({ setShowCreateQuiz, groups }) => {
   const { apidata, userDetails, setShowCreateModal } = "props";
->>>>>>> ef4d3a7c7da0e9826df6f56bf819c33fb5868292
   const [quizTitle, setQuizTitle] = useState("");
   const [quizDesc, setQuizDesc] = useState("");
   const [quizDuration, setQuizDuration] = useState("");
