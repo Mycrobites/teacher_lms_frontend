@@ -25,7 +25,7 @@ const CreateGroupQuizModal = (props) => {
   const [message, setmessage] = useState("");
   const [error, setError] = useState(false);
   const [data, setdata] = useState();
-  console.log("user", userDetails);
+  //   console.log("user", userDetails);
   let groups = [];
   const handleCheckbox = (e, id) => {
     let isChecked = e.target.checked;
@@ -56,6 +56,7 @@ const CreateGroupQuizModal = (props) => {
       setmessage("Select atleast 1 course.");
       return;
     }
+    console.log("group", groups);
 
     try {
       const postData = {
@@ -63,7 +64,7 @@ const CreateGroupQuizModal = (props) => {
         description: groupdescription,
         course: groups,
       };
-
+      console.log("postdata=>", postData);
       const config = {
         headers: { Authorization: `Bearer ${userDetails.access}` },
       };
@@ -132,7 +133,7 @@ const CreateGroupQuizModal = (props) => {
                   <input
                     type="checkbox"
                     value={course.course_name}
-                    onChange={() => handleCheckbox(course.id)}
+                    onChange={(e) => handleCheckbox(e, course.id)}
                   />{" "}
                   {course.course_name}{" "}
                 </label>

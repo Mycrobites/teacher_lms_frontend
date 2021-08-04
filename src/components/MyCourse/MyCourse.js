@@ -48,12 +48,19 @@ const MyCourse = ({ user }) => {
     formData.append("author", user.user_id);
     formData.append("image", courseImage);
 
+    const postData = {
+      title: courseName,
+      description: courseDescription,
+      course: [],
+    };
     try {
       const config = {
         headers: { Authorization: `Bearer ${userDetails.access}` },
       };
       setLoading(true);
-      await axios.post("/teacher/createCourse", formData, config);
+      const res = await axios.post("/teacher/createCourse", formData, config);
+      postData.course.push(res.data.id);
+      await axios.post(`/api/create-group`, postData, config);
       getCourses();
       setShowCreateCourse(false);
     } catch (err) {

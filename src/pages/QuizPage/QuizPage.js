@@ -9,8 +9,8 @@ const QuizPage = () => {
 
   return (
     <>
-      <SideBar active={"quiz"} />
       <div className="quiz-page">
+        <SideBar active={"quiz"} />
         {/* <MyGroupQuiz user = {userDetails} />  
         <MyCourseQuiz user={userDetails} /> */}
         <TeacherQuizzes />

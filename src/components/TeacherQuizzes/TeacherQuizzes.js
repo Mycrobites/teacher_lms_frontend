@@ -37,18 +37,13 @@ const TeacherQuizzes = () => {
   const [editQuiz, setEditQuiz] = useState(false);
   const [deleteQuiz, setDeleteQuiz] = useState(true);
 
-  console.log("teacher", userDetails);
-
   const fetchquizzes = async () => {
     try {
       const config = {
         headers: { Authorization: `Bearer ${userDetails.access}` },
       };
       setLoading(true);
-      const res = await axios.get(
-        `api/get-all-quizes/${userDetails.user_id}`,
-        config
-      );
+      const res = await axios.get(`api/get-all-quiz`, config);
       console.log("quiz=>", res.data);
       setdata(res.data);
       setattemptedQuiz(res.data[groupnumber]["attempted"]);
@@ -124,8 +119,8 @@ const TeacherQuizzes = () => {
       };
       const { data } = await axios.get(`/api/create-group`, config);
 
-      console.log(data);
       setGroupInfo(data);
+      // console.log("groupid", groups);
     } catch (err) {
       console.log(err.message);
     }
@@ -293,16 +288,16 @@ const TeacherQuizzes = () => {
                             </p>
                             <p className="start">
                               Start Date :{" "}
-                              {quiz.starttime.slice(0, 10) +
+                              {quiz.start_date.slice(0, 10) +
                                 "     " +
-                                quiz.starttime.slice(11, 16) +
+                                quiz.start_date.slice(11, 16) +
                                 " GMT"}
                             </p>
                             <p className="end">
                               End Date :{" "}
-                              {quiz.endtime.slice(0, 10) +
+                              {quiz.expire_date.slice(0, 10) +
                                 "     " +
-                                quiz.endtime.slice(11, 16) +
+                                quiz.expire_date.slice(11, 16) +
                                 " GMT"}
                             </p>
                           </div>
@@ -320,13 +315,14 @@ const TeacherQuizzes = () => {
                               id={quiz.id}
                               title={quiz.title}
                               desc={quiz.desc}
-                              starttime={quiz.starttime}
-                              endtime={quiz.endtime}
+                              starttime={quiz.start_date}
+                              endtime={quiz.expire_date}
                               duration={quiz.duration}
                               instructions={quiz.instructions}
                               userDetails={userDetails}
                             />
-                            <DeleteQuiz id={quiz.id} />
+                            {/* {console.log("grp=>", groups)} */}
+                            <DeleteQuiz id={groups[0].id} />
                           </div>
                         </div>
                       );
@@ -381,16 +377,16 @@ const TeacherQuizzes = () => {
                             </p>
                             <p className="start">
                               Start Date :{" "}
-                              {quiz.starttime.slice(0, 10) +
+                              {quiz.start_date.slice(0, 10) +
                                 "     " +
-                                quiz.starttime.slice(11, 16) +
+                                quiz.start_date.slice(11, 16) +
                                 " GMT"}
                             </p>
                             <p className="end">
                               End Date :{" "}
-                              {quiz.endtime.slice(0, 10) +
+                              {quiz.expire_date.slice(0, 10) +
                                 "     " +
-                                quiz.endtime.slice(11, 16) +
+                                quiz.expire_date.slice(11, 16) +
                                 " GMT"}
                             </p>
                           </div>
@@ -407,8 +403,8 @@ const TeacherQuizzes = () => {
                               id={quiz.id}
                               title={quiz.title}
                               desc={quiz.desc}
-                              starttime={quiz.starttime}
-                              endtime={quiz.endtime}
+                              starttime={quiz.start_date}
+                              endtime={quiz.expire_date}
                               duration={quiz.duration}
                               instructions={quiz.instructions}
                               userDetails={userDetails}
@@ -468,16 +464,16 @@ const TeacherQuizzes = () => {
                             </p>
                             <p className="start">
                               Start Date :{" "}
-                              {quiz.starttime.slice(0, 10) +
+                              {quiz.start_date.slice(0, 10) +
                                 "     " +
-                                quiz.starttime.slice(11, 16) +
+                                quiz.start_date.slice(11, 16) +
                                 " GMT"}
                             </p>
                             <p className="end">
                               End Date :{" "}
-                              {quiz.endtime.slice(0, 10) +
+                              {quiz.expire_date.slice(0, 10) +
                                 "     " +
-                                quiz.endtime.slice(11, 16) +
+                                quiz.expire_date.slice(11, 16) +
                                 " GMT"}
                             </p>
                           </div>
@@ -500,8 +496,8 @@ const TeacherQuizzes = () => {
                               id={quiz.id}
                               title={quiz.title}
                               desc={quiz.desc}
-                              starttime={quiz.starttime}
-                              endtime={quiz.endtime}
+                              starttime={quiz.start_date}
+                              endtime={quiz.expire_date}
                               duration={quiz.duration}
                               instructions={quiz.instructions}
                               userDetails={userDetails}

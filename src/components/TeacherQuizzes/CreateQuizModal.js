@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import Loader from '../Loader/Loader';
+import Loader from "../Loader/Loader";
 import axios from "../../axios/axios";
 import { IoCloseOutline } from "react-icons/io5";
 import "./CreateQuizModal.css";
@@ -21,8 +21,6 @@ const CreateQuizModal = (props) => {
   // const refreshPage = () => {
   //   window.location.reload();
   // };
-
-  
 
   const editQuiz = async () => {
     if (!quizTitle || !quizDesc || !quizDuration || !startdate || !enddate)
@@ -47,16 +45,26 @@ const CreateQuizModal = (props) => {
         // "expire_date": null,
         // "quiz_group_id": "fa317abd-8f3c-465b-adb4-2a798202e587"
       };
-      console.log(postData);
+      // console.log(postData);
       const config = {
         headers: { Authorization: `Bearer ${userDetails.access}` },
       };
       setLoading(true);
-      await axios.post("/teacher/quiz/createQuiz", postData, config);
+      const res = await axios.post(
+        "/teacher/quiz/createQuiz",
+        postData,
+        config
+      );
+      console.log("quiz modal", res);
+      if (res.status == 200) {
+        // setShowCreateQuizModal(false);
+        // fetchquizzes();
+        window.location.reload();
+      }
       // refreshPage();
       // fetchAllQuizzes();
-      fetchquizzes();
-      setShowCreateQuizModal(false);
+      // fetchquizzes();
+      // setShowCreateQuizModal(false);
     } catch (err) {
       console.log(err.message);
     }
@@ -93,7 +101,10 @@ const CreateQuizModal = (props) => {
     <div className="edit-quiz-modal">
       <div className="edit-quiz-modal-card" ref={modalRef}>
         <h1>Create Quiz</h1>
-        <button onClick={() => setShowCreateQuizModal(false)} className="close-btn">
+        <button
+          onClick={() => setShowCreateQuizModal(false)}
+          className="close-btn"
+        >
           <IoCloseOutline />
         </button>
         <div className="edit-quiz-form">
@@ -112,7 +123,7 @@ const CreateQuizModal = (props) => {
             onChange={(e) => setQuizGroupId(e.target.value)}
           >
             <option>Select from below</option>
-            { groups?.map((elem) => (
+            {groups?.map((elem) => (
               <option value={elem.id}>{elem.title}</option>
             ))}
           </select>

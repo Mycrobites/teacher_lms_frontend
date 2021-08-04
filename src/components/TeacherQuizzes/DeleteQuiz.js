@@ -50,10 +50,7 @@ function DeleteQuiz({ id, deleteQuizGroup }) {
       };
       console.log(userDetails.access);
       ///api/edit-quiz/${id}
-      const res = await axios.delete(
-        `/api/create-group/${id}`,
-        config
-      );
+      const res = await axios.delete(`/api/delete-group/${id}`, config);
       if (res.status === 200) {
         alert("Successful");
         refreshPage();
@@ -76,10 +73,7 @@ function DeleteQuiz({ id, deleteQuizGroup }) {
         headers: { Authorization: `Bearer ${userDetails.access}` },
       };
       ///api/edit-quiz/${id}
-      const res = await axios.delete(
-        `/api/create-group/${id}`,
-        config
-      );
+      const res = await axios.delete(`/api/delete-group/${id}`, config);
       if (res.status === 200) {
         alert("Successful");
         refreshPage();
