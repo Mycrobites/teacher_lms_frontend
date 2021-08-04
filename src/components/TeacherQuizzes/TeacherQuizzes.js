@@ -274,10 +274,10 @@ const TeacherQuizzes = () => {
                         <div className="active-quiz" key={index}>
                           <div className="active-quiz-description">
                             <p className="active-quiz-title">
-                              {ReactHtmlParser(quiz.title)}
+                              {ReactHtmlParser(quiz.quiz_name)}
                             </p>
                             <p className="active-quiz-des">
-                              {ReactHtmlParser(quiz.desc)}
+                              {ReactHtmlParser(quiz.description)}
                             </p>
                             {/* <b>Instructions</b>
                                 <p className="instructions-box">
@@ -313,8 +313,8 @@ const TeacherQuizzes = () => {
                             </button>
                             <EditQuiz
                               id={quiz.id}
-                              title={quiz.title}
-                              desc={quiz.desc}
+                              title={quiz.quiz_name}
+                              desc={quiz.description}
                               starttime={quiz.start_date}
                               endtime={quiz.expire_date}
                               duration={quiz.duration}
@@ -363,10 +363,10 @@ const TeacherQuizzes = () => {
                         <div className="active-quiz" key={index}>
                           <div className="active-quiz-description">
                             <p className="active-quiz-title">
-                              {ReactHtmlParser(quiz.title)}
+                              {ReactHtmlParser(quiz.quiz_name)}
                             </p>
                             <p className="active-quiz-des">
-                              {ReactHtmlParser(quiz.desc)}
+                              {ReactHtmlParser(quiz.description)}
                             </p>
                             {/* <b>Instructions</b> */}
                             {/* <p className="instructions-box">
@@ -401,8 +401,8 @@ const TeacherQuizzes = () => {
                             </button>
                             <EditQuiz
                               id={quiz.id}
-                              title={quiz.title}
-                              desc={quiz.desc}
+                              title={quiz.quiz_name}
+                              desc={quiz.description}
                               starttime={quiz.start_date}
                               endtime={quiz.expire_date}
                               duration={quiz.duration}
@@ -450,10 +450,10 @@ const TeacherQuizzes = () => {
                         <div className="active-quiz" key={index}>
                           <div className="active-quiz-description">
                             <p className="active-quiz-title">
-                              {ReactHtmlParser(quiz.title)}
+                              {ReactHtmlParser(quiz.quiz_name)}
                             </p>
                             <p className="active-quiz-des">
-                              {ReactHtmlParser(quiz.desc)}
+                              {ReactHtmlParser(quiz.description)}
                             </p>
                             {/* <b>Instructions</b> */}
                             {/* <p className="instructions-box">
@@ -494,8 +494,8 @@ const TeacherQuizzes = () => {
                             </button>
                             <EditQuiz
                               id={quiz.id}
-                              title={quiz.title}
-                              desc={quiz.desc}
+                              title={quiz.quiz_name}
+                              desc={quiz.description}
                               starttime={quiz.start_date}
                               endtime={quiz.expire_date}
                               duration={quiz.duration}

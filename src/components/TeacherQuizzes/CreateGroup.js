@@ -1,23 +1,12 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "./CreateGroup.css";
 import Loader from "../Loader/Loader";
 import { IoCloseOutline } from "react-icons/io5";
 import axios from "../../axios/axios";
 // import UserContext from '../../context/authContext';
 
-const getCourseListFromLocalStorage = () => {
-  const lessons = localStorage.getItem("courses");
-  if (lessons) {
-    const courses = JSON.parse(lessons);
-    return courses;
-  } else {
-    return null;
-  }
-};
-
 const CreateGroupQuizModal = (props) => {
   const { apidata, userDetails, setShowCreateGroupModal, fetchquizzes } = props;
-  const courseList = getCourseListFromLocalStorage();
   const [checkedItems, setCheckedItems] = useState(new Map());
   const [grouptitle, setGroupTitle] = useState("");
   const [groupdescription, setGroupDescription] = useState("");
@@ -25,8 +14,49 @@ const CreateGroupQuizModal = (props) => {
   const [message, setmessage] = useState("");
   const [error, setError] = useState(false);
   const [data, setdata] = useState();
+  const [courseList, setCourseList] = useState(["loading"]);
   //   console.log("user", userDetails);
+  useEffect(async () => {
+    const config = {
+      headers: { Authorization: `Bearer ${userDetails.access}` },
+    };
+    const { data } = await axios.get(
+      `/teacher/getMyCourses/${userDetails.username}`,
+      config
+    );
+    if (data) {
+      setCourseList(data);
+    } else {
+      setCourseList("null");
+    }
+  }, []);
   let groups = [];
+
+  // const getCourseListFromLocalStorage = async () => {
+  //   const lessons = localStorage.getItem("courses");
+  //   const config = {
+  //     headers: { Authorization: `Bearer ${userDetails.access}` },
+  //   };
+  //   const { data } = await axios.get(
+  //     `/teacher/getMyCourses/${userDetails.username}`,
+  //     config
+  //   );
+  //   console.log("course", data);
+  //   if (data) {
+  //     return data;
+  //   } else {
+  //     return null;
+  //   }
+  //   // if (lessons) {
+  //   //   const courses = JSON.parse(lessons);
+  //   //   console.log("list", courses);
+  //   //   return courses;
+  //   // } else {
+  //   //   return null;
+  //   // }
+  // };
+  // const courseList = getCourseListFromLocalStorage();
+
   const handleCheckbox = (e, id) => {
     let isChecked = e.target.checked;
     let item = e.target.value;
@@ -127,6 +157,7 @@ const CreateGroupQuizModal = (props) => {
         <div className="quiz-modal-des">
           <label className="modal-label">Select Courses</label>
           <ul>
+            {console.log("+++", courseList)}
             {courseList.map((course) => (
               <li key={course.id}>
                 <label>

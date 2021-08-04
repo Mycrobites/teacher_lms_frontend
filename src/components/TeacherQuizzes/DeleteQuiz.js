@@ -50,7 +50,7 @@ function DeleteQuiz({ id, deleteQuizGroup }) {
       };
       console.log(userDetails.access);
       ///api/edit-quiz/${id}
-      const res = await axios.delete(`/api/delete-group/${id}`, config);
+      const res = await axios.delete(`/teacher/quiz/editQuiz/${id}`, config);
       if (res.status === 200) {
         alert("Successful");
         refreshPage();
