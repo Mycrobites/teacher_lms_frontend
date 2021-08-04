@@ -315,8 +315,8 @@ const TeacherQuizzes = () => {
                               id={quiz.id}
                               title={quiz.title}
                               desc={quiz.desc}
-                              starttime={quiz.start_date}
-                              endtime={quiz.expire_date}
+                              startDate={quiz.start_date}
+                              expireDate={quiz.expire_date}
                               duration={quiz.duration}
                               instructions={quiz.instructions}
                               userDetails={userDetails}
@@ -403,8 +403,8 @@ const TeacherQuizzes = () => {
                               id={quiz.id}
                               title={quiz.title}
                               desc={quiz.desc}
-                              starttime={quiz.start_date}
-                              endtime={quiz.expire_date}
+                              startDate={quiz.start_date}
+                              expireDate={quiz.expire_date}
                               duration={quiz.duration}
                               instructions={quiz.instructions}
                               userDetails={userDetails}
@@ -496,8 +496,8 @@ const TeacherQuizzes = () => {
                               id={quiz.id}
                               title={quiz.title}
                               desc={quiz.desc}
-                              starttime={quiz.start_date}
-                              endtime={quiz.expire_date}
+                              startDate={quiz.start_date}
+                              expireDate={quiz.expire_date}
                               duration={quiz.duration}
                               instructions={quiz.instructions}
                               userDetails={userDetails}
